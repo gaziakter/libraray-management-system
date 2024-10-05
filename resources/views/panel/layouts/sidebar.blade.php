@@ -17,9 +17,9 @@
         </a>
       </li><!-- End Dashboard Nav -->
       <li class="nav-item">
-        <a class="nav-link @if(Request::segment(2) != 'user') collapsed @endif" href="{{url('panel/publication/list')}}">
+        <a class="nav-link @if(Request::segment(2) != 'publisher') collapsed @endif" href="{{url('panel/publisher/list')}}">
           <i class="bi bi-person"></i>
-          <span>Publication</span>
+          <span>Publisher</span>
         </a>
       </li><!-- End Profile Page Nav -->
         @if (!empty($permissionuser))

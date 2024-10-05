@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PublicationModel extends Model
+class PublisherModel extends Model
 {
     use HasFactory;
-    protected $table = 'publication';
+    protected $table = 'publisher';
 
     static function getRecord(){
-        return PublicationModel::get();
+        return PublisherModel::get();
     }
 }

@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\PublisherController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,7 +16,7 @@ Route::group(['middleware' => 'basicuser'], function(){
     Route::get('panel/dashboard', [DashboardController::class, 'dashboard']);
     
     // Publication Route
-    Route::get('panel/publication/list', [PublicationController::class, 'list']);
+    Route::get('panel/publisher/list', [PublisherController::class, 'list']);
 
 
 });
