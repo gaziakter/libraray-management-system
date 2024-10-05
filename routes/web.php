@@ -9,6 +9,8 @@ Route::get('/', function () {
 });
 
 Route::post('/', [AuthController::class, 'auth_login']);
-Route::get('panel/dashboard', [DashboardController::class, 'dashboard']);
 Route::get('logout', [AuthController::class, 'logout']);
 
+Route::group(['middleware' => 'basicuser'], function(){
+    Route::get('panel/dashboard', [DashboardController::class, 'dashboard']);
+});
