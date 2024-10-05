@@ -1231,3 +1231,11 @@ h6 {
   font-size: 13px;
   color: #012970;
 }
+
+
+/*Custom css*/
+
+.upload-img-size {
+  width: 100px;
+  margin-bottom: 15px;
+}

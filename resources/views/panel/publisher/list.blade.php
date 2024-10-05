@@ -12,7 +12,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Publisher List</h5>
-                    <a href="{{url('panel/publication/add')}}" class="btn btn-primary bx-pull-right">Add New Publisher</a>
+                    <a href="{{url('panel/publisher/add')}}" class="btn btn-primary bx-pull-right">Add New Publisher</a>
                     <!-- Table with stripped rows -->
                     <table class="table table-striped">
                         <thead>
@@ -35,7 +35,7 @@
                                 <td>{{$value->address}}</td>
                                 <td>{{$value->mobile}}</td>
                                 <td>
-                                    <a href="{{url('panel/publication/edit/'.$value->id)}}" class="btn btn-primary btn-sm">Show Details</a>
+                                    <a href="{{url('panel/publisher/details/'.$value->id)}}" class="btn btn-primary btn-sm">Show Details</a>
                                 </td>
                             </tr>
                             @endforeach

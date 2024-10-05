@@ -18,7 +18,7 @@
       </li><!-- End Dashboard Nav -->
       <li class="nav-item">
         <a class="nav-link @if(Request::segment(2) != 'publisher') collapsed @endif" href="{{url('panel/publisher/list')}}">
-          <i class="bi bi-person"></i>
+          <i class="bi bi-book-half"></i>
           <span>Publisher</span>
         </a>
       </li><!-- End Profile Page Nav -->
