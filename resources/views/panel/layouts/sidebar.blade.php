@@ -16,6 +16,12 @@
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link @if(Request::segment(2) != 'user') collapsed @endif" href="{{url('panel/publication/list')}}">
+          <i class="bi bi-person"></i>
+          <span>Publication</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
         @if (!empty($permissionuser))
       <li class="nav-item">
         <a class="nav-link @if(Request::segment(2) != 'user') collapsed @endif" href="{{url('panel/user')}}">
