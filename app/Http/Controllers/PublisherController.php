@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PublisherModel;
+use Image;
 
 class PublisherController extends Controller
 {   
@@ -27,7 +28,7 @@ class PublisherController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:500',
-            'email' => 'required|email|unique:publishers,email|max:255',
+            'email' => 'nullable|email|max:255',
             'mobile' => 'required|numeric|digits_between:10,15',
             'website' => 'nullable|url|max:255', // Optional but must be a valid URL if provided
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Optional, must be an image file
@@ -54,6 +55,13 @@ class PublisherController extends Controller
     
         // Redirect with success message
         return redirect('panel/publisher')->with('success', 'Publisher successfully created');
+    }
+
+    public function details($id){
+
+        $data['getRecord'] = PublisherModel::getSingle($id);
+
+        return view('panel.publisher.details', $data);
     }
     
 }

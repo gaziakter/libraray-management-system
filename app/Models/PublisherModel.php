@@ -13,4 +13,9 @@ class PublisherModel extends Model
     static function getRecord(){
         return PublisherModel::get();
     }
+
+    static function getSingle($id){
+        
+        return PublisherModel::find($id);
+    }
 }
