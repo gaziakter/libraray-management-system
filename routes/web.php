@@ -16,8 +16,9 @@ Route::group(['middleware' => 'basicuser'], function(){
     Route::get('panel/dashboard', [DashboardController::class, 'dashboard']);
     
     // Publication Route
-    Route::get('panel/publisher/list', [PublisherController::class, 'list']);
+    Route::get('panel/publisher', [PublisherController::class, 'list']);
     Route::get('panel/publisher/add', [PublisherController::class, 'add']);
+    Route::post('panel/publisher/add', [PublisherController::class, 'insert']);
 
 
 });
