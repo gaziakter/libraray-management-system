@@ -20,13 +20,19 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Publisher Name</label>
                             <div class="col-sm-10">
-                                <input name="name" type="text" class="form-control" required>
+                                <input name="name" type="text" class="form-control" value="{{ old('name') }}" required>
+                                @error('name')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Publisher logo</label>
                             <div class="col-sm-10">
                                 <input id="image" name="logo" type="file" class="form-control">
+                                @error('logo')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -37,32 +43,44 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Publisher Address</label>
                             <div class="col-sm-10">
-                                <input name="address" type="text" class="form-control" required>
+                                <input name="address" type="text" class="form-control" value="{{ old('address') }}" required>
+                                @error('address')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Mobile Number</label>
                             <div class="col-sm-10">
-                                <input name="mobile" type="text" class="form-control" required>
+                                <input name="mobile" type="text" class="form-control" value="{{ old('mobile') }}" required>
+                                @error('mobile')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Email Adderss</label>
                             <div class="col-sm-10">
-                                <input name="email" type="email" class="form-control">
+                                <input name="email" type="email" class="form-control" value="{{ old('email') }}">
+                                @error('email')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Publisher Website</label>
                             <div class="col-sm-10">
-                                <input name="website" type="text" class="form-control">
+                                <input name="website" type="text" class="form-control" value="{{ old('website') }}">
+                                @error('website')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Create Publisher</button>
                             </div>
                         </div>
 

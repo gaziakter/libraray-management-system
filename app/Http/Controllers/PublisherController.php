@@ -21,24 +21,39 @@ class PublisherController extends Controller
     }   
     
     // Insert Publisher
-    public function insert(Request $request){
-
+    public function insert(Request $request)
+    {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'address' => 'required|string|max:500',
+            'email' => 'required|email|unique:publishers,email|max:255',
+            'mobile' => 'required|numeric|digits_between:10,15',
+            'website' => 'nullable|url|max:255', // Optional but must be a valid URL if provided
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Optional, must be an image file
+        ]);
+    
+        // If validation passes, process the data
         $save = new PublisherModel;
         $save->name = $request->name;
         $save->address = $request->address;
         $save->email = $request->email;
         $save->mobile = $request->mobile;
-        $save->website = $request->name;
-
+        $save->website = $request->website;
+    
+        // Handle file upload if the logo is present
         if ($request->file('logo')) {
             $file = $request->file('logo');
-            $filename = date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('assets/upload/publisher'),$filename);
-            $save['logo'] = $filename;
-         }
-
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('assets/upload/publisher'), $filename);
+            $save->logo = $filename;
+        }
+    
+        // Save the publisher data
         $save->save();
-
-        return redirect('panel/publisher')->with('success', 'Publisher successfully Created');
+    
+        // Redirect with success message
+        return redirect('panel/publisher')->with('success', 'Publisher successfully created');
     }
+    
 }

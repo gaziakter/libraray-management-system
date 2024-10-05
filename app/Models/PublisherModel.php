@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class PublisherModel extends Model
 {
     use HasFactory;
-    protected $table = 'publisher';
+    protected $table = 'publishers';
 
     static function getRecord(){
         return PublisherModel::get();
