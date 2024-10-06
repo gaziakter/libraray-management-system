@@ -11,8 +11,14 @@
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                    <img src="{{asset('assets/img/profile-img.jpg')}}" alt="Profile" class="rounded-circle">
-                    <h2>Kevin Anderson</h2>
+                    @if (!empty($getRecord->logo))
+                        <img src="{{asset('assets/upload/publisher/'.$getRecord->logo)}}" alt="Profile" class="rounded-circle upload-img-size">
+                    @else
+                    <img src="{{asset('assets/upload/no_logo.jpg')}}" alt="Profile" class="rounded-circle upload-img-size">
+                    @endif
+
+
+                    <h2>{{$getRecord->name}}</h2>
                   </div>
             </div>
 
@@ -28,27 +34,27 @@
                     <div class="row mb-3">
                       <div class="col-lg-3 col-md-3 label"><b>Publisher Name</b></div>
                       <div class="col-lg-1 col-md-1">:</div>
-                      <div class="col-lg-8 col-md-8">Kevin Anderson</div>
+                      <div class="col-lg-8 col-md-8">{{$getRecord->name}}</div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-lg-3 col-md-3 label"><b>Address</b></div>
                         <div class="col-lg-1 col-md-1">:</div>
-                        <div class="col-lg-8 col-md-8">Kevin Anderson</div>
+                        <div class="col-lg-8 col-md-8">{{$getRecord->address}}</div>
                       </div>
                       <div class="row mb-3">
                         <div class="col-lg-3 col-md-3 label"><b>Email Address</b></div>
                         <div class="col-lg-1 col-md-1">:</div>
-                        <div class="col-lg-8 col-md-8">Kevin Anderson</div>
+                        <div class="col-lg-8 col-md-8">{{$getRecord->enail}}</div>
                       </div>
                       <div class="row mb-3">
                         <div class="col-lg-3 col-md-3 label"><b>Mobile Number</b></div>
                         <div class="col-lg-1 col-md-1">:</div>
-                        <div class="col-lg-8 col-md-8">Kevin Anderson</div>
+                        <div class="col-lg-8 col-md-8">{{$getRecord->mobile}}</div>
                       </div>
                       <div class="row mb-3">
                         <div class="col-lg-3 col-md-3 label"><b>Website</b></div>
                         <div class="col-lg-1 col-md-1">:</div>
-                        <div class="col-lg-8 col-md-8">Kevin Anderson</div>
+                        <div class="col-lg-8 col-md-8">{{$getRecord->website}}</div>
                       </div>
 
 
