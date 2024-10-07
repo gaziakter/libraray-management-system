@@ -20,7 +20,7 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Publisher Name</label>
                             <div class="col-sm-10">
-                                <input name="name" type="text" class="form-control" value="{{ old('name') }}" required>
+                                <input name="name" type="text" class="form-control" value="{{$getRecord->name}}" required>
                                 @error('name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -38,12 +38,17 @@
                         <div class="row mb-3">
                             <label for="example-text-input" class="col-sm-2 col-form-label">  </label>
                            <div class="col-sm-10">
-                               <img id="showImage"class="rounded img-thumbnail float-left upload-img-size" src="{{ asset('assets/upload/no_image.jpg') }}" alt="No Image">
+                            @if (!empty($getRecord->logo))
+                            <img id="showImage" src="{{asset('assets/upload/publisher/'.$getRecord->logo)}}" alt="Profile" class="rounded-circle upload-img-size">
+                            @else
+                            <img id="showImage" src="{{asset('assets/upload/no_logo.jpg')}}" alt="Profile" class="rounded-circle upload-img-size">
+                            @endif
+                               
                            </div>
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Publisher Address</label>
                             <div class="col-sm-10">
-                                <input name="address" type="text" class="form-control" value="{{ old('address') }}" required>
+                                <input name="address" type="text" class="form-control" value="{{$getRecord->address}}" required>
                                 @error('address')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -52,7 +57,7 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Mobile Number</label>
                             <div class="col-sm-10">
-                                <input name="mobile" type="text" class="form-control" value="{{ old('mobile') }}" required>
+                                <input name="mobile" type="text" class="form-control" value="{{$getRecord->mobile}}" required>
                                 @error('mobile')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -61,7 +66,7 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Email Adderss</label>
                             <div class="col-sm-10">
-                                <input name="email" type="email" class="form-control" value="{{ old('email') }}">
+                                <input name="email" type="email" class="form-control" value="{{$getRecord->email}}">
                                 @error('email')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -70,7 +75,7 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Publisher Website</label>
                             <div class="col-sm-10">
-                                <input name="website" type="text" class="form-control" value="{{ old('website') }}">
+                                <input name="website" type="text" class="form-control" value="{{$getRecord->website}}">
                                 @error('website')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
