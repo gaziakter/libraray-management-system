@@ -28,34 +28,17 @@ class CategoryController extends Controller
         // Validate the request data
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'address' => 'required|string|max:500',
-            'email' => 'nullable|email|max:255',
-            'mobile' => 'required|numeric|digits_between:10,15',
-            'website' => 'nullable|url|max:255', // Optional but must be a valid URL if provided
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Optional, must be an image file
+            'description' => 'required|string|max:255'
         ]);
     
         // If validation passes, process the data
-        $save = new PublisherModel;
+        $save = new CagegoryModel;
         $save->name = $request->name;
-        $save->address = $request->address;
-        $save->email = $request->email;
-        $save->mobile = $request->mobile;
-        $save->website = $request->website;
-    
-        // Handle file upload if the logo is present
-        if ($request->file('logo')) {
-
-            $file = $request->file('logo');
-            $filename = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();  // 3434343443.jpg
-            $file->move(public_path('assets/upload/publisher'), $filename);
-            $save->logo = $filename;
-        }
-
+        $save->description = $request->description;
         $save->save();
     
         // Redirect with success message
-        return redirect('panel/publisher')->with('success', 'Publisher Successfully Created');
+        return redirect('panel/categories')->with('success', 'Category Successfully Created');
     }
 
     public function details($id){

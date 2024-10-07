@@ -15,7 +15,7 @@
         </a>
       </li><!-- End Profile Page Nav -->
       <li class="nav-item">
-        <a class="nav-link @if(Request::segment(2) != 'category') collapsed @endif" href="{{url('panel/category')}}">
+        <a class="nav-link @if(Request::segment(2) != 'categories') collapsed @endif" href="{{url('panel/categories')}}">
           <i class="bi bi-border-all"></i>
           <span>Category</span>
         </a>
