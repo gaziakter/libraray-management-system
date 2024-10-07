@@ -11,11 +11,11 @@ class CagegoryModel extends Model
     protected $table = 'categories';
 
     static function getRecord(){
-        return PublisherModel::get();
+        return CagegoryModel::get();
     }
 
     static function getSingle($id){
         
-        return PublisherModel::find($id);
+        return CagegoryModel::find($id);
     }
 }
