@@ -7,12 +7,16 @@
 
 <section class="section dashboard">
     <div class="row">
+        <div class="col lg-12">
+          <a href="{{url('panel/publisher/add')}}" class="btn btn-primary bx-pull-right mb-3">Add New Publisher</a>
+        </div>
+      </div>
+    <div class="row">
         <div class="col-lg-12">
             @include('_message')
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Publisher List</h5>
-                    <a href="{{url('panel/publisher/add')}}" class="btn btn-primary bx-pull-right">Add New Publisher</a>
                     <!-- Table with stripped rows -->
                     <table class="table table-striped">
                         <thead>

@@ -8,6 +8,11 @@
 
 <section class="section dashboard">
     <div class="row">
+      <div class="col lg-12">
+        <a href="{{url('panel/publisher/add')}}" class="btn btn-primary bx-pull-right mb-3">Add New Publisher</a>
+      </div>
+    </div>
+    <div class="row">
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
