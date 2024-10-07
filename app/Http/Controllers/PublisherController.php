@@ -55,7 +55,14 @@ class PublisherController extends Controller
         $save->save();
     
         // Redirect with success message
-        return redirect('panel/publisher')->with('success', 'Publisher successfully created');
+        return redirect('panel/publisher')->with('success', 'Publisher Successfully Created');
+    }
+
+    public function details($id){
+
+        $data['getRecord'] = PublisherModel::getSingle($id);
+
+        return view('panel.publisher.details', $data);
     }
 
     public function edit($id){
@@ -96,14 +103,16 @@ class PublisherController extends Controller
 
         $save->save();
 
-        return redirect('panel/publisher')->with('success', 'Pyblisher Successfully Updated');
+        return redirect('panel/publisher')->with('success', 'Publisher Successfully Updated');
     }
 
-    public function details($id){
+    public function delete($id){
 
-        $data['getRecord'] = PublisherModel::getSingle($id);
+        $data = PublisherModel::getSingle($id);
+        $data->delete();
 
-        return view('panel.publisher.details', $data);
+        return redirect('panel/publisher')->with('success', 'Publisher Successfully Deleted');
     }
+
     
 }
