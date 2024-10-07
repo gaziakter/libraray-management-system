@@ -2,14 +2,6 @@
   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
-      {{-- @php
-        $permissionuser = App\Models\PermissionRoleModel::getPermission('user', Auth::user()->role_id);
-        $permissionrole = App\Models\PermissionRoleModel::getPermission('role', Auth::user()->role_id);
-        $permissioncategory = App\Models\PermissionRoleModel::getPermission('category', Auth::user()->role_id);
-        $permissionsubcategory = App\Models\PermissionRoleModel::getPermission('subcategory', Auth::user()->role_id);
-        $permissionproduct = App\Models\PermissionRoleModel::getPermission('product', Auth::user()->role_id);
-        $permissionsetting = App\Models\PermissionRoleModel::getPermission('setting', Auth::user()->role_id);
-      @endphp --}}
       <li class="nav-item">
         <a class="nav-link @if(Request::segment(2) != 'dashboard') collapsed @endif" href="{{url('panel/dashboard')}}">
           <i class="bi bi-grid"></i>
@@ -22,6 +14,12 @@
           <span>Publisher</span>
         </a>
       </li><!-- End Profile Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link @if(Request::segment(2) != 'category') collapsed @endif" href="{{url('panel/category')}}">
+          <i class="bi bi-grid"></i>
+          <span>Category</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
         @if (!empty($permissionuser))
       <li class="nav-item">
         <a class="nav-link @if(Request::segment(2) != 'user') collapsed @endif" href="{{url('panel/user')}}">

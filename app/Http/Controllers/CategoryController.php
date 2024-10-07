@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\PublisherModel;
+use App\Models\CagegoryModel;
 
-class PublisherController extends Controller
-{   
+
+class CategoryController extends Controller
+{
+   
     //show publisher list
     public function list(){
 
-        $data['getRecord'] = PublisherModel::getRecord();
-        return view('panel.publisher.list', $data);
+        $data['getRecord'] = CagegoryModel::getRecord();
+        return view('panel.category.list', $data);
     }
 
     //Publisher add
@@ -112,5 +114,5 @@ class PublisherController extends Controller
         return redirect('panel/publisher')->with('success', 'Publisher Successfully Deleted');
     }
 
-    
+
 }
