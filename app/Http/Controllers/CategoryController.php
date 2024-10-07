@@ -13,7 +13,7 @@ class CategoryController extends Controller
     public function list(){
 
         $data['getRecord'] = CagegoryModel::getRecord();
-        return view('panel.category.list', $data);
+        return view('panel.categories.list', $data);
     }
 
     //Publisher add
