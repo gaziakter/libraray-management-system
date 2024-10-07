@@ -19,7 +19,7 @@ class CategoryController extends Controller
     //Publisher add
     public function add(){
 
-        return view('panel.publisher.add');
+        return view('panel.categories.add');
     }   
     
     // Insert Publisher

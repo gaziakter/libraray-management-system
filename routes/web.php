@@ -27,7 +27,7 @@ Route::group(['middleware' => 'basicuser'], function(){
 
     // Publication Route
     Route::get('panel/category', [CategoryController::class, 'list']);
-    // Route::get('panel/category/add', [CategoryController::class, 'add']);
+    Route::get('panel/category/add', [CategoryController::class, 'add']);
     // Route::post('panel/category/add', [CategoryController::class, 'insert']);
     // Route::get('panel/category/details/{id}', [CategoryController::class, 'details']);
     // Route::get('panel/category/edit/{id}', [CategoryController::class, 'edit']);
