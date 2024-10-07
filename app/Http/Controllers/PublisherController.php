@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PublisherModel;
-use Image;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Imagick\Driver;
 
 class PublisherController extends Controller
 {   
@@ -44,13 +45,13 @@ class PublisherController extends Controller
     
         // Handle file upload if the logo is present
         if ($request->file('logo')) {
+
             $file = $request->file('logo');
-            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $filename = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();  // 3434343443.jpg
             $file->move(public_path('assets/upload/publisher'), $filename);
             $save->logo = $filename;
         }
-    
-        // Save the publisher data
+
         $save->save();
     
         // Redirect with success message
