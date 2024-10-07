@@ -35,6 +35,7 @@ class CategoryController extends Controller
         $save = new CagegoryModel;
         $save->name = $request->name;
         $save->description = $request->description;
+        $save->slug = strtolower(str_replace('', '-', $request->name));
         $save->save();
     
         // Redirect with success message

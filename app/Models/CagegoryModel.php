@@ -11,7 +11,7 @@ class CagegoryModel extends Model
     protected $table = 'categories';
 
     static function getRecord(){
-        return CagegoryModel::get();
+        return CagegoryModel::latest()->get();
     }
 
     static function getSingle($id){
