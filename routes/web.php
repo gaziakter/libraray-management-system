@@ -21,6 +21,7 @@ Route::group(['middleware' => 'basicuser'], function(){
     Route::post('panel/publisher/add', [PublisherController::class, 'insert']);
     Route::get('panel/publisher/details/{id}', [PublisherController::class, 'details']);
     Route::get('panel/publisher/edit/{id}', [PublisherController::class, 'edit']);
+    Route::post('panel/publisher/edit/{id}', [PublisherController::class, 'update']);
 
 
 });
