@@ -41,19 +41,12 @@ class CategoryController extends Controller
         return redirect('panel/categories')->with('success', 'Category Successfully Created');
     }
 
-    public function details($id){
-
-        $data['getRecord'] = PublisherModel::getSingle($id);
-
-        return view('panel.publisher.details', $data);
-    }
-
     public function edit($id){
 
 
-        $data['getRecord'] = PublisherModel::getSingle($id);
+        $data['getRecord'] = CagegoryModel::getSingle($id);
 
-        return view('panel.publisher.edit', $data);
+        return view('panel.categories.edit', $data);
     }
 
     public function update($id, Request $request){
@@ -61,40 +54,23 @@ class CategoryController extends Controller
         // Validate the request data
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'address' => 'required|string|max:500',
-            'email' => 'nullable|email|max:255',
-            'mobile' => 'required|numeric|digits_between:10,15',
-            'website' => 'nullable|url|max:255', // Optional but must be a valid URL if provided
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Optional, must be an image file
+            'description' => 'required|string|max:255'
         ]);
 
-        $save = PublisherModel::getSingle($id);
+        $save = CagegoryModel::getSingle($id);
         $save->name = $request->name;
-        $save->address = $request->address;
-        $save->email = $request->email;
-        $save->mobile = $request->mobile;
-        $save->website = $request->website;
-    
-        // Handle file upload if the logo is present
-        if ($request->file('logo')) {
-
-            $file = $request->file('logo');
-            $filename = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();  // 3434343443.jpg
-            $file->move(public_path('assets/upload/publisher'), $filename);
-            $save->logo = $filename;
-        }
-
+        $save->description = $request->description;
         $save->save();
 
-        return redirect('panel/publisher')->with('success', 'Publisher Successfully Updated');
+        return redirect('panel/categories')->with('success', 'Category Successfully Updated');
     }
 
     public function delete($id){
 
-        $data = PublisherModel::getSingle($id);
+        $data = CagegoryModel::getSingle($id);
         $data->delete();
 
-        return redirect('panel/publisher')->with('success', 'Publisher Successfully Deleted');
+        return redirect('panel/categories')->with('success', 'Category Successfully Deleted');
     }
 
 

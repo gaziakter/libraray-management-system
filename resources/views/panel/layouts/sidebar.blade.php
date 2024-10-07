@@ -17,7 +17,7 @@
       <li class="nav-item">
         <a class="nav-link @if(Request::segment(2) != 'categories') collapsed @endif" href="{{url('panel/categories')}}">
           <i class="bi bi-border-all"></i>
-          <span>Category</span>
+          <span>Categories</span>
         </a>
       </li><!-- End Dashboard Nav -->
         @if (!empty($permissionuser))

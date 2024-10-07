@@ -35,8 +35,8 @@
                                 <td>{{$value->name}}</td>
                                 <td>{{$value->description}}</td>
                                 <td>
-                                    <a href="{{url('panel/categories/edit/'.$value->id)}}" class="btn btn-primary btn-sm">Edit</a>
-                                    <a href="{{url('panel/categories/delete/'.$value->id)}}" class="btn btn-danger btn-sm">Delete</a>
+                                    <a href="{{url('panel/category/edit/'.$value->id)}}" class="btn btn-primary btn-sm">Edit</a>
+                                    <a href="{{url('panel/category/delete/'.$value->id)}}" class="btn btn-danger btn-sm">Delete</a>
                                 </td>
                             </tr>
                             @endforeach
