@@ -29,7 +29,7 @@
             <div class="card">
               <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                 <div>
-                  <a href="{{url('panel/publisher/edit/'.$getRecord->id)}}" class="d-inline btn btn-primary btn-sm">Edit</a>
+                  <a href="{{url('panel/publisher/edit/'.$getRecord->id)}}" class="d-inline btn btn-secondary btn-sm">Edit</a>
                   <a href="{{url('panel/publisher/delete/'.$getRecord->id)}}" class="d-inline btn btn-danger btn-sm">Delete</a>
                 </div>
                 </div>

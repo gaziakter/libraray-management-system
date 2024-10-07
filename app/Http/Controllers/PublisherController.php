@@ -58,6 +58,14 @@ class PublisherController extends Controller
         return redirect('panel/publisher')->with('success', 'Publisher successfully created');
     }
 
+    public function edit($id){
+
+
+        $data['getRecord'] = PublisherModel::getSingle($id);
+
+        return view('panel.publisher.edit', $data);
+    }
+
     public function details($id){
 
         $data['getRecord'] = PublisherModel::getSingle($id);

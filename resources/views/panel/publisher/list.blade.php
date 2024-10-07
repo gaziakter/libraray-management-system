@@ -39,7 +39,7 @@
                                 <td>{{$value->address}}</td>
                                 <td>{{$value->mobile}}</td>
                                 <td>
-                                    <a href="{{url('panel/publisher/details/'.$value->id)}}" class="btn btn-primary btn-sm">Details</a>
+                                    <a href="{{url('panel/publisher/details/'.$value->id)}}" class="btn btn-info btn-sm">Details</a>
                                 </td>
                             </tr>
                             @endforeach
