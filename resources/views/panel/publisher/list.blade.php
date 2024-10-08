@@ -19,6 +19,7 @@
                     <h5 class="card-title">Publisher List</h5>
                     <!-- Table with stripped rows -->
                     <table class="table table-striped">
+                        @if (count($getRecord) > 0)
                         <thead>
                             <tr>
                                 <th scope="col">SL</th>
@@ -29,21 +30,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php $i =1; @endphp
-                            @foreach($getRecord as $value)
-                            <tr>
-                                <td>@php echo $i++; @endphp</td>
-                                <td>{{$value->name}}</td>
-                                <td>{{$value->address}}</td>
-                                <td>{{$value->mobile}}</td>
-                                <td>
-                                    <a href="{{url('panel/categories/edit/'.$value->id)}}" class="btn btn-primary btn-sm">Edit</a>
-                                    <a href="{{url('panel/categories/delete/'.$value->id)}}" class="btn btn-danger btn-sm">Delete</a>
-                                </td>
-                            </tr>
-                            @endforeach
-                        
+                            @php $i = 1; @endphp
+                                @foreach($getRecord as $value)
+                                    <tr>
+                                        <td>{{ $i++ }}</td>
+                                        <td>{{ $value->name }}</td>
+                                        <td>{{ $value->address }}</td>
+                                        <td>{{ $value->mobile }}</td>
+                                        <td>
+                                            <a href="{{ url('panel/publisher/edit/'.$value->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                            <a href="{{ url('panel/publisher/delete/'.$value->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                         </tbody>
+                        @else
+                        <div class="no-data mt-5 mb-5">
+                            <h2>No publisher available</h2>
+                        </div>
+                        @endif
                     </table>
                     <!-- End Table with stripped rows -->
 

@@ -19,6 +19,7 @@
                     <h5 class="card-title">Category List</h5>
                     <!-- Table with stripped rows -->
                     <table class="table table-striped">
+                        @if (count($getRecord) > 0)
                         <thead>
                             <tr>
                                 <th scope="col">SL</th>
@@ -42,6 +43,11 @@
                             @endforeach
                         
                         </tbody>
+                        @else
+                        <div class="no-data mt-5 mb-5">
+                            <h2>No Category available</h2>
+                        </div>
+                        @endif
                     </table>
                     <!-- End Table with stripped rows -->
 

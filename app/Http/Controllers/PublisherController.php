@@ -24,7 +24,7 @@ class PublisherController extends Controller
     public function insert(Request $request)
     {
         // Validate the request data
-        $validatedData = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:500',
             'email' => 'nullable|email|max:255',

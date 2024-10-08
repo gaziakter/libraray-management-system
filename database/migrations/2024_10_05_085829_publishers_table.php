@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         //
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('publishers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description', 500);
+            $table->string('address', 500);
             $table->string('logo')->nullable();
             $table->string('email')->nullable();
             $table->string('mobile');

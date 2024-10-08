@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -32,4 +33,13 @@ Route::group(['middleware' => 'basicuser'], function(){
     Route::get('panel/category/edit/{id}', [CategoryController::class, 'edit']);
     Route::post('panel/category/edit/{id}', [CategoryController::class, 'update']);
     Route::get('panel/category/delete/{id}', [CategoryController::class, 'delete']);
+
+    // Sub Categories Route
+    Route::get('panel/subcategories', [SubCategoryController::class, 'list']);
+    // Route::get('panel/subcategory/add', [SubCategoryController::class, 'add']);
+    // Route::post('panel/subcategory/add', [SubCategoryController::class, 'insert']);
+    // Route::get('panel/subcategory/edit/{id}', [SubCategoryController::class, 'edit']);
+    // Route::post('panel/subcategory/edit/{id}', [SubCategoryController::class, 'update']);
+    // Route::get('panel/subcategory/delete/{id}', [SubCategoryController::class, 'delete']);
+
 });
