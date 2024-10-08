@@ -67,7 +67,7 @@ class CategoryController extends Controller
         ]);
     
         // Get the existing record using the find method
-        $category = CagegoryModel::find($id);
+        $category = CagegoryModel::getSingle($id);
         if (!$category) {
             return redirect()->back()->with('error', 'Category not found');
         }

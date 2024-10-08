@@ -83,7 +83,7 @@ class PublisherController extends Controller
         ]);
     
         // Get the existing record using the find method
-        $save = PublisherModel::find($id);
+        $save = PublisherModel::getSingle($id);
         if (!$save) {
             return redirect()->back()->with('error', 'Publisher not found');
         }
