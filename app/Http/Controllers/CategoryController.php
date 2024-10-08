@@ -26,14 +26,14 @@ class CategoryController extends Controller
     public function insert(Request $request)
     {
         // Validate the request data
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
+        $request->validate([
+            'category_name' => 'required||string|unique:categories',
             'description' => 'required|string|max:255'
         ]);
     
         // If validation passes, process the data
         $save = new CagegoryModel;
-        $save->name = $request->name;
+        $save->category_name = $request->category_name;
         $save->description = $request->description;
         $save->slug = strtolower(str_replace('', '-', $request->name));
         $save->save();
@@ -52,15 +52,15 @@ class CategoryController extends Controller
 
     public function update($id, Request $request){
 
-        // Validate the request data
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
+        $request->validate([
+            'category_name' => 'required||string|unique:categories',
             'description' => 'required|string|max:255'
         ]);
 
         $save = CagegoryModel::getSingle($id);
-        $save->name = $request->name;
+        $save->category_name = $request->category_name;
         $save->description = $request->description;
+        $save->slug = strtolower(str_replace('', '-', $request->category_name));
         $save->save();
 
         return redirect('panel/categories')->with('success', 'Category Successfully Updated');
