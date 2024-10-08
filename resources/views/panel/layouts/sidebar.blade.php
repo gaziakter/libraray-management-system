@@ -20,6 +20,12 @@
           <span>Categories</span>
         </a>
       </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link @if(Request::segment(2) != 'subcategories') collapsed @endif" href="{{url('panel/subcategories')}}">
+          <i class="bi bi-border-all"></i>
+          <span>Sub Categories</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
         @if (!empty($permissionuser))
       <li class="nav-item">
         <a class="nav-link @if(Request::segment(2) != 'user') collapsed @endif" href="{{url('panel/user')}}">
