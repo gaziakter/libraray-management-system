@@ -33,7 +33,7 @@
                             @foreach($getRecord as $value)
                             <tr>
                                 <td>@php echo $i++; @endphp</td>
-                                <td>{{$value->name}}</td>
+                                <td>{{$value->category_name}}</td>
                                 <td>{{$value->description}}</td>
                                 <td>
                                     <a href="{{url('panel/category/edit/'.$value->id)}}" class="btn btn-primary btn-sm">Edit</a>

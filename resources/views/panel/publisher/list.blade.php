@@ -38,8 +38,7 @@
                                         <td>{{ $value->address }}</td>
                                         <td>{{ $value->mobile }}</td>
                                         <td>
-                                            <a href="{{ url('panel/publisher/edit/'.$value->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                            <a href="{{ url('panel/publisher/delete/'.$value->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                                            <a href="{{ url('panel/publisher/details/'.$value->id) }}" class="btn btn-info btn-sm">Details</a>
                                         </td>
                                     </tr>
                                 @endforeach

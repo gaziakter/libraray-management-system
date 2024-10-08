@@ -57,7 +57,7 @@
                       <div class="row mb-3">
                         <div class="col-lg-3 col-md-3 label"><b>Email Address</b></div>
                         <div class="col-lg-1 col-md-1">:</div>
-                        <div class="col-lg-8 col-md-8">{{$getRecord->enail}}</div>
+                        <div class="col-lg-8 col-md-8">{{$getRecord->email}}</div>
                       </div>
                       <div class="row mb-3">
                         <div class="col-lg-3 col-md-3 label"><b>Mobile Number</b></div>

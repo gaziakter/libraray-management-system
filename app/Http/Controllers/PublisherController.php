@@ -43,7 +43,6 @@ class PublisherController extends Controller
     
         // Handle file upload if the logo is present
         if ($request->file('logo')) {
-
             $file = $request->file('logo');
             $filename = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();  // 3434343443.jpg
             $file->move(public_path('assets/upload/publisher'), $filename);
@@ -71,19 +70,25 @@ class PublisherController extends Controller
         return view('panel.publisher.edit', $data);
     }
 
-    public function update($id, Request $request){
-
+    public function update($id, Request $request)
+    {
         // Validate the request data
-        $validatedData = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
-            'address' => 'required|string|max:500',
+            'address' => 'required|string|max:255',
             'email' => 'nullable|email|max:255',
             'mobile' => 'required|numeric|digits_between:10,15',
             'website' => 'nullable|url|max:255', // Optional but must be a valid URL if provided
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Optional, must be an image file
         ]);
-
-        $save = PublisherModel::getSingle($id);
+    
+        // Get the existing record using the find method
+        $save = PublisherModel::find($id);
+        if (!$save) {
+            return redirect()->back()->with('error', 'Publisher not found');
+        }
+    
+        // Update the publisher details
         $save->name = $request->name;
         $save->address = $request->address;
         $save->email = $request->email;
@@ -91,18 +96,21 @@ class PublisherController extends Controller
         $save->website = $request->website;
     
         // Handle file upload if the logo is present
-        if ($request->file('logo')) {
-
+        if ($request->hasFile('logo')) {
             $file = $request->file('logo');
-            $filename = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();  // 3434343443.jpg
+            $filename = hexdec(uniqid()) . '.' . $file->getClientOriginalExtension(); // Generate unique filename
             $file->move(public_path('assets/upload/publisher'), $filename);
             $save->logo = $filename;
         }
-
-        $save->save();
-
-        return redirect('panel/publisher')->with('success', 'Publisher Successfully Updated');
+    
+        // Save the updated record
+        if ($save->save()) {
+            return redirect('panel/publisher')->with('success', 'Publisher Successfully Updated');
+        } else {
+            return redirect()->back()->with('error', 'Failed to update Publisher');
+        }
     }
+    
 
     public function delete($id){
 
