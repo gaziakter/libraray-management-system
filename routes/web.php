@@ -36,8 +36,8 @@ Route::group(['middleware' => 'basicuser'], function(){
 
     // Sub Categories Route
     Route::get('panel/subcategories', [SubCategoryController::class, 'list']);
-    // Route::get('panel/subcategory/add', [SubCategoryController::class, 'add']);
-    // Route::post('panel/subcategory/add', [SubCategoryController::class, 'insert']);
+    Route::get('panel/subcategory/add', [SubCategoryController::class, 'add']);
+    Route::post('panel/subcategory/add', [SubCategoryController::class, 'insert']);
     // Route::get('panel/subcategory/edit/{id}', [SubCategoryController::class, 'edit']);
     // Route::post('panel/subcategory/edit/{id}', [SubCategoryController::class, 'update']);
     // Route::get('panel/subcategory/delete/{id}', [SubCategoryController::class, 'delete']);

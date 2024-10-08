@@ -8,7 +8,7 @@
 <section class="section dashboard">
     <div class="row">
         <div class="col lg-12">
-          <a href="{{url('panel/category/add')}}" class="btn btn-primary bx-pull-right mb-3">Add New Sub Category</a>
+          <a href="{{url('panel/subcategory/add')}}" class="btn btn-primary bx-pull-right mb-3">Add New Sub Category</a>
         </div>
       </div>
     <div class="row">
