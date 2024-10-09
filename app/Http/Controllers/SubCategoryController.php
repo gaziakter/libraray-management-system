@@ -92,4 +92,12 @@ class SubCategoryController extends Controller
             return redirect()->back()->with('error', 'Failed to update Sub Category');
         }
     }
+
+    public function delete($id){
+
+        $data = SubCategoryModel::getSingle($id);
+        $data->delete();
+
+        return redirect('panel/subcategories')->with('success', 'Sub Category Successfully Deleted');
+    }
 }
