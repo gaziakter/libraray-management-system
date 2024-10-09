@@ -27,7 +27,7 @@ class SubCategoryController extends Controller
    
         // Validate the request data
         $request->validate([
-            'sub_category_name' => 'required|string|unique:categories,category_name', // Ensure the category name is unique
+            'sub_category_name' => 'required|string|unique:subcategories,sub_category_name', // Ensure the category name is unique
             'category_name' => 'required|string'
         ]);
     
@@ -50,5 +50,12 @@ class SubCategoryController extends Controller
         } else {
             return redirect()->back()->with('error', 'Failed to add Category');
         }
+    }
+
+    public function edit($id){
+
+        $data['getRecord'] = SubCategoryModel::getSingle($id);
+
+        return view('panel.subcategories.edit', $data);
     }
 }
