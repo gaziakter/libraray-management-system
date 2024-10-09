@@ -17,7 +17,6 @@ class SubCategoryController extends Controller
 
     //Sub Category add
     public function add(){
-
         $data['getCategory'] = CagegoryModel::getRecord();
         return view('panel.subcategories.add', $data);
     } 
@@ -25,25 +24,29 @@ class SubCategoryController extends Controller
     // Insert sub category
     public function insert(Request $request)
     {
+   
         // Validate the request data
         $request->validate([
-            'category_name' => 'required|string|unique:categories,category_name', // Ensure the category name is unique
-            'description' => 'required|string|max:255'
+            'sub_category_name' => 'required|string|unique:categories,category_name', // Ensure the category name is unique
+            'category_name' => 'required|string'
         ]);
     
+        $category_id = $request->category_name;
+        $category_name = CagegoryModel::where('id', $category_id)->value('category_name');
+
+
         // Create a new instance of the CategoryModel for insertion
-        $category = new CagegoryModel();
+        $subCategory = new SubCategoryModel();
     
         // Set the category details
-        $category->category_name = $request->category_name;
-        $category->description = $request->description;
-    
-        // Generate slug from category name
-        $category->slug = strtolower(str_replace(' ', '-', $request->category_name));
-    
+        $subCategory->sub_category_name = $request->sub_category_name;
+        $subCategory->category_id = $category_id;
+        $subCategory->category_name = $category_name;
+        $subCategory->slug = strtolower(str_replace('', '-', $request->sub_category_name));
+
         // Save the new category record
-        if ($category->save()) {
-            return redirect('panel/categories')->with('success', 'Category Successfully Added');
+        if ($subCategory->save()) {
+            return redirect('panel/subcategories')->with('success', 'Sub Category Successfully Created');
         } else {
             return redirect()->back()->with('error', 'Failed to add Category');
         }
