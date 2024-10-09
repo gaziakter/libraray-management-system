@@ -53,7 +53,8 @@ class SubCategoryController extends Controller
     }
 
     public function edit($id){
-
+        
+        $data['getCategory'] = CagegoryModel::getRecord($id);
         $data['getRecord'] = SubCategoryModel::getSingle($id);
 
         return view('panel.subcategories.edit', $data);
