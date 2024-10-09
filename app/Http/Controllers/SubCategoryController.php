@@ -59,4 +59,37 @@ class SubCategoryController extends Controller
 
         return view('panel.subcategories.edit', $data);
     }
+
+
+    public function update($id, Request $request)
+    {
+        // Validate the request data
+        $request->validate([
+            'sub_category_name' => 'required|string|unique:subcategories,sub_category_name', // Unique, except for the current category
+            'category_name' => 'required|string'
+        ]);
+    
+        // Get the existing record using the find method
+        $subCategory = SubCategoryModel::getSingle($id);
+        if (!$subCategory) {
+            return redirect()->back()->with('error', 'Sub Category not found');
+        }
+    
+        $category_id = $request->category_name;
+        $category_name = CagegoryModel::where('id', $category_id)->value('category_name');
+
+
+        // Set the category details
+        $subCategory->sub_category_name = $request->sub_category_name;
+        $subCategory->category_id = $category_id;
+        $subCategory->category_name = $category_name;
+        $subCategory->slug = strtolower(str_replace('', '-', $request->sub_category_name));
+    
+        // Save the updated record
+        if ($subCategory->save()) {
+            return redirect('panel/subcategories')->with('success', 'Sub Category Successfully Updated');
+        } else {
+            return redirect()->back()->with('error', 'Failed to update Sub Category');
+        }
+    }
 }
