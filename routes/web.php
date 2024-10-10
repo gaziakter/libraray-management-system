@@ -6,6 +6,7 @@ use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\WriterControlller;
 
 Route::get('/', function () {
     return view('login');
@@ -42,12 +43,20 @@ Route::group(['middleware' => 'basicuser'], function(){
     Route::post('panel/subcategory/edit/{id}', [SubCategoryController::class, 'update']);
     Route::get('panel/subcategory/delete/{id}', [SubCategoryController::class, 'delete']);
 
-    // Book Route
-    Route::get('panel/book', [BookController::class, 'list']);
-    // Route::get('panel/book/add', [BookController::class, 'add']);
-    // Route::post('panel/book/add', [BookController::class, 'insert']);
-    // Route::get('panel/book/edit/{id}', [BookController::class, 'edit']);
-    // Route::post('panel/book/edit/{id}', [BookController::class, 'update']);
-    // Route::get('panel/book/delete/{id}', [BookController::class, 'delete']);
+    // Writer Route
+    Route::get('panel/writer', [WriterControlller::class, 'list']);
+    // Route::get('panel/writer/add', [WriterControlller::class, 'add']);
+    // Route::post('panel/writer/add', [WriterControlller::class, 'insert']);
+    // Route::get('panel/writer/edit/{id}', [WriterControlller::class, 'edit']);
+    // Route::post('panel/writer/edit/{id}', [WriterControlller::class, 'update']);
+    // Route::get('panel/writer/delete/{id}', [WriterControlller::class, 'delete']);
+
+        // Book Route
+        Route::get('panel/book', [BookController::class, 'list']);
+        // Route::get('panel/book/add', [BookController::class, 'add']);
+        // Route::post('panel/book/add', [BookController::class, 'insert']);
+        // Route::get('panel/book/edit/{id}', [BookController::class, 'edit']);
+        // Route::post('panel/book/edit/{id}', [BookController::class, 'update']);
+        // Route::get('panel/book/delete/{id}', [BookController::class, 'delete']);
 
 });
