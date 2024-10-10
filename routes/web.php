@@ -1,11 +1,11 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookController;
 
 Route::get('/', function () {
     return view('login');
@@ -41,5 +41,13 @@ Route::group(['middleware' => 'basicuser'], function(){
     Route::get('panel/subcategory/edit/{id}', [SubCategoryController::class, 'edit']);
     Route::post('panel/subcategory/edit/{id}', [SubCategoryController::class, 'update']);
     Route::get('panel/subcategory/delete/{id}', [SubCategoryController::class, 'delete']);
+
+    // Book Route
+    Route::get('panel/book', [BookController::class, 'list']);
+    Route::get('panel/book/add', [BookController::class, 'add']);
+    Route::post('panel/book/add', [BookController::class, 'insert']);
+    Route::get('panel/book/edit/{id}', [BookController::class, 'edit']);
+    Route::post('panel/book/edit/{id}', [BookController::class, 'update']);
+    Route::get('panel/book/delete/{id}', [BookController::class, 'delete']);
 
 });
