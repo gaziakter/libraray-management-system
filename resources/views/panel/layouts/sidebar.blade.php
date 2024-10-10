@@ -33,6 +33,12 @@
         <span>Book</span>
       </a>
     </li><!-- End Dashboard Nav -->
+    <li class="nav-item">
+      <a class="nav-link @if(Request::segment(2) != 'writer') collapsed @endif" href="{{url('panel/writer')}}">
+        <i class="bi bi-border-all"></i>
+        <span>Write</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
     </ul>
 
   </aside><!-- End Sidebar-->
