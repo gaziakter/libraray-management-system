@@ -8,8 +8,14 @@ use App\Models\WriterModel;
 class WriterControlller extends Controller
 {
         // list
-        public function list(){
-            $data['getRecord'] = WriterModel::getRecord();
-            return view('panel.writer.list', $data);
-        }
+    public function list(){
+        $data['getRecord'] = WriterModel::getRecord();
+        return view('panel.writer.list', $data);
+    }
+
+    //Writer add
+    public function add(){
+        $data['getCategory'] = WriterModel::getRecord();
+        return view('panel.writer.add', $data);
+    } 
 }
