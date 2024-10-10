@@ -60,4 +60,11 @@ class WriterControlller extends Controller
                 return redirect()->back()->with('error', 'Failed to add Writer');
             }
         }
+
+        public function details($id){
+
+            $data['getRecord'] = WriterModel::getSingle($id);
+    
+            return view('panel.writer.details', $data);
+        }
 }

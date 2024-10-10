@@ -22,8 +22,9 @@
                         @if (count($getRecord) > 0)
                         <thead>
                             <tr>
-                                <th scope="col">SL</th>
+                                <th scope="col">Serial</th>
                                 <th scope="col">Writer Name</th>
+                                <th scope="col">Photo</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -34,10 +35,10 @@
                             <tr>
                                 <td>@php echo $i++; @endphp</td>
                                 <td>{{$value->name}}</td>
+                                <td>No Photo</td>
                                 <td>{{$value->email}}</td>
                                 <td>
-                                    <a href="{{url('panel/subcategory/edit/'.$value->id)}}" class="btn btn-primary btn-sm">Edit</a>
-                                    <a href="{{url('panel/subcategory/delete/'.$value->id)}}" class="btn btn-danger btn-sm">Delete</a>
+                                    <a href="{{ url('panel/writer/details/'.$value->id) }}" class="btn btn-info btn-sm">Details</a>
                                 </td>
                             </tr>
                             @endforeach

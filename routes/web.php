@@ -47,6 +47,7 @@ Route::group(['middleware' => 'basicuser'], function(){
     Route::get('panel/writer', [WriterControlller::class, 'list']);
     Route::get('panel/writer/add', [WriterControlller::class, 'add']);
     Route::post('panel/writer/add', [WriterControlller::class, 'insert']);
+    Route::get('panel/writer/details/{id}', [WriterControlller::class, 'details']);
     // Route::get('panel/writer/edit/{id}', [WriterControlller::class, 'edit']);
     // Route::post('panel/writer/edit/{id}', [WriterControlller::class, 'update']);
     // Route::get('panel/writer/delete/{id}', [WriterControlller::class, 'delete']);
