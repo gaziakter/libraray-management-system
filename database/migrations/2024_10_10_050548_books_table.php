@@ -13,11 +13,21 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->string('sub_category_name')->unique();
-            $table->string('category_id');
-            $table->string('category_name');
-            $table->string('slug');
+            $table->string('book_name');
+            $table->string('book_img')->nullable(); // Allow null if no image
+            $table->decimal('book_price', 8, 2); // Decimal for price with precision
+            $table->string('book_slug')->unique(); // Make slug unique for SEO-friendly URLs
+            $table->unsignedBigInteger('writer_id'); // Foreign key to writers table
+            $table->unsignedBigInteger('publisher_id'); // Foreign key to publishers table
+            $table->unsignedBigInteger('category_id'); // Foreign key to categories table
+            $table->unsignedBigInteger('sub_category_id')->nullable(); // Foreign key to subcategories table, nullable if not mandatory
             $table->timestamps();
+
+            // Adding foreign key constraints
+            $table->foreign('writer_id')->references('id')->on('writers')->onDelete('cascade');
+            $table->foreign('publisher_id')->references('id')->on('publishers')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('sub_category_id')->references('id')->on('sub_categories')->onDelete('cascade');
         });
     }
 
@@ -26,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('books');
     }
 };
