@@ -22,7 +22,7 @@
                         @if (count($getRecord) > 0)
                         <thead>
                             <tr>
-                                <th scope="col">SL</th>
+                                <th scope="col">Serial</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Address</th>
                                 <th scope="col">Mobile</th>

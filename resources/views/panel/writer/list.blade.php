@@ -35,7 +35,13 @@
                             <tr>
                                 <td>@php echo $i++; @endphp</td>
                                 <td>{{$value->name}}</td>
-                                <td>No Photo</td>
+                                <td>
+                                    @if (!empty($value->photo))
+                                    <img src="{{asset('assets/upload/writer/'.$value->photo)}}" alt="Profile" class="upload-img-size">
+                                    @else
+                                    <img src="{{asset('assets/upload/no_logo.jpg')}}" alt="Profile" class="upload-img-size">
+                                    @endif
+                                </td>
                                 <td>{{$value->email}}</td>
                                 <td>
                                     <a href="{{ url('panel/writer/details/'.$value->id) }}" class="btn btn-info btn-sm">Details</a>

@@ -17,7 +17,7 @@
             <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                     @if (!empty($getRecord->logo))
-                        <img src="{{asset('assets/upload/publisher/'.$getRecord->logo)}}" alt="Profile" class="rounded-circle upload-img-size">
+                        <img src="{{asset('assets/upload/publisher/'.$getRecord->logo)}}" alt="Profile" class="upload-img-size">
                     @else
                     <img src="{{asset('assets/upload/no_logo.jpg')}}" alt="Profile" class="rounded-circle upload-img-size">
                     @endif
