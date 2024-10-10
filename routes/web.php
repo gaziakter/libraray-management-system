@@ -50,7 +50,7 @@ Route::group(['middleware' => 'basicuser'], function(){
     Route::get('panel/writer/details/{id}', [WriterControlller::class, 'details']);
     Route::get('panel/writer/edit/{id}', [WriterControlller::class, 'edit']);
     Route::post('panel/writer/edit/{id}', [WriterControlller::class, 'update']);
-    // Route::get('panel/writer/delete/{id}', [WriterControlller::class, 'delete']);
+    Route::get('panel/writer/delete/{id}', [WriterControlller::class, 'delete']);
 
         // Book Route
         Route::get('panel/book', [BookController::class, 'list']);

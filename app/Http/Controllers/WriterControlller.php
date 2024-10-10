@@ -115,4 +115,11 @@ class WriterControlller extends Controller
                 return redirect()->back()->with('error', 'Failed to update Publisher');
             }
         }
+
+        public function delete($id){
+            $data = WriterModel::getSingle($id);
+            $data->delete();
+    
+            return redirect('panel/writer')->with('success', 'Writer Successfully Deleted');
+        }
 }
