@@ -134,4 +134,12 @@ class BookController extends Controller
                 return redirect()->back()->with('error', 'Failed to add Writer');
             }
     }
+
+    public function delete($id){
+
+        $data = BookModel::getSingle($id);
+        $data->delete();
+
+        return redirect('panel/book')->with('success', 'Book Successfully Deleted');
+    }
 }

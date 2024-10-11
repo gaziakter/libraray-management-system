@@ -59,7 +59,7 @@ Route::group(['middleware' => 'basicuser'], function(){
     Route::get('panel/book/details/{id}', [BookController::class, 'details']);
     Route::get('panel/book/edit/{id}', [BookController::class, 'edit']);
     Route::post('panel/book/edit/{id}', [BookController::class, 'update']);
-    // Route::get('panel/book/delete/{id}', [BookController::class, 'delete']);
+    Route::get('panel/book/delete/{id}', [BookController::class, 'delete']);
     
     // Route fetching subcategories for book
     Route::get('/get-subcategories/{category_id}', [BookController::class, 'getSubcategories']);
