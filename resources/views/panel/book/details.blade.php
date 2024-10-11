@@ -67,12 +67,16 @@
                       <div class="row mb-3">
                         <div class="col-lg-3 col-md-3 label"><b>Category Name</b></div>
                         <div class="col-lg-1 col-md-1">:</div>
+                        @if (!empty($books['category']['category_name']))
                         <div class="col-lg-8 col-md-8">{{$books['category']['category_name']}}</div>
+                        @endif
                       </div>
                       <div class="row mb-3">
                         <div class="col-lg-3 col-md-3 label"><b>Sub Category</b></div>
                         <div class="col-lg-1 col-md-1">:</div>
-                        <div class="col-lg-8 col-md-8">{{$books['subcategory']['sub_category_name']}}</div>
+                        @if (!empty($books['subcategory']['sub_category_name']))
+                         <div class="col-lg-8 col-md-8">{{$books['subcategory']['sub_category_name']}}</div>
+                        @endif
                       </div>
                   </div>
                 </div>
