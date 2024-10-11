@@ -23,9 +23,9 @@
                         <thead>
                             <tr>
                                 <th scope="col">Serial</th>
+                                <th scope="col">Photo</th>
                                 <th scope="col">Book Name</th>
                                 <th scope="col">Writer Name</th>
-                                <th scope="col">Image</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -33,15 +33,15 @@
                             @foreach($books as $key => $item)
                             <tr>
                                 <td>{{ $key+1}}</td>
-                                <td>{{ $item->name}}</td>
-                                <td>{{ $item['writer']['name']}}</td>  
                                 <td>
-                                    @if (!empty($value->img))
+                                    @if (!empty($item->img))
                                     <img src="{{asset('assets/upload/book/'.$item->img)}}" alt="Profile" class="upload-img-size">
                                     @else
                                     <img src="{{asset('assets/upload/no_logo.jpg')}}" alt="Profile" class="upload-img-size">
                                     @endif
                                 </td>
+                                <td>{{ $item->name}}</td>
+                                <td>{{ $item['writer']['name']}}</td>  
                                 <td>
                                     <a href="{{ url('panel/book/details/'.$item->id) }}" class="btn btn-info btn-sm">Details</a>
                                 </td>

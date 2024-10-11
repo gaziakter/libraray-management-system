@@ -77,4 +77,10 @@ class BookController extends Controller
                 return redirect()->back()->with('error', 'Failed to add Writer');
             }
         }
+
+    //show book list
+    public function details($id){
+        $books = BookModel::findOrFail($id);
+        return view('panel.book.details', compact('books'));
+    }
 }

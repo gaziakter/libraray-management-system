@@ -18,8 +18,8 @@
                     <form action="" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">Book Name</label>
-                            <div class="col-sm-10">
+                            <label for="inputText" class="col-sm-3 col-form-label">Book Name</label>
+                            <div class="col-sm-9">
                                 <input name="book_name" type="text" class="form-control" value="{{ old('book_name') }}" required>
                                 @error('book_name')
                                 <div class="text-danger">{{ $message }}</div>
@@ -27,8 +27,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">Book Photo</label>
-                            <div class="col-sm-10">
+                            <label for="inputText" class="col-sm-3 col-form-label">Book Photo</label>
+                            <div class="col-sm-9">
                                 <input id="image" name="photo" type="file" class="form-control">
                                 @error('photo')
                                     <div class="text-danger">{{ $message }}</div>
@@ -36,13 +36,13 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="example-text-input" class="col-sm-2 col-form-label">  </label>
-                           <div class="col-sm-10">
+                            <label for="example-text-input" class="col-sm-3 col-form-label">  </label>
+                           <div class="col-sm-9">
                                <img id="showImage"class="rounded img-thumbnail float-left upload-img-size" src="{{ asset('assets/upload/no_image.jpg') }}" alt="No Image">
                            </div>
                            <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">Book Price</label>
-                            <div class="col-sm-10">
+                            <label for="inputText" class="col-sm-3 col-form-label">Book Price</label>
+                            <div class="col-sm-9">
                                 <input name="price" type="number" class="form-control" value="{{ old('price') }}" required>
                                 @error('price')
                                 <div class="text-danger">{{ $message }}</div>
@@ -110,8 +110,8 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label"></label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label"></label>
+                            <div class="col-sm-9">
                                 <button type="submit" class="btn btn-primary">Create Book</button>
                             </div>
                         </div>

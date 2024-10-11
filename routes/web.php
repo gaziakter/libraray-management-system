@@ -52,14 +52,16 @@ Route::group(['middleware' => 'basicuser'], function(){
     Route::post('panel/writer/edit/{id}', [WriterControlller::class, 'update']);
     Route::get('panel/writer/delete/{id}', [WriterControlller::class, 'delete']);
 
-        // Book Route
-        Route::get('panel/book', [BookController::class, 'list']);
-        Route::get('panel/book/add', [BookController::class, 'add']);
-        // Route for fetching subcategories
-        Route::get('/get-subcategories/{category_id}', [BookController::class, 'getSubcategories']);
-        Route::post('panel/book/add', [BookController::class, 'insert']);
-        // Route::get('panel/book/edit/{id}', [BookController::class, 'edit']);
-        // Route::post('panel/book/edit/{id}', [BookController::class, 'update']);
-        // Route::get('panel/book/delete/{id}', [BookController::class, 'delete']);
+    // Book Route
+    Route::get('panel/book', [BookController::class, 'list']);
+    Route::get('panel/book/add', [BookController::class, 'add']);
+    Route::post('panel/book/add', [BookController::class, 'insert']);
+    Route::get('panel/book/details/{id}', [BookController::class, 'details']);
+    // Route::get('panel/book/edit/{id}', [BookController::class, 'edit']);
+    // Route::post('panel/book/edit/{id}', [BookController::class, 'update']);
+    // Route::get('panel/book/delete/{id}', [BookController::class, 'delete']);
+    
+    // Route fetching subcategories for book
+    Route::get('/get-subcategories/{category_id}', [BookController::class, 'getSubcategories']);
 
 });
