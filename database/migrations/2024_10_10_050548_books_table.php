@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique(); 
             $table->string('img')->nullable(); // Allow null if no image
             $table->decimal('price', 8, 2); // Decimal for price with precision
-            $table->string('slug')->unique(); // Make slug unique for SEO-friendly URLs
+            $table->string('slug'); // Make slug unique for SEO-friendly URLs
             $table->unsignedBigInteger('writer_id'); // Foreign key to writers table
             $table->unsignedBigInteger('publisher_id'); // Foreign key to publishers table
             $table->unsignedBigInteger('category_id'); // Foreign key to categories table

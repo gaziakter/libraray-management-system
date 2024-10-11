@@ -20,8 +20,8 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Book Name</label>
                             <div class="col-sm-10">
-                                <input name="name" type="text" class="form-control" value="{{ old('name') }}" required>
-                                @error('name')
+                                <input name="book_name" type="text" class="form-control" value="{{ old('book_name') }}" required>
+                                @error('book_name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                             </div>

@@ -34,4 +34,47 @@ class BookController extends Controller
             // Return subcategories as JSON
             return response()->json($subcategories);
         }
+
+        // Insert Write
+        public function insert(Request $request)
+        {
+       
+            // Validate the request data
+            $request->validate([
+                'book_name' => 'required|string|unique:books,name', // Ensure the category name is unique
+                'price' => 'required|decimal:2',
+                'category_name' => 'required|integer',
+                'sub_category_name' => 'required|integer',
+                'writer_name' => 'required|integer',
+                'publisher_name' => 'required|integer',
+                'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Optional, must be an image file
+            ]);
+           
+            // Create a new instance of the CategoryModel for insertion
+            $bookData = new BookModel();
+        
+            // Set the category details
+            $bookData->name = $request->book_name;
+            $bookData->price = $request->price;
+            $bookData->category_id = $request->category_name;
+            $bookData->sub_category_id = $request->sub_category_name;
+            $bookData->writer_id = $request->writer_name;
+            $bookData->publisher_id = $request->publisher_name;
+            $bookData->slug = strtolower(str_replace(' ', '-', $request->book_name));
+
+        // Handle file upload if the logo is present
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+            $filename = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();  // 3434343443.jpg
+            $file->move(public_path('assets/upload/book'), $filename);
+            $bookData->img = $filename;
+        }
+    
+            // Save the new category record
+            if ($bookData->save()) {
+                return redirect('panel/book')->with('success', 'Book Successfully Created');
+            } else {
+                return redirect()->back()->with('error', 'Failed to add Writer');
+            }
+        }
 }
