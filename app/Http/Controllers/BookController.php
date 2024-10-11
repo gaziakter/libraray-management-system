@@ -83,4 +83,13 @@ class BookController extends Controller
         $books = BookModel::findOrFail($id);
         return view('panel.book.details', compact('books'));
     }
+
+    public function edit($id){
+        $writer = WriterModel::getRecord();
+        $publisher = PublisherModel::getRecord();
+        $category = CagegoryModel::getRecord();
+        $subcategory = SubCategoryModel::getRecord();
+        $books = BookModel::findOrFail($id);
+        return view('panel.book.edit', compact('books', 'subcategory', 'category', 'publisher', 'writer'));
+    }
 }

@@ -38,7 +38,7 @@
                         <div class="row mb-3">
                             <label for="example-text-input" class="col-sm-3 col-form-label">  </label>
                            <div class="col-sm-9">
-                               <img id="showImage"class="rounded img-thumbnail float-left upload-img-size" src="{{ asset('assets/upload/no_image.jpg') }}" alt="No Image">
+                               <img id="showImage"class="float-left upload-img-size" src="{{ asset('assets/upload/no_image.jpg') }}" alt="No Image">
                            </div>
                            <div class="row mb-3">
                             <label for="inputText" class="col-sm-3 col-form-label">Book Price</label>
