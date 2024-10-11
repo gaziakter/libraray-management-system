@@ -22,7 +22,7 @@
                         @if (count($books) > 0)
                         <thead>
                             <tr>
-                                <th scope="col">Serial</th>
+                                <th scope="col">Book No.</th>
                                 <th scope="col">Photo</th>
                                 <th scope="col">Book Name</th>
                                 <th scope="col">Writer Name</th>
@@ -32,7 +32,7 @@
                         <tbody>
                             @foreach($books as $key => $item)
                             <tr>
-                                <td>{{ $key+1}}</td>
+                                <td>{{ $item->id}}</td>
                                 <td>
                                     @if (!empty($item->img))
                                     <img src="{{asset('assets/upload/book/'.$item->img)}}" alt="Profile" class="upload-img-size">
