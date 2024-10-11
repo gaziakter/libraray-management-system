@@ -22,20 +22,20 @@
       </li><!-- End Dashboard Nav -->
       <li class="nav-item">
         <a class="nav-link @if(Request::segment(2) != 'subcategories') collapsed @endif" href="{{url('panel/subcategories')}}">
-          <i class="bi bi-border-all"></i>
+          <i class="bi bi-bookshelf"></i>
           <span>Sub Categories</span>
         </a>
       </li><!-- End Dashboard Nav -->
     </li><!-- End Dashboard Nav -->
     <li class="nav-item">
       <a class="nav-link @if(Request::segment(2) != 'book') collapsed @endif" href="{{url('panel/book')}}">
-        <i class="bi bi-border-all"></i>
+        <i class="bi bi-book"></i>
         <span>Book</span>
       </a>
     </li><!-- End Dashboard Nav -->
     <li class="nav-item">
       <a class="nav-link @if(Request::segment(2) != 'writer') collapsed @endif" href="{{url('panel/writer')}}">
-        <i class="bi bi-border-all"></i>
+        <i class="bi bi-award"></i>
         <span>Writer</span>
       </a>
     </li><!-- End Dashboard Nav -->
