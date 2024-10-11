@@ -52,12 +52,14 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-3 col-form-label">Category Name</label>
                             <div class="col-sm-9">
-                                <select class="form-control" name="category_name" required>
-                                    <option value="">Selete Category</option>
-                                    @foreach ($getCagegory as $value )
-                                    <option {{old('category_id') == $value->id ? 'selected' : '' }} value="{{$value->id}}">{{$value->category_name}}</option>   
+                                <select class="form-control" name="category_name" id="category_name" required>
+                                    <option value="">Select Category</option>
+                                    @foreach ($getCagegory as $value)
+                                        <option {{ old('category_id') == $value->id ? 'selected' : '' }} value="{{ $value->id }}">
+                                            {{ $value->category_name }}
+                                        </option>   
                                     @endforeach
-                               </select>
+                                </select>
                                 @error('category_name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -66,12 +68,13 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-3 col-form-label">Sub Category Name</label>
                             <div class="col-sm-9">
-                                <select class="form-control" name="sub_category_name">
-                                    <option value="">Selete Sub Category</option>
-                                    @foreach ($getSubCategory as $value )
-                                    <option {{old('category_id') == $value->id ? 'selected' : '' }} value="{{$value->id}}">{{$value->sub_category_name}}</option>   
+                                <select class="form-control" name="sub_category_name" id="sub_category_name">
+                                    <option value="">Select Sub Category</option>
+                                    @foreach ($getSubCategory as $value)
+                                        <option value="{{ $value->id }}">{{ $value->sub_category_name }}</option>   
                                     @endforeach
-                               </select>
+                                </select>
+                                
                                 @error('sub_category_name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -122,15 +125,40 @@
     </div>
 </section>
 <script type="text/javascript">
-    
     $(document).ready(function(){
+        // Image Preview
         $('#image').change(function(e){
             var reader = new FileReader();
             reader.onload = function(e){
-                $('#showImage').attr('src',e.target.result);
+                $('#showImage').attr('src', e.target.result);
             }
-            reader.readAsDataURL(e.target.files['0']);
+            reader.readAsDataURL(e.target.files[0]);
+        });
+
+        // Fetch Subcategories on Category Change
+        $('#category_name').on('change', function() {
+            var categoryId = $(this).val();
+            
+            if (categoryId) {
+                $.ajax({
+                    url: '/get-subcategories/' + categoryId,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#sub_category_name').empty();
+                        $('#sub_category_name').append('<option value="">Select Sub Category</option>');
+                        
+                        $.each(data, function(key, value) {
+                            $('#sub_category_name').append('<option value="'+ value.id +'">'+ value.sub_category_name +'</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#sub_category_name').empty();
+                $('#sub_category_name').append('<option value="">Select Sub Category</option>');
+            }
         });
     });
 </script>
+
 @endsection

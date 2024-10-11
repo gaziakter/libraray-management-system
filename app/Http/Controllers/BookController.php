@@ -24,5 +24,14 @@ class BookController extends Controller
             $data['getCagegory'] = CagegoryModel::getRecord();
             $data['getSubCategory'] = SubCategoryModel::getRecord();
             return view('panel.book.add', $data);
-        } 
+        }
+        
+        public function getSubcategories($category_id) {
+            
+            // Fetch subcategories based on category ID
+            $subcategories = SubCategoryModel::where('category_id', $category_id)->get();
+        
+            // Return subcategories as JSON
+            return response()->json($subcategories);
+        }
 }
