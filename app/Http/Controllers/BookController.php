@@ -9,7 +9,7 @@ class BookController extends Controller
 {
     //show book list
     public function list(){
-        //$data['getRecord'] = BookModel::getRecord();
-        return view('panel.book.list');
+        $data['getRecord'] = BookModel::getRecord();
+        return view('panel.book.list',  $data);
     }
 }
