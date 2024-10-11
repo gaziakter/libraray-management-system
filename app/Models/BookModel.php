@@ -19,4 +19,20 @@ class BookModel extends Model
         
         return BookModel::find($id);
     }
+
+    public function publisher(){
+        return $this->belongsTo(PublisherModel::class, 'publisher_id', 'id');
+    }
+
+    public function category(){
+        return $this->belongsTo(CagegoryModel::class, 'category_id', 'id');
+    }
+
+    public function subcategory(){
+        return $this->belongsTo(SubCategoryModel::class, 'sub_category_id', 'id');
+    }
+
+    public function writer(){
+        return $this->belongsTo(WriterModel::class, 'writer_id', 'id');
+    }
 }

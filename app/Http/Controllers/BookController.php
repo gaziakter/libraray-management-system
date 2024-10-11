@@ -13,8 +13,8 @@ class BookController extends Controller
 {
     //show book list
     public function list(){
-        $data['getRecord'] = BookModel::getRecord();
-        return view('panel.book.list',  $data);
+        $books = BookModel::latest()->get();
+        return view('panel.book.list', compact('books'));
     }
 
         // add 

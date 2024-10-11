@@ -19,7 +19,7 @@
                     <h5 class="card-title">Book List</h5>
                     <!-- Table with stripped rows -->
                     <table class="table table-striped">
-                        @if (count($getRecord) > 0)
+                        @if (count($books) > 0)
                         <thead>
                             <tr>
                                 <th scope="col">Serial</th>
@@ -30,21 +30,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php $i =1; @endphp
-                            @foreach($getRecord as $value)
+                            @foreach($books as $key => $item)
                             <tr>
-                                <td>@php echo $i++; @endphp</td>
-                                <td>{{$value->name}}</td>
-                                <td>No data</td>
+                                <td>{{ $key+1}}</td>
+                                <td>{{ $item->name}}</td>
+                                <td>{{ $item['writer']['name']}}</td>  
                                 <td>
                                     @if (!empty($value->img))
-                                    <img src="{{asset('assets/upload/book/'.$value->img)}}" alt="Profile" class="upload-img-size">
+                                    <img src="{{asset('assets/upload/book/'.$item->img)}}" alt="Profile" class="upload-img-size">
                                     @else
                                     <img src="{{asset('assets/upload/no_logo.jpg')}}" alt="Profile" class="upload-img-size">
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ url('panel/book/details/'.$value->id) }}" class="btn btn-info btn-sm">Details</a>
+                                    <a href="{{ url('panel/book/details/'.$item->id) }}" class="btn btn-info btn-sm">Details</a>
                                 </td>
                             </tr>
                             @endforeach
