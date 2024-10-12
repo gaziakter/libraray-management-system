@@ -52,7 +52,7 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Mobile Number</label>
                             <div class="col-sm-10">
-                                <input name="mobile" type="text" class="form-control" value="{{ old('mobile') }}" required>
+                                <input name="mobile" type="text" class="form-control" value="{{ old('mobile') }}">
                                 @error('mobile')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror

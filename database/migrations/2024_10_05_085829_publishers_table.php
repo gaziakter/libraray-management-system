@@ -14,11 +14,11 @@ return new class extends Migration
         //
         Schema::create('publishers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('address', 500);
+            $table->string('name')->unique(); 
+            $table->string('address')->nullable();
             $table->string('logo')->nullable();
             $table->string('email')->nullable();
-            $table->string('mobile');
+            $table->string('mobile')->nullable();
             $table->string('website')->nullable();
             $table->timestamps();
         });

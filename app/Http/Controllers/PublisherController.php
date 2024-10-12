@@ -26,9 +26,9 @@ class PublisherController extends Controller
         // Validate the request data
         $request->validate([
             'name' => 'required|string|max:255',
-            'address' => 'required|string|max:500',
+            'address' => 'nullable|string|max:500',
             'email' => 'nullable|email|max:255',
-            'mobile' => 'required|numeric|digits_between:10,15',
+            'mobile' => 'nullable|numeric|digits_between:10,15',
             'website' => 'nullable|url|max:255', // Optional but must be a valid URL if provided
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Optional, must be an image file
         ]);
@@ -75,9 +75,9 @@ class PublisherController extends Controller
         // Validate the request data
         $request->validate([
             'name' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
+            'address' => 'nullable|string|max:255',
             'email' => 'nullable|email|max:255',
-            'mobile' => 'required|numeric|digits_between:10,15',
+            'mobile' => 'nullable|numeric|digits_between:10,15',
             'website' => 'nullable|url|max:255', // Optional but must be a valid URL if provided
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Optional, must be an image file
         ]);
