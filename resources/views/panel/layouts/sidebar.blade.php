@@ -9,6 +9,12 @@
         </a>
       </li><!-- End Dashboard Nav -->
       <li class="nav-item">
+        <a class="nav-link @if(Request::segment(2) != 'author') collapsed @endif" href="{{url('panel/author')}}">
+          <i class="bi bi-award"></i>
+          <span>Author</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
         <a class="nav-link @if(Request::segment(2) != 'publisher') collapsed @endif" href="{{url('panel/publisher')}}">
           <i class="bi bi-book-half"></i>
           <span>Publisher</span>
@@ -31,12 +37,6 @@
       <a class="nav-link @if(Request::segment(2) != 'book') collapsed @endif" href="{{url('panel/book')}}">
         <i class="bi bi-book"></i>
         <span>Book</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
-    <li class="nav-item">
-      <a class="nav-link @if(Request::segment(2) != 'writer') collapsed @endif" href="{{url('panel/writer')}}">
-        <i class="bi bi-award"></i>
-        <span>Writer</span>
       </a>
     </li><!-- End Dashboard Nav -->
     </ul>
