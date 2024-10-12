@@ -44,7 +44,7 @@
                                 </td>
                                 <td>{{$value->email}}</td>
                                 <td>
-                                    <a href="{{ url('panel/writer/details/'.$value->id) }}" class="btn btn-info btn-sm">Details</a>
+                                    <a href="{{ url('panel/author/details/'.$value->id) }}" class="btn btn-info btn-sm">Details</a>
                                 </td>
                             </tr>
                             @endforeach

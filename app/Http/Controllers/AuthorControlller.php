@@ -56,7 +56,7 @@ class AuthorControlller extends Controller
             if ($authorData->save()) {
                 return redirect('panel/author')->with('success', 'Author Successfully Created');
             } else {
-                return redirect()->back()->with('error', 'Failed to add Writer');
+                return redirect()->back()->with('error', 'Failed to add Author');
             }
         }
 
@@ -112,7 +112,7 @@ class AuthorControlller extends Controller
             if ($authorData->save()) {
                 return redirect('panel/author')->with('success', 'Author Successfully Updated');
             } else {
-                return redirect()->back()->with('error', 'Failed to update Publisher');
+                return redirect()->back()->with('error', 'Failed to update Author');
             }
         }
 

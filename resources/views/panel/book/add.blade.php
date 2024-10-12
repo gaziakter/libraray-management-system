@@ -85,7 +85,7 @@
                             <div class="col-sm-9">
                                 <select class="form-control" name="author_name" required>
                                     <option value="">Selete Author</option>
-                                    @foreach ($getWriter as $value )
+                                    @foreach ($getAuthor as $value )
                                     <option {{old('author_id') == $value->id ? 'selected' : '' }} value="{{$value->id}}">{{$value->name}}</option>   
                                     @endforeach
                                </select>

@@ -88,9 +88,9 @@
                             <label for="inputText" class="col-sm-3 col-form-label">Author Name</label>
                             <div class="col-sm-9">
                                 <select class="form-control" name="author_name" required>
-                                    <option value="">Selete Writer</option>
-                                    @foreach ($writer as $writ)
-                                    <option value="{{$writ->id}}" {{$writ->id == $books->writer_id ? 'selected':'' }}>{{$writ->name}}</option>
+                                    <option value="">Selete Author</option>
+                                    @foreach ($author as $writ)
+                                    <option value="{{$writ->id}}" {{$writ->id == $books->author_id ? 'selected':'' }}>{{$writ->name}}</option>
                                     @endforeach
                                </select>
                                 @error('author_name')

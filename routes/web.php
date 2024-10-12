@@ -43,7 +43,7 @@ Route::group(['middleware' => 'basicuser'], function(){
     Route::post('panel/subcategory/edit/{id}', [SubCategoryController::class, 'update']);
     Route::get('panel/subcategory/delete/{id}', [SubCategoryController::class, 'delete']);
 
-    // Writer Route
+    // Author Route
     Route::get('panel/author', [AuthorControlller::class, 'list']);
     Route::get('panel/author/add', [AuthorControlller::class, 'add']);
     Route::post('panel/author/add', [AuthorControlller::class, 'insert']);

@@ -19,7 +19,7 @@ class BookController extends Controller
 
         // add 
         public function add(){
-            $data['getWriter'] = AuthorModel::getRecord();
+            $data['getAuthor'] = AuthorModel::getRecord();
             $data['getPublisher'] = PublisherModel::getRecord();
             $data['getCagegory'] = CagegoryModel::getRecord();
             $data['getSubCategory'] = SubCategoryModel::getRecord();
@@ -115,7 +115,7 @@ class BookController extends Controller
             $bookData->price = $request->price;
             $bookData->category_id = $request->category_name;
             $bookData->sub_category_id = $request->sub_category_name;
-            $bookData->writer_id = $request->author_name;
+            $bookData->author_id = $request->author_name;
             $bookData->publisher_id = $request->publisher_name;
             $bookData->slug = strtolower(str_replace(' ', '-', $request->book_name));
 
