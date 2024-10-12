@@ -3,7 +3,7 @@
 @section('content')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <div class="pagetitle">
-    <h1>Add New Writer</h1>
+    <h1>Add New Author</h1>
 </div><!-- End Page Title -->
 
 <section class="section dashboard">
@@ -12,13 +12,13 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Add New Writer</h5>
+                    <h5 class="card-title">Add New Author</h5>
 
                     <!-- General Form Elements -->
                     <form action="" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">Writer Name</label>
+                            <label for="inputText" class="col-sm-2 col-form-label">Author Name</label>
                             <div class="col-sm-10">
                                 <input name="name" type="text" class="form-control" value="{{ old('name') }}" required>
                                 @error('name')
@@ -27,7 +27,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">Writer Photo</label>
+                            <label for="inputText" class="col-sm-2 col-form-label">Author Photo</label>
                             <div class="col-sm-10">
                                 <input id="image" name="photo" type="file" class="form-control">
                                 @error('photo')
@@ -38,7 +38,7 @@
                         <div class="row mb-3">
                             <label for="example-text-input" class="col-sm-2 col-form-label">  </label>
                            <div class="col-sm-10">
-                               <img id="showImage"class="rounded img-thumbnail float-left upload-img-size" src="{{ asset('assets/upload/no_image.jpg') }}" alt="No Image">
+                               <img id="showImage"class="float-left upload-img-size" src="{{ asset('assets/upload/no_image.jpg') }}" alt="No Image">
                            </div>
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Address</label>
@@ -80,7 +80,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Create Writer</button>
+                                <button type="submit" class="btn btn-primary">Create Author</button>
                             </div>
                         </div>
 

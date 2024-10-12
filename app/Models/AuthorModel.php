@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class WriterModel extends Model
+class AuthorModel extends Model
 {
     use HasFactory;
-    protected $table = 'writers';
+    protected $table = 'authors';
 
     static function getRecord(){
-        return WriterModel::latest()->get();
+        return AuthorModel::latest()->get();
     }
 
     static function getSingle($id){
         
-        return WriterModel::find($id);
+        return AuthorModel::find($id);
     }
 }

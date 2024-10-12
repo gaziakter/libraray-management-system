@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SubCategoryModel extends Model
 {
     use HasFactory;
-    protected $table = 'subcategories';
+    protected $table = 'sub_categories';
 
     static function getRecord(){
         return SubCategoryModel::latest()->get();

@@ -81,15 +81,15 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="inputText" class="col-sm-3 col-form-label">Writer Name</label>
+                            <label for="inputText" class="col-sm-3 col-form-label">Author Name</label>
                             <div class="col-sm-9">
-                                <select class="form-control" name="writer_name" required>
-                                    <option value="">Selete Writer</option>
+                                <select class="form-control" name="author_name" required>
+                                    <option value="">Selete Author</option>
                                     @foreach ($getWriter as $value )
-                                    <option {{old('writer_id') == $value->id ? 'selected' : '' }} value="{{$value->id}}">{{$value->name}}</option>   
+                                    <option {{old('author_id') == $value->id ? 'selected' : '' }} value="{{$value->id}}">{{$value->name}}</option>   
                                     @endforeach
                                </select>
-                                @error('writer_name')
+                                @error('author_name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                             </div>

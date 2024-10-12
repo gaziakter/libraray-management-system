@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('writers', function (Blueprint $table) {
+        Schema::create('authors', function (Blueprint $table) {
             $table->id(); // Primary key
             $table->string('name')->unique(); // Writer name
             $table->string('photo')->nullable(); // Photo URL or file path, allow null
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('writers');
+        Schema::dropIfExists('authors');
     }
 };

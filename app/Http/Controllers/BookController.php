@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BookModel;
-use App\Models\WriterModel;
+use App\Models\AuthorModel;
 use App\Models\PublisherModel;
 use App\Models\CagegoryModel;
 use App\Models\SubCategoryModel;
@@ -19,7 +19,7 @@ class BookController extends Controller
 
         // add 
         public function add(){
-            $data['getWriter'] = WriterModel::getRecord();
+            $data['getWriter'] = AuthorModel::getRecord();
             $data['getPublisher'] = PublisherModel::getRecord();
             $data['getCagegory'] = CagegoryModel::getRecord();
             $data['getSubCategory'] = SubCategoryModel::getRecord();
@@ -45,7 +45,7 @@ class BookController extends Controller
                 'price' => 'required|decimal:2',
                 'category_name' => 'required|integer',
                 'sub_category_name' => 'nullable|integer',
-                'writer_name' => 'required|integer',
+                'author_name' => 'required|integer',
                 'publisher_name' => 'required|integer',
                 'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Optional, must be an image file
             ]);
@@ -58,7 +58,7 @@ class BookController extends Controller
             $bookData->price = $request->price;
             $bookData->category_id = $request->category_name;
             $bookData->sub_category_id = $request->sub_category_name;
-            $bookData->writer_id = $request->writer_name;
+            $bookData->writer_id = $request->author_name;
             $bookData->publisher_id = $request->publisher_name;
             $bookData->slug = strtolower(str_replace(' ', '-', $request->book_name));
 
@@ -85,12 +85,12 @@ class BookController extends Controller
     }
 
     public function edit($id){
-        $writer = WriterModel::getRecord();
+        $author = AuthorModel::getRecord();
         $publisher = PublisherModel::getRecord();
         $category = CagegoryModel::getRecord();
         $subcategory = SubCategoryModel::getRecord();
         $books = BookModel::findOrFail($id);
-        return view('panel.book.edit', compact('books', 'subcategory', 'category', 'publisher', 'writer'));
+        return view('panel.book.edit', compact('books', 'subcategory', 'category', 'publisher', 'author'));
     }
 
     public function update($id, Request $request){
@@ -101,7 +101,7 @@ class BookController extends Controller
                 'price' => 'required|decimal:2',
                 'category_name' => 'required|integer',
                 'sub_category_name' => 'nullable|teger',
-                'writer_name' => 'required|integer',
+                'author_name' => 'required|integer',
                 'publisher_name' => 'required|integer',
                 'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Optional, must be an image file
             ]);
@@ -115,7 +115,7 @@ class BookController extends Controller
             $bookData->price = $request->price;
             $bookData->category_id = $request->category_name;
             $bookData->sub_category_id = $request->sub_category_name;
-            $bookData->writer_id = $request->writer_name;
+            $bookData->writer_id = $request->author_name;
             $bookData->publisher_id = $request->publisher_name;
             $bookData->slug = strtolower(str_replace(' ', '-', $request->book_name));
 

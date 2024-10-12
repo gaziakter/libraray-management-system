@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-                 //
-        Schema::create('subcategories', function (Blueprint $table) {
-            $table->id();
-            $table->string('sub_category_name')->unique();
-            $table->string('category_id');
-            $table->string('category_name');
-            $table->string('slug');
-            $table->timestamps();
+        //
+        Schema::create('blood_groups', function (Blueprint $table) {
+            $table->id(); // Primary key
+            $table->string('name')->unique(); // Writer name
         });
     }
 
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('blood_groups');
     }
 };

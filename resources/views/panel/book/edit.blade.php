@@ -85,15 +85,15 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="inputText" class="col-sm-3 col-form-label">Writer Name</label>
+                            <label for="inputText" class="col-sm-3 col-form-label">Author Name</label>
                             <div class="col-sm-9">
-                                <select class="form-control" name="writer_name" required>
+                                <select class="form-control" name="author_name" required>
                                     <option value="">Selete Writer</option>
                                     @foreach ($writer as $writ)
                                     <option value="{{$writ->id}}" {{$writ->id == $books->writer_id ? 'selected':'' }}>{{$writ->name}}</option>
                                     @endforeach
                                </select>
-                                @error('writer_name')
+                                @error('author_name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                             </div>

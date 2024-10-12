@@ -25,7 +25,7 @@
                                 <th scope="col">Book No.</th>
                                 <th scope="col">Photo</th>
                                 <th scope="col">Book Name</th>
-                                <th scope="col">Writer Name</th>
+                                <th scope="col">Author Name</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -41,7 +41,7 @@
                                     @endif
                                 </td>
                                 <td>{{ $item->name}}</td>
-                                <td>{{ $item['writer']['name']}}</td>  
+                                <td>{{ $item['author']['name']}}</td>  
                                 <td>
                                     <a href="{{ url('panel/book/details/'.$item->id) }}" class="btn btn-info btn-sm">Details</a>
                                 </td>

@@ -19,7 +19,7 @@
                     @if (!empty($books->img))
                         <img src="{{asset('assets/upload/book/'.$books->img)}}" alt="Profile" class="upload-img-size">
                     @else
-                    <img src="{{asset('assets/upload/no_logo.jpg')}}" alt="Profile" class="rounded-circle upload-img-size">
+                    <img src="{{asset('assets/upload/no_logo.jpg')}}" alt="Profile" class="upload-img-size">
                     @endif
 
 
@@ -50,9 +50,9 @@
                       <div class="col-lg-8 col-md-8">{{$books->name}}</div>
                     </div>
                     <div class="row mb-3">
-                      <div class="col-lg-3 col-md-3 label"><b>Writer Name</b></div>
+                      <div class="col-lg-3 col-md-3 label"><b>Author Name</b></div>
                       <div class="col-lg-1 col-md-1">:</div>
-                      <div class="col-lg-8 col-md-8">{{$books['writer']['name']}}</div>
+                      <div class="col-lg-8 col-md-8">{{$books['author']['name']}}</div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-lg-3 col-md-3 label"><b>Book Price</b></div>

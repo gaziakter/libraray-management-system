@@ -32,7 +32,7 @@ class BookModel extends Model
         return $this->belongsTo(SubCategoryModel::class, 'sub_category_id', 'id');
     }
 
-    public function writer(){
-        return $this->belongsTo(WriterModel::class, 'writer_id', 'id');
+    public function author(){
+        return $this->belongsTo(AuthorModel::class, 'author_id', 'id');
     }
 }

@@ -3,13 +3,13 @@
 @section('content')
 
 <div class="pagetitle">
-    <h1>Writer Profile</h1>
+    <h1>Author Profile</h1>
 </div><!-- End Page Title -->
 
 <section class="section dashboard">
     <div class="row">
       <div class="col lg-12">
-        <a href="{{url('panel/writer/add')}}" class="btn btn-primary bx-pull-right mb-3">Add New Writer</a>
+        <a href="{{url('panel/author/add')}}" class="btn btn-primary bx-pull-right mb-3">Add New Author</a>
       </div>
     </div>
     <div class="row">
@@ -17,9 +17,9 @@
             <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                     @if (!empty($getRecord->photo))
-                        <img src="{{asset('assets/upload/writer/'.$getRecord->photo)}}" alt="Profile" class="upload-img-size">
+                        <img src="{{asset('assets/upload/author/'.$getRecord->photo)}}" alt="Profile" class="upload-img-size">
                     @else
-                    <img src="{{asset('assets/upload/no_logo.jpg')}}" alt="Profile" class="rounded-circle upload-img-size">
+                    <img src="{{asset('assets/upload/no_logo.jpg')}}" alt="Profile" class="upload-img-size">
                     @endif
 
 
@@ -42,10 +42,10 @@
                 <div class="tab-content">
   
                   <div class="tab-pane fade profile-overview active show" id="profile-overview" role="tabpanel">
-                    <h5 class="card-title">Writer Details</h5>
+                    <h5 class="card-title">Author Details</h5>
   
                     <div class="row mb-3">
-                      <div class="col-lg-3 col-md-3 label"><b>Writer Name</b></div>
+                      <div class="col-lg-3 col-md-3 label"><b>Author Name</b></div>
                       <div class="col-lg-1 col-md-1">:</div>
                       <div class="col-lg-8 col-md-8">{{$getRecord->name}}</div>
                     </div>
