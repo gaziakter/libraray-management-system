@@ -27,7 +27,7 @@ class CategoryController extends Controller
         // Validate the request data
         $request->validate([
             'category_name' => 'required|string|unique:categories,category_name', // Ensure the category name is unique
-            'description' => 'required|string|max:255'
+            'description' => 'nullable|string|max:255'
         ]);
     
         // Create a new instance of the CategoryModel for insertion
@@ -63,7 +63,7 @@ class CategoryController extends Controller
         // Validate the request data
         $request->validate([
             'category_name' => 'required|string|unique:categories,category_name,' . $id, // Unique, except for the current category
-            'description' => 'required|string|max:255'
+            'description' => 'nullable|string|max:255'
         ]);
     
         // Get the existing record using the find method

@@ -29,7 +29,7 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Description</label>
                             <div class="col-sm-10">
-                                <input name="description" type="text" class="form-control" value="{{ old('description') }}" required>
+                                <input name="description" type="text" class="form-control" value="{{ old('description') }}">
                                 @error('description')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
