@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AuthorModel;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class AuthorControlller extends Controller
 {
@@ -44,13 +46,30 @@ class AuthorControlller extends Controller
             $authorData->website = $request->website;
             $authorData->slug = strtolower(str_replace(' ', '-', $request->name));
 
-        // Handle file upload if the logo is present
-        if ($request->file('photo')) {
-            $file = $request->file('photo');
-            $filename = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();  // 3434343443.jpg
-            $file->move(public_path('assets/upload/author'), $filename);
-            $authorData->photo = $filename;
+
+            if ($request->file('photo')) {
+
+                $takeimg = $request->file('photo');
+
+                // create image manager with desired driver
+                $manager = new ImageManager(new Driver());
+                $name_gen = hexdec(uniqid()).'.'.$takeimg->getClientOriginalExtension();  // 3434343443.jpg
+               
+                // read image from file system
+                $img = $manager->read($takeimg);
+                $img = $img->resize(200, 200);
+                $img->toJpeg(80)->save(base_path('public/assets/upload/author/'.$name_gen));
+                $authorData->photo = $name_gen;
+ 
         }
+
+        // Handle file upload if the logo is present
+        // if ($request->file('photo')) {
+        //     $file = $request->file('photo');
+        //     $filename = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();  // 3434343443.jpg
+        //     $file->move(public_path('assets/upload/author'), $filename);
+        //     $authorData->photo = $filename;
+        // }
     
             // Save the new category record
             if ($authorData->save()) {
