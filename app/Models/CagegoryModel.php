@@ -18,4 +18,14 @@ class CagegoryModel extends Model
         
         return CagegoryModel::find($id);
     }
+
+    public function books()
+    {
+        return $this->belongsToMany(BookModel::class, 'book_category');
+    }
+    
+    public function subcategories()
+    {
+        return $this->hasMany(SubCategoryModel::class);
+    }
 }

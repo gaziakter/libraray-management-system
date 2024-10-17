@@ -18,4 +18,14 @@ class SubCategoryModel extends Model
         
         return SubCategoryModel::find($id);
     }
+
+    public function books()
+    {
+        return $this->belongsToMany(BookModel::class, 'book_subcategory');
+    }
+    
+    public function category()
+    {
+        return $this->belongsTo(SubCategoryModel::class);
+    }
 }
