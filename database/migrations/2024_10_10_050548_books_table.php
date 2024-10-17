@@ -19,15 +19,11 @@ return new class extends Migration
             $table->string('slug'); // Make slug unique for SEO-friendly URLs
             $table->unsignedBigInteger('author_id'); // Foreign key to writers table
             $table->unsignedBigInteger('publisher_id'); // Foreign key to publishers table
-            $table->unsignedBigInteger('category_id'); // Foreign key to categories table
-            $table->unsignedBigInteger('sub_category_id')->nullable(); // Foreign key to subcategories table, nullable if not mandatory
             $table->timestamps();
 
             // Adding foreign key constraints
             $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
             $table->foreign('publisher_id')->references('id')->on('publishers')->onDelete('cascade');
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->foreign('sub_category_id')->references('id')->on('sub_categories')->onDelete('cascade');
         });
     }
 
