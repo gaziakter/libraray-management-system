@@ -49,37 +49,32 @@
                             @enderror
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <label for="inputText" class="col-sm-3 col-form-label">Category Name</label>
-                            <div class="col-sm-9">
-                                <select class="form-control" name="category_name" id="category_name" required>
-                                    <option value="">Select Category</option>
-                                    @foreach ($getCagegory as $value)
-                                        <option {{ old('category_id') == $value->id ? 'selected' : '' }} value="{{ $value->id }}">
-                                            {{ $value->category_name }}
-                                        </option>   
-                                    @endforeach
-                                </select>
-                                @error('category_name')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                            </div>
+                        <h3>Select Categories</h3>
+        @foreach ($categories as $category)
+            <div class="mb-2">
+                <strong>{{ $category->category_name }}</strong>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="categories[]" value="{{ $category->id }}" id="category-{{ $category->id }}">
+                    <label class="form-check-label" for="category-{{ $category->id }}">
+                        {{ $category->name }}
+                    </label>
+                </div>
+
+                <div class="ms-4">
+                    <h4>Select Subcategories</h4>
+                    @foreach ($category->subcategories as $subcategory)
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="subcategories[]" value="{{ $subcategory->id }}" id="subcategory-{{ $subcategory->id }}">
+                            <label class="form-check-label" for="subcategory-{{ $subcategory->id }}">
+                                {{ $subcategory->name }}
+                            </label>
                         </div>
-                        <div class="row mb-3">
-                            <label for="inputText" class="col-sm-3 col-form-label">Sub Category Name</label>
-                            <div class="col-sm-9">
-                                <select class="form-control" name="sub_category_name" id="sub_category_name">
-                                    <option value="">Select Sub Category</option>
-                                    @foreach ($getSubCategory as $value)
-                                        <option value="{{ $value->id }}">{{ $value->sub_category_name }}</option>   
-                                    @endforeach
-                                </select>
-                                
-                                @error('sub_category_name')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                            </div>
-                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endforeach
+                    </div>
+
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-3 col-form-label">Author Name</label>
                             <div class="col-sm-9">

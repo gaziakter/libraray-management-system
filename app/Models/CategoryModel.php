@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CagegoryModel extends Model
+class CategoryModel extends Model
 {
     use HasFactory;
     protected $table = 'categories';
 
     static function getRecord(){
-        return CagegoryModel::latest()->get();
+        return CategoryModel::latest()->get();
     }
 
     static function getSingle($id){
         
-        return CagegoryModel::find($id);
+        return CategoryModel::find($id);
     }
 
     public function books()
@@ -26,6 +26,6 @@ class CagegoryModel extends Model
     
     public function subcategories()
     {
-        return $this->hasMany(SubCategoryModel::class);
+        return $this->hasMany(SubCategoryModel::class, 'id');
     }
 }

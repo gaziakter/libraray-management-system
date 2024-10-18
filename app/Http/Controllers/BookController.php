@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\BookModel;
 use App\Models\AuthorModel;
 use App\Models\PublisherModel;
-use App\Models\CagegoryModel;
+use App\Models\CategoryModel;
 use App\Models\SubCategoryModel;
 
 class BookController extends Controller
@@ -19,21 +19,28 @@ class BookController extends Controller
 
         // add 
         public function add(){
-            $data['getAuthor'] = AuthorModel::getRecord();
-            $data['getPublisher'] = PublisherModel::getRecord();
-            $data['getCagegory'] = CagegoryModel::getRecord();
-            $data['getSubCategory'] = SubCategoryModel::getRecord();
-            return view('panel.book.add', $data);
+
+        //     $books = Book::with('subcategories')->get();
+        //     return view('books.index', compact('books'));
+
+        //    $categories = CagegoryModel::with('subcategories')->get();
+            $getAuthor = AuthorModel::getRecord();
+            $getPublisher = PublisherModel::getRecord();
+
+        $categories = CategoryModel::with('subcategories')->get();
+        //return view('books.create', compact('categories'));
+
+            return view('panel.book.add', compact( 'categories', 'getPublisher', 'getAuthor'));
         }
         
-        public function getSubcategories($category_id) {
+        // public function getSubcategories($category_id) {
             
-            // Fetch subcategories based on category ID
-            $subcategories = SubCategoryModel::where('category_id', $category_id)->get();
+        //     // Fetch subcategories based on category ID
+        //     $subcategories = SubCategoryModel::where('category_id', $category_id)->get();
         
-            // Return subcategories as JSON
-            return response()->json($subcategories);
-        }
+        //     // Return subcategories as JSON
+        //     return response()->json($subcategories);
+        // }
 
         // Insert Write
         public function insert(Request $request)

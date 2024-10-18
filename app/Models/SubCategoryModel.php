@@ -18,7 +18,7 @@ class SubCategoryModel extends Model
         
         return SubCategoryModel::find($id);
     }
-
+    
     public function books()
     {
         return $this->belongsToMany(BookModel::class, 'book_subcategory');
@@ -26,6 +26,6 @@ class SubCategoryModel extends Model
     
     public function category()
     {
-        return $this->belongsTo(CagegoryModel::class);
+        return $this->belongsTo(SubCategoryModel::class);
     }
 }
