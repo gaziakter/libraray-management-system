@@ -11,8 +11,9 @@ class SubCategoryController extends Controller
    
     //show Sub Category list
     public function list(){
-        $data['getRecord'] = SubCategoryModel::getRecord();
-        return view('panel.subcategories.list', $data);
+        $subCategories = SubCategoryModel::with('category')->get();
+
+        return view('panel.subcategories.list', compact('subCategories'));
     }
 
     //Sub Category add
@@ -27,22 +28,21 @@ class SubCategoryController extends Controller
    
         // Validate the request data
         $request->validate([
-            'sub_category_name' => 'required|string|unique:sub_categories,sub_category_name', // Ensure the category name is unique
+            'sub_category_name' => 'required|string|unique:subcategories,name', // Ensure the category name is unique
             'category_name' => 'required|string'
         ]);
     
         $category_id = $request->category_name;
-        $category_name = CagegoryModel::where('id', $category_id)->value('category_name');
+       // $category_name = CagegoryModel::where('id', $category_id)->value('category_name');
 
 
         // Create a new instance of the CategoryModel for insertion
         $subCategory = new SubCategoryModel();
     
         // Set the category details
-        $subCategory->sub_category_name = $request->sub_category_name;
-        $subCategory->category_id = $category_id;
-        $subCategory->category_name = $category_name;
-        $subCategory->slug = strtolower(str_replace('', '-', $request->sub_category_name));
+        $subCategory->name = $request->sub_category_name;
+       $subCategory->category_id = $category_id;
+        $subCategory->slug = strtolower(str_replace(' ', '-', $request->sub_category_name));
 
         // Save the new category record
         if ($subCategory->save()) {
@@ -65,7 +65,7 @@ class SubCategoryController extends Controller
     {
         // Validate the request data
         $request->validate([
-            'sub_category_name' => 'required|string|unique:sub_categories,sub_category_name', // Unique, except for the current category
+            'sub_category_name' => 'required|string|unique:subcategories,name', // Unique, except for the current category
             'category_name' => 'required|string'
         ]);
     
@@ -75,15 +75,14 @@ class SubCategoryController extends Controller
             return redirect()->back()->with('error', 'Sub Category not found');
         }
     
-        $category_id = $request->category_name;
-        $category_name = CagegoryModel::where('id', $category_id)->value('category_name');
+       $category_id = $request->category_name;
+       // $category_name = CagegoryModel::where('id', $category_id)->value('category_name');
 
 
         // Set the category details
-        $subCategory->sub_category_name = $request->sub_category_name;
+        $subCategory->name = $request->sub_category_name;
         $subCategory->category_id = $category_id;
-        $subCategory->category_name = $category_name;
-        $subCategory->slug = strtolower(str_replace('', '-', $request->sub_category_name));
+        $subCategory->slug = strtolower(str_replace(' ', '-', $request->sub_category_name));
     
         // Save the updated record
         if ($subCategory->save()) {

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SubCategoryModel extends Model
 {
     use HasFactory;
-    protected $table = 'sub_categories';
+    protected $table = 'subcategories';
 
     static function getRecord(){
         return SubCategoryModel::latest()->get();
@@ -26,6 +26,6 @@ class SubCategoryModel extends Model
     
     public function category()
     {
-        return $this->belongsTo(SubCategoryModel::class);
+        return $this->belongsTo(CagegoryModel::class);
     }
 }

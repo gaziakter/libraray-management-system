@@ -19,7 +19,7 @@
                     <h5 class="card-title">Sub Category List</h5>
                     <!-- Table with stripped rows -->
                     <table class="table table-striped">
-                        @if (count($getRecord) > 0)
+                        @if (count($subCategories) > 0)
                         <thead>
                             <tr>
                                 <th scope="col">Serial</th>
@@ -30,18 +30,17 @@
                         </thead>
                         <tbody>
                             @php $i =1; @endphp
-                            @foreach($getRecord as $value)
+                            @foreach($subCategories as $value)
                             <tr>
                                 <td>@php echo $i++; @endphp</td>
-                                <td>{{$value->sub_category_name}}</td>
-                                <td>{{$value->category_name}}</td>
+                                <td>{{$value->name}}</td>
+                                <td>{{$value->category->category_name}}</td>
                                 <td>
                                     <a href="{{url('panel/subcategory/edit/'.$value->id)}}" class="btn btn-primary btn-sm">Edit</a>
                                     <a href="{{url('panel/subcategory/delete/'.$value->id)}}" class="btn btn-danger btn-sm">Delete</a>
                                 </td>
                             </tr>
                             @endforeach
-                        
                         </tbody>
                         @else
                         <div class="no-data mt-5 mb-5">
