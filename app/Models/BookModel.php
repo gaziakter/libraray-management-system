@@ -20,9 +20,9 @@ class BookModel extends Model
     //     return BookModel::find($id);
     // }
 
-    // public function publisher(){
-    //     return $this->belongsTo(PublisherModel::class, 'publisher_id', 'id');
-    // }
+    public function publisher(){
+        return $this->belongsTo(PublisherModel::class, 'publisher_id', 'id');
+    }
 
     // public function category(){
     //     return $this->belongsTo(CagegoryModel::class, 'category_id', 'id');
@@ -32,9 +32,9 @@ class BookModel extends Model
     //     return $this->belongsTo(SubCategoryModel::class, 'sub_category_id', 'id');
     // }
 
-    // public function author(){
-    //     return $this->belongsTo(AuthorModel::class, 'author_id', 'id');
-    // }
+    public function author(){
+        return $this->belongsTo(AuthorModel::class, 'author_id', 'id');
+    }
 
     // public function categories()
     // {
@@ -47,11 +47,11 @@ class BookModel extends Model
     // }
     public function categories()
     {
-        return $this->belongsToMany(SubCategoryModel::class, 'book_category');
+        return $this->belongsToMany(CategoryModel::class, 'book_category', 'book_id', 'category_id');
     }
     
     public function subcategories()
     {
-        return $this->belongsToMany(SubCategoryModel::class, 'book_subcategory');
+        return $this->belongsToMany(SubCategoryModel::class, 'book_subcategory', 'book_id', 'subcategory_id');
     }
 }

@@ -50,8 +50,10 @@ class BookController extends Controller
             $request->validate([
                 'book_name' => 'required|string|unique:books,name', // Ensure the category name is unique
                 'price' => 'required|decimal:2',
-                'category_name' => 'required|integer',
-                'sub_category_name' => 'nullable|integer',
+                'categories' => 'required|array',
+                'categories.*' => 'exists:categories,id',
+                'subcategories' => 'required|array',
+                'subcategories.*' => 'exists:subcategories,id',
                 'author_name' => 'required|integer',
                 'publisher_name' => 'required|integer',
                 'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Optional, must be an image file
@@ -60,14 +62,16 @@ class BookController extends Controller
             // Create a new instance of the CategoryModel for insertion
             $bookData = new BookModel();
         
+                    // Attach the selected categories and subcategories
+
+
             // Set the category details
             $bookData->name = $request->book_name;
             $bookData->price = $request->price;
-            $bookData->category_id = $request->category_name;
-            $bookData->sub_category_id = $request->sub_category_name;
             $bookData->author_id = $request->author_name;
             $bookData->publisher_id = $request->publisher_name;
             $bookData->slug = strtolower(str_replace(' ', '-', $request->book_name));
+
 
         // Handle file upload if the logo is present
         if ($request->file('photo')) {
@@ -77,13 +81,18 @@ class BookController extends Controller
             $bookData->img = $filename;
         }
     
-            // Save the new category record
-            if ($bookData->save()) {
-                return redirect('panel/book')->with('success', 'Book Successfully Created');
-            } else {
-                return redirect()->back()->with('error', 'Failed to add Writer');
-            }
+        // Save the book data first
+        if ($bookData->save()) {
+            // Attach categories and subcategories AFTER the book is saved
+            $bookData->categories()->attach($request->categories);
+            $bookData->subcategories()->attach($request->subcategories);
+
+            return redirect('panel/book')->with('success', 'Book Successfully Created');
+        } else {
+            return redirect()->back()->with('error', 'Failed to add Writer');
         }
+
+    }
 
     //show book list
     public function details($id){
