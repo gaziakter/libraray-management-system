@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         //
-        Schema::create('blood_groups', function (Blueprint $table) {
+        Schema::create('bloods', function (Blueprint $table) {
             $table->id(); // Primary key
-            $table->string('name')->unique(); // Writer name
+            $table->string('name')->unique(); // Blood group name
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('blood_groups');
+        Schema::dropIfExists('bloods');
     }
 };
