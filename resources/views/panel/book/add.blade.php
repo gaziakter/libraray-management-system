@@ -49,39 +49,57 @@
                             @enderror
                             </div>
                         </div>
-                        <h3>Select Categories</h3>
-        @foreach ($categories as $category)
-            <div class="mb-2">
-                <strong>{{ $category->category_name }}</strong>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="categories[]" value="{{ $category->id }}" id="category-{{ $category->id }}">
-                    <label class="form-check-label" for="category-{{ $category->id }}">
-                        {{ $category->name }}
-                    </label>
-                </div>
-
-                <div class="ms-4">
-                    <h4>Select Subcategories</h4>
-                    @foreach ($category->subcategories as $subcategory)
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="subcategories[]" value="{{ $subcategory->id }}" id="subcategory-{{ $subcategory->id }}">
-                            <label class="form-check-label" for="subcategory-{{ $subcategory->id }}">
-                                {{ $subcategory->name }}
-                            </label>
+                        <div class="row mb-3">
+                            <label for="inputText" class="col-sm-3 col-form-label">Select Category & Sub Category</label>
+                            <div class="col-sm-9">
+                                <table class="table table-striped">
+                                    @if (count($categories) > 0)
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Category</th>
+                                            <th scope="col">Sub Category</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($categories as $category)
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="categories[]" value="{{ $category->id }}" id="category-{{ $category->id }}">
+                                                    <label class="form-check-label" for="category-{{ $category->id }}">
+                                                        {{ $category->category_name }}
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                @foreach ($category->subcategories as $subcategory)
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="subcategories[]" value="{{ $subcategory->id }}" id="subcategory-{{ $subcategory->id }}">
+                                                    <label class="form-check-label" for="subcategory-{{ $subcategory->id }}">
+                                                        {{ $subcategory->name }}
+                                                    </label>
+                                                </div>
+                                            @endforeach
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    
+                                    </tbody>
+                                    @else
+                                    <div class="no-data mt-5 mb-5">
+                                        <h2>No Category available</h2>
+                                    </div>
+                                    @endif
+                                </table>
+                            </div>
                         </div>
-                    @endforeach
-                </div>
-            </div>
-        @endforeach
-                    </div>
-
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-3 col-form-label">Author Name</label>
                             <div class="col-sm-9">
                                 <select class="form-control" name="author_name" required>
                                     <option value="">Selete Author</option>
                                     @foreach ($getAuthor as $value )
-                                    <option {{old('author_id') == $value->id ? 'selected' : '' }} value="{{$value->id}}">{{$value->name}}</option>   
+                                    <option {{old('category_id') == $value->id ? 'selected' : '' }} value="{{$value->id}}">{{$value->name}}</option>   
                                     @endforeach
                                </select>
                                 @error('author_name')

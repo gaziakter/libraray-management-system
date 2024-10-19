@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\CagegoryModel;
+use App\Models\CategoryModel;
 
 
 class CategoryController extends Controller
@@ -12,7 +12,7 @@ class CategoryController extends Controller
     //show publisher list
     public function list(){
 
-        $data['getRecord'] = CagegoryModel::getRecord();
+        $data['getRecord'] = CategoryModel::getRecord();
         return view('panel.categories.list', $data);
     }
 
@@ -31,7 +31,7 @@ class CategoryController extends Controller
         ]);
     
         // Create a new instance of the CategoryModel for insertion
-        $category = new CagegoryModel();
+        $category = new CategoryModel();
     
         // Set the category details
         $category->category_name = $request->category_name;
@@ -52,7 +52,7 @@ class CategoryController extends Controller
     public function edit($id){
 
 
-        $data['getRecord'] = CagegoryModel::getSingle($id);
+        $data['getRecord'] = CategoryModel::getSingle($id);
 
         return view('panel.categories.edit', $data);
     }
@@ -67,7 +67,7 @@ class CategoryController extends Controller
         ]);
     
         // Get the existing record using the find method
-        $category = CagegoryModel::getSingle($id);
+        $category = CategoryModel::getSingle($id);
         if (!$category) {
             return redirect()->back()->with('error', 'Category not found');
         }
@@ -90,7 +90,7 @@ class CategoryController extends Controller
 
     public function delete($id){
 
-        $data = CagegoryModel::getSingle($id);
+        $data = CategoryModel::getSingle($id);
         $data->delete();
 
         return redirect('panel/categories')->with('success', 'Category Successfully Deleted');

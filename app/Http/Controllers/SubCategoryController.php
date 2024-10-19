@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\SubCategoryModel;
-use App\Models\CagegoryModel;
+use App\Models\CategoryModel;
 use Illuminate\Http\Request;
 
 class SubCategoryController extends Controller
@@ -18,7 +18,7 @@ class SubCategoryController extends Controller
 
     //Sub Category add
     public function add(){
-        $data['getCategory'] = CagegoryModel::getRecord();
+        $data['getCategory'] = CategoryModel::getRecord();
         return view('panel.subcategories.add', $data);
     } 
     
@@ -54,7 +54,7 @@ class SubCategoryController extends Controller
 
     public function edit($id){
         
-        $data['getCategory'] = CagegoryModel::getRecord($id);
+        $data['getCategory'] = CategoryModel::getRecord($id);
         $data['getRecord'] = SubCategoryModel::getSingle($id);
 
         return view('panel.subcategories.edit', $data);

@@ -24,8 +24,9 @@ class SubCategoryModel extends Model
         return $this->belongsToMany(BookModel::class, 'book_subcategory');
     }
     
-    public function category()
-    {
-        return $this->belongsTo(SubCategoryModel::class);
+    public function category() {
+        return $this->belongsTo(CategoryModel::class);
     }
+
+
 }
