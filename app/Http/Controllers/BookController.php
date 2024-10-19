@@ -114,46 +114,54 @@ class BookController extends Controller
         return view('panel.book.edit', compact('books', 'categories', 'authors', 'publishers', 'selectedCategories', 'selectedSubcategories'));
     }
 
-    public function update($id, Request $request){
-
-            // Validate the request data
-            $request->validate([
-                'book_name' => 'required|string|unique:books,name', // Ensure the category name is unique
-                'price' => 'required|decimal:2',
-                'category_name' => 'required|integer',
-                'sub_category_name' => 'nullable|teger',
-                'author_name' => 'required|integer',
-                'publisher_name' => 'required|integer',
-                'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Optional, must be an image file
-            ]);
-             
-
-            // Create a new instance of the CategoryModel for insertion
-            $bookData = BookModel::getSingle($id);
-
-            // Set the category details
-            $bookData->name = $request->book_name;
-            $bookData->price = $request->price;
-            $bookData->category_id = $request->category_name;
-            $bookData->sub_category_id = $request->sub_category_name;
-            $bookData->author_id = $request->author_name;
-            $bookData->publisher_id = $request->publisher_name;
-            $bookData->slug = strtolower(str_replace(' ', '-', $request->book_name));
-
-        // Handle file upload if the logo is present
-        if ($request->file('photo')) {
+    public function update($id, Request $request)
+    {
+        // Validate the request data
+        $request->validate([
+            'book_name' => 'required|string|unique:books,name,' . $id, // Unique except for current book
+            'price' => 'required|numeric|min:0',
+            'categories' => 'required|array',
+            'categories.*' => 'exists:categories,id',
+            'subcategories' => 'required|array',
+            'subcategories.*' => 'exists:subcategories,id',
+            'author_name' => 'required|exists:authors,id',
+            'publisher_name' => 'required|exists:publishers,id',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Optional file upload
+        ]);
+    
+        // Find the book by ID or return 404 if not found
+        $book = BookModel::findOrFail($id);
+    
+        // Update book details
+        $book->name = $request->book_name;
+        $book->price = $request->price;
+        $book->author_id = $request->author_name;
+        $book->publisher_id = $request->publisher_name;
+        $book->slug = strtolower(str_replace(' ', '-', $request->book_name));
+    
+        // Handle file upload if a new image is provided
+        if ($request->hasFile('photo')) {
+            // Delete old image if it exists
+            if ($book->img && file_exists(public_path('assets/upload/book/' . $book->img))) {
+                unlink(public_path('assets/upload/book/' . $book->img));
+            }
+    
+            // Upload new image
             $file = $request->file('photo');
-            $filename = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();  // 3434343443.jpg
+            $filename = hexdec(uniqid()) . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('assets/upload/book'), $filename);
-            $bookData->img = $filename;
+            $book->img = $filename;
         }
     
-            // Save the new category record
-            if ($bookData->save()) {
-                return redirect('panel/book')->with('success', 'Book Successfully Updated');
-            } else {
-                return redirect()->back()->with('error', 'Failed to add Writer');
-            }
+        // Save the updated book
+        $book->save();
+    
+        // Sync categories and subcategories
+        $book->categories()->sync($request->categories);
+        $book->subcategories()->sync($request->subcategories);
+    
+        // Redirect with success message
+        return redirect('panel/book')->with('success', 'Book updated successfully.');
     }
 
     public function delete($id){

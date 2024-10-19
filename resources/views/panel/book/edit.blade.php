@@ -15,7 +15,7 @@
                     <h5 class="card-title">Edit Book</h5>
 
                     <!-- General Form Elements -->
-                    <form action="{{ url('panel/book/update/' . $books->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label">Book Name</label>
