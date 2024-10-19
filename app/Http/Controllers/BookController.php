@@ -96,14 +96,14 @@ class BookController extends Controller
 
     //show book list
     public function details($id){
-        $books = BookModel::findOrFail($id);
+        $books = BookModel::with(['categories', 'subcategories', 'author', 'publisher'])->findOrFail($id);
         return view('panel.book.details', compact('books'));
     }
 
     public function edit($id){
         $author = AuthorModel::getRecord();
         $publisher = PublisherModel::getRecord();
-        $category = CagegoryModel::getRecord();
+        $category = CategoryModel::getRecord();
         $subcategory = SubCategoryModel::getRecord();
         $books = BookModel::findOrFail($id);
         return view('panel.book.edit', compact('books', 'subcategory', 'category', 'publisher', 'author'));

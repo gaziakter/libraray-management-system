@@ -65,19 +65,31 @@
                         <div class="col-lg-8 col-md-8">{{$books['publisher']['name']}}</div>
                       </div>
                       <div class="row mb-3">
-                        <div class="col-lg-3 col-md-3 label"><b>Category Name</b></div>
+                        <div class="col-lg-3 col-md-3 label"><b>Categories</b></div>
                         <div class="col-lg-1 col-md-1">:</div>
-                        @if (!empty($books['category']['category_name']))
-                        <div class="col-lg-8 col-md-8">{{$books['category']['category_name']}}</div>
-                        @endif
-                      </div>
-                      <div class="row mb-3">
-                        <div class="col-lg-3 col-md-3 label"><b>Sub Category</b></div>
+                        <div class="col-lg-8 col-md-8">
+                            @if ($books->categories->isNotEmpty())
+                                @foreach ($books->categories as $category)
+                                    <span class="badge bg-primary">{{$category->category_name}}</span>
+                                @endforeach
+                            @else
+                                <span>No Categories Assigned</span>
+                            @endif
+                        </div>
+                    </div>                    
+                    <div class="row mb-3">
+                        <div class="col-lg-3 col-md-3 label"><b>Sub Categories</b></div>
                         <div class="col-lg-1 col-md-1">:</div>
-                        @if (!empty($books['subcategory']['sub_category_name']))
-                         <div class="col-lg-8 col-md-8">{{$books['subcategory']['sub_category_name']}}</div>
-                        @endif
-                      </div>
+                        <div class="col-lg-8 col-md-8">
+                            @if ($books->subcategories->isNotEmpty())
+                                @foreach ($books->subcategories as $subcategory)
+                                    <span class="badge bg-secondary">{{$subcategory->name}}</span>
+                                @endforeach
+                            @else
+                                <span>No Subcategories Assigned</span>
+                            @endif
+                        </div>
+                    </div>
                   </div>
                 </div>
                 </div><!-- End Bordered Tabs -->
