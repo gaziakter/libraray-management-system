@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="pagetitle">
-    <h1>Add New Category</h1>
+    <h1>Edit Category</h1>
 </div><!-- End Page Title -->
 
 <section class="section dashboard">
@@ -11,7 +11,7 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Add New Category</h5>
+                    <h5 class="card-title">Edit Category</h5>
 
                     <!-- General Form Elements -->
                     <form action="" method="post">

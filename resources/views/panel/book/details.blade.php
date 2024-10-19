@@ -52,7 +52,7 @@
                     <div class="row mb-3">
                       <div class="col-lg-3 col-md-3 label"><b>Author Name</b></div>
                       <div class="col-lg-1 col-md-1">:</div>
-                      <div class="col-lg-8 col-md-8">{{$books['author']['name']}}</div>
+                      <div class="col-lg-8 col-md-8">{{$books->author->name}}</div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-lg-3 col-md-3 label"><b>Book Price</b></div>
@@ -62,7 +62,7 @@
                     <div class="row mb-3">
                         <div class="col-lg-3 col-md-3 label"><b>Publisher Name</b></div>
                         <div class="col-lg-1 col-md-1">:</div>
-                        <div class="col-lg-8 col-md-8">{{$books['publisher']['name']}}</div>
+                        <div class="col-lg-8 col-md-8">{{$books->publisher->name}}</div>
                       </div>
                       <div class="row mb-3">
                         <div class="col-lg-3 col-md-3 label"><b>Categories</b></div>

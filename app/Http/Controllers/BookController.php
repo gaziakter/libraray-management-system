@@ -101,12 +101,17 @@ class BookController extends Controller
     }
 
     public function edit($id){
-        $author = AuthorModel::getRecord();
-        $publisher = PublisherModel::getRecord();
-        $category = CategoryModel::getRecord();
-        $subcategory = SubCategoryModel::getRecord();
-        $books = BookModel::findOrFail($id);
-        return view('panel.book.edit', compact('books', 'subcategory', 'category', 'publisher', 'author'));
+        $books = BookModel::with('categories.subcategories')->findOrFail($id);
+        $categories = CategoryModel::with('subcategories')->get();
+        $authors = AuthorModel::all();
+        $publishers = PublisherModel::all();
+    
+        $selectedCategories = $books->categories->pluck('id')->toArray();
+        $selectedSubcategories = $books->categories->flatMap(function ($category) {
+            return $category->subcategories->pluck('id');
+        })->toArray();
+    
+        return view('panel.book.edit', compact('books', 'categories', 'authors', 'publishers', 'selectedCategories', 'selectedSubcategories'));
     }
 
     public function update($id, Request $request){
