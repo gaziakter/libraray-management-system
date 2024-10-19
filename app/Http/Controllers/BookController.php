@@ -164,11 +164,24 @@ class BookController extends Controller
         return redirect('panel/book')->with('success', 'Book updated successfully.');
     }
 
-    public function delete($id){
-
-        $data = BookModel::getSingle($id);
-        $data->delete();
-
-        return redirect('panel/book')->with('success', 'Book Successfully Deleted');
+    public function delete($id)
+    {
+        // Find the book by ID or return 404 if not found
+        $book = BookModel::findOrFail($id);
+    
+        // Delete the associated image if it exists
+        if ($book->img && file_exists(public_path('assets/upload/book/' . $book->img))) {
+            unlink(public_path('assets/upload/book/' . $book->img));
+        }
+    
+        // Detach categories and subcategories from the pivot tables
+        $book->categories()->detach();
+        $book->subcategories()->detach();
+    
+        // Delete the book record from the database
+        $book->delete();
+    
+        // Redirect to book listing page with a success message
+        return redirect('panel/book')->with('success', 'Book deleted successfully.');
     }
 }
