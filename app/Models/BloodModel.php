@@ -5,7 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BloodGroupModel extends Model
+class BloodModel extends Model
 {
     use HasFactory;
+    protected $table = 'bloods';
+
+    static function getRecord(){
+        return BloodModel::latest()->get();
+    }
 }

@@ -3,7 +3,7 @@
 @section('content')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <div class="pagetitle">
-    <h1>Add New Author</h1>
+    <h1>Add New Student</h1>
 </div><!-- End Page Title -->
 
 <section class="section dashboard">
@@ -12,25 +12,34 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Add New Author</h5>
+                    <h5 class="card-title">Add New Student</h5>
 
                     <!-- General Form Elements -->
                     <form action="" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">Author Name</label>
+                            <label for="inputText" class="col-sm-2 col-form-label">Student Name</label>
                             <div class="col-sm-10">
-                                <input name="name" type="text" class="form-control" value="{{ old('name') }}" required>
-                                @error('name')
+                                <input name="student_name" type="text" class="form-control" value="{{ old('student_name') }}" required>
+                                @error('student_name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">Author Photo</label>
+                            <label for="inputText" class="col-sm-2 col-form-label">Father Name</label>
                             <div class="col-sm-10">
-                                <input id="image" name="photo" type="file" class="form-control">
-                                @error('photo')
+                                <input name="father_name" type="text" class="form-control" value="{{ old('father_name') }}" required>
+                                @error('father_name')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputText" class="col-sm-2 col-form-label">Photo</label>
+                            <div class="col-sm-10">
+                                <input id="image" name="student_photo" type="file" class="form-control">
+                                @error('student_photo')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -80,7 +89,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Create Author</button>
+                                <button type="submit" class="btn btn-primary">Create Student</button>
                             </div>
                         </div>
 
