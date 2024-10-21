@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorControlller;
+use App\Http\Controllers\StudentController;
 
 Route::get('/', function () {
     return view('login');
@@ -62,6 +63,16 @@ Route::group(['middleware' => 'basicuser'], function(){
     Route::get('panel/book/delete/{id}', [BookController::class, 'delete']);
     
     // Route fetching subcategories for book
-    Route::get('/get-subcategories/{category_id}', [BookController::class, 'getSubcategories']);
+   // Route::get('/get-subcategories/{category_id}', [BookController::class, 'getSubcategories']);
+
+
+    // Book Route
+    Route::get('panel/student', [StudentController::class, 'list']);
+    Route::get('panel/student/add', [StudentController::class, 'add']);
+    Route::post('panel/student/add', [StudentController::class, 'insert']);
+    Route::get('panel/student/details/{id}', [StudentController::class, 'details']);
+    Route::get('panel/student/edit/{id}', [StudentController::class, 'edit']);
+    Route::post('panel/student/edit/{id}', [StudentController::class, 'update']);
+    Route::get('panel/student/delete/{id}', [StudentController::class, 'delete']);
 
 });
