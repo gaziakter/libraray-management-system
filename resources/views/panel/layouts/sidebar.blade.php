@@ -9,6 +9,12 @@
         </a>
       </li><!-- End Dashboard Nav -->
       <li class="nav-item">
+        <a class="nav-link @if(Request::segment(2) != 'student') collapsed @endif" href="{{url('panel/student')}}">
+          <i class="bi bi-award"></i>
+          <span>Student</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
         <a class="nav-link @if(Request::segment(2) != 'author') collapsed @endif" href="{{url('panel/author')}}">
           <i class="bi bi-award"></i>
           <span>Author</span>
