@@ -86,35 +86,50 @@
                             </div>
                         </div>
                         <fieldset class="row mb-3">
-                            <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
+                            <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
                             <div class="col-sm-10">
                               <div class="form-check">
                                 <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked="">
                                 <label class="form-check-label" for="gridRadios1">
-                                  First radio
+                                  Male
                                 </label>
                               </div>
                               <div class="form-check">
                                 <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
                                 <label class="form-check-label" for="gridRadios2">
-                                  Second radio
+                                  Female
                                 </label>
                               </div>
-                              <div class="form-check disabled">
-                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios" value="option" disabled="">
-                                <label class="form-check-label" for="gridRadios3">
-                                  Third disabled radio
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                                <label class="form-check-label" for="gridRadios2">
+                                 Other
                                 </label>
+                              </div>
                               </div>
                             </div>
                           </fieldset>
-                        <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">Website</label>
+                          <div class="row mb-3">
+                            <label for="inputText" class="col-sm-2 col-form-label">Blood Group</label>
                             <div class="col-sm-10">
-                                <input name="website" type="text" class="form-control" value="{{ old('website') }}">
-                                @error('website')
+                                <select class="form-control" name="blood_group" required>
+                                    <option value="">Selete Blood Group</option>
+                                    @foreach ($getBlood as $value )
+                                    <option {{old('category_id') == $value->id ? 'selected' : '' }} value="{{$value->id}}">{{$value->name}}</option>   
+                                    @endforeach
+                               </select>
+                                @error('category_name')
                                 <div class="text-danger">{{ $message }}</div>
-                                @enderror
+                            @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputText" class="col-sm-2 col-form-label">Education Q.</label>
+                            <div class="col-sm-10">
+                                <input name="education_qualification" type="text" class="form-control" value="{{ old('education_qualification') }}" required>
+                                @error('education_qualification')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                             </div>
                         </div>
 
