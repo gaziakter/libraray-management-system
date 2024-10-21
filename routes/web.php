@@ -65,7 +65,6 @@ Route::group(['middleware' => 'basicuser'], function(){
     // Route fetching subcategories for book
    // Route::get('/get-subcategories/{category_id}', [BookController::class, 'getSubcategories']);
 
-
     // Book Route
     Route::get('panel/student', [StudentController::class, 'list']);
     Route::get('panel/student/add', [StudentController::class, 'add']);

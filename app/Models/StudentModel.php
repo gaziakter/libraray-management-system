@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class StudentModel extends Model
 {
     use HasFactory;
+    protected $table = 'students';
+
+    static function getRecord(){
+        return StudentModel::latest()->get();
+    }
 }
