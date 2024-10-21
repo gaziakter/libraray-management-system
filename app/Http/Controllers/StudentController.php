@@ -19,6 +19,6 @@ class StudentController extends Controller
 
         $getBlood = BloodModel::getRecord();
 
-        return view('panel.book.add', compact('getBlood'));
+        return view('panel.student.add', compact('getBlood'));
     }
 }

@@ -77,6 +77,38 @@
                             </div>
                         </div>
                         <div class="row mb-3">
+                            <label for="inputText" class="col-sm-2 col-form-label">Date of Birth</label>
+                            <div class="col-sm-10">
+                                <input name="date_of_birth" type="date" class="form-control" value="{{ old('date_of_birth') }}">
+                                @error('date_of_birth')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <fieldset class="row mb-3">
+                            <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
+                            <div class="col-sm-10">
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked="">
+                                <label class="form-check-label" for="gridRadios1">
+                                  First radio
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                                <label class="form-check-label" for="gridRadios2">
+                                  Second radio
+                                </label>
+                              </div>
+                              <div class="form-check disabled">
+                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios" value="option" disabled="">
+                                <label class="form-check-label" for="gridRadios3">
+                                  Third disabled radio
+                                </label>
+                              </div>
+                            </div>
+                          </fieldset>
+                        <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Website</label>
                             <div class="col-sm-10">
                                 <input name="website" type="text" class="form-control" value="{{ old('website') }}">

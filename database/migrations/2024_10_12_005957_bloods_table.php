@@ -15,6 +15,8 @@ return new class extends Migration
         Schema::create('bloods', function (Blueprint $table) {
             $table->id(); // Primary key
             $table->string('name')->unique(); // Blood group name
+            $table->timestamps(); // created_at and updated_at
+
         });
     }
 
