@@ -16,11 +16,11 @@ return new class extends Migration
             $table->string('student_name'); // First name of student
             $table->string('father_name'); // Father’s name
             $table->string('phone'); // Phone number 
-            $table->text('address'); // Address (optional)
+            $table->text('address'); // Address 
             $table->string('email')->unique(); // Unique email address
             $table->date('date_of_birth'); // Date of birth
             $table->enum('gender', ['male', 'female', 'other']); // Gender field
-            $table->string('phpto')->nullable(); // Path to profile image
+            $table->string('photo')->nullable(); // Path to profile image
             $table->string('slug'); // Path to profile image
             $table->unsignedBigInteger('blood_id')->nullable(); // Foreign key to blood_groups table
             $table->string('education_qualification')->nullable(); // Education qualification

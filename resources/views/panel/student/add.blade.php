@@ -89,19 +89,19 @@
                             <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
                             <div class="col-sm-10">
                               <div class="form-check">
-                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked="">
+                                <input class="form-check-input" type="radio" name="gender" id="gridRadios1" value="male" checked="">
                                 <label class="form-check-label" for="gridRadios1">
                                   Male
                                 </label>
                               </div>
                               <div class="form-check">
-                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                                <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="female">
                                 <label class="form-check-label" for="gridRadios2">
                                   Female
                                 </label>
                               </div>
                               <div class="form-check">
-                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                                <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="other">
                                 <label class="form-check-label" for="gridRadios2">
                                  Other
                                 </label>
@@ -118,7 +118,7 @@
                                     <option {{old('category_id') == $value->id ? 'selected' : '' }} value="{{$value->id}}">{{$value->name}}</option>   
                                     @endforeach
                                </select>
-                                @error('category_name')
+                                @error('blood_group')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                             </div>
