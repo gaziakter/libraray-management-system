@@ -89,7 +89,7 @@ class BookController extends Controller
 
             return redirect('panel/book')->with('success', 'Book Successfully Created');
         } else {
-            return redirect()->back()->with('error', 'Failed to add Writer');
+            return redirect()->back()->with('error', 'Failed to add Book');
         }
 
     }

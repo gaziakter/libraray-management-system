@@ -3,34 +3,34 @@
 @section('content')
 
 <div class="pagetitle">
-    <h1>Author Profile</h1>
+    <h1>Student Profile</h1>
 </div><!-- End Page Title -->
 
 <section class="section dashboard">
     <div class="row">
       <div class="col lg-12">
-        <a href="{{url('panel/author/add')}}" class="btn btn-primary bx-pull-right mb-3">Add New Author</a>
+        <a href="{{url('panel/student/add')}}" class="btn btn-primary bx-pull-right mb-3">Add New Student</a>
       </div>
     </div>
     <div class="row">
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                    @if (!empty($getRecord->photo))
-                        <img src="{{asset('assets/upload/author/'.$getRecord->photo)}}" alt="Profile" class="upload-img-size">
+                    @if (!empty($GetData->photo))
+                        <img src="{{asset('assets/upload/student/'.$GetData->photo)}}" alt="Profile" class="upload-img-size">
                     @else
                     <img src="{{asset('assets/upload/no_logo.jpg')}}" alt="Profile" class="upload-img-size">
                     @endif
 
 
-                    <h2>{{$getRecord->name}}</h2>
+                    <h2>{{$GetData->student_name}}</h2>
                   </div>
             </div>
             <div class="card">
               <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                 <div>
-                  <a href="{{url('panel/author/edit/'.$getRecord->id)}}" class="d-inline btn btn-secondary btn-sm">Edit</a>
-                  <a href="{{url('panel/author/delete/'.$getRecord->id)}}" class="d-inline btn btn-danger btn-sm">Delete</a>
+                  <a href="{{url('panel/student/edit/'.$GetData->id)}}" class="d-inline btn btn-secondary btn-sm">Edit</a>
+                  <a href="{{url('panel/student/delete/'.$GetData->id)}}" class="d-inline btn btn-danger btn-sm">Delete</a>
                 </div>
                 </div>
           </div>
@@ -42,32 +42,47 @@
                 <div class="tab-content">
   
                   <div class="tab-pane fade profile-overview active show" id="profile-overview" role="tabpanel">
-                    <h5 class="card-title">Author Details</h5>
+                    <h5 class="card-title">Student Details</h5>
   
                     <div class="row mb-3">
-                      <div class="col-lg-3 col-md-3 label"><b>Author Name</b></div>
+                      <div class="col-lg-3 col-md-3 label"><b>Student Name</b></div>
                       <div class="col-lg-1 col-md-1">:</div>
-                      <div class="col-lg-8 col-md-8">{{$getRecord->name}}</div>
+                      <div class="col-lg-8 col-md-8">{{$GetData->student_name}}</div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-lg-3 col-md-3 label"><b>Address</b></div>
+                        <div class="col-lg-3 col-md-3 label"><b>Father Name</b></div>
                         <div class="col-lg-1 col-md-1">:</div>
-                        <div class="col-lg-8 col-md-8">{{$getRecord->address}}</div>
+                        <div class="col-lg-8 col-md-8">{{$GetData->father_name}}</div>
                       </div>
                       <div class="row mb-3">
                         <div class="col-lg-3 col-md-3 label"><b>Email Address</b></div>
                         <div class="col-lg-1 col-md-1">:</div>
-                        <div class="col-lg-8 col-md-8">{{$getRecord->email}}</div>
+                        <div class="col-lg-8 col-md-8">{{$GetData->email}}</div>
                       </div>
                       <div class="row mb-3">
                         <div class="col-lg-3 col-md-3 label"><b>Mobile Number</b></div>
                         <div class="col-lg-1 col-md-1">:</div>
-                        <div class="col-lg-8 col-md-8">{{$getRecord->mobile}}</div>
+                        <div class="col-lg-8 col-md-8">{{$GetData->phone}}</div>
                       </div>
                       <div class="row mb-3">
-                        <div class="col-lg-3 col-md-3 label"><b>Website</b></div>
+                        <div class="col-lg-3 col-md-3 label"><b>Date of Birth</b></div>
                         <div class="col-lg-1 col-md-1">:</div>
-                        <div class="col-lg-8 col-md-8">{{$getRecord->website}}</div>
+                        <div class="col-lg-8 col-md-8">{{$GetData->date_of_birth->format('F j, Y')}}</div>
+                      </div>
+                      <div class="row mb-3">
+                        <div class="col-lg-3 col-md-3 label"><b>Blood Group</b></div>
+                        <div class="col-lg-1 col-md-1">:</div>
+                        <div class="col-lg-8 col-md-8">{{$GetData->blood->name}}</div>
+                      </div>
+                      <div class="row mb-3">
+                        <div class="col-lg-3 col-md-3 label"><b>Education Qualification</b></div>
+                        <div class="col-lg-1 col-md-1">:</div>
+                        <div class="col-lg-8 col-md-8">{{$GetData->education_qualification}}</div>
+                      </div>
+                      <div class="row mb-3">
+                        <div class="col-lg-3 col-md-3 label"><b>Gender</b></div>
+                        <div class="col-lg-1 col-md-1">:</div>
+                        <div class="col-lg-8 col-md-8">{{ucwords($GetData->gender)}}</div>
                       </div>
 
 

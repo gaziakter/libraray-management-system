@@ -37,7 +37,7 @@ class StudentController extends Controller
             'date_of_birth' => 'required|date',
             'blood_group' => 'nullable|string|max:10',
             'education_qualification' => 'nullable|string|max:255',
-            'gender' => 'required|in:male,female',
+            'gender' => 'required|in:male,female,other',
             ]);    
             
             $saveData = new StudentModel();
@@ -55,13 +55,6 @@ class StudentController extends Controller
 
             $saveData->slug = strtolower(str_replace(' ', '-', $request->student_name));
             
-            // // Handle file upload if the logo is present
-            // if ($request->file('student_photo')) {
-            //     $file = $request->file('student_photo');
-            //     $filename = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();  // 3434343443.jpg
-            //     $file->move(public_path('assets/upload/student'), $filename);
-            //     $saveData->photo = $filename;
-            // }
 
             if ($request->file('student_photo')) {
 
@@ -85,5 +78,11 @@ class StudentController extends Controller
             // Redirect with success message
             return redirect('panel/student')->with('success', 'Student Successfully Created');
 
+    }
+
+    //show book list
+    public function details($id){
+        $GetData = StudentModel::with(['blood'])->findOrFail($id);
+        return view('panel.student.details', compact('GetData'));
     }
 }
