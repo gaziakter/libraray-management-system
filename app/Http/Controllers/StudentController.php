@@ -145,4 +145,21 @@ class StudentController extends Controller
             // Redirect with success message
             return redirect('panel/student')->with('success', 'Student Successfully Updated');
     }
+
+    public function delete($id)
+    {
+        // Find the student by ID
+        $student = StudentModel::findOrFail($id);
+
+        // Delete student photo if it exists
+        if ($student->photo && File::exists(public_path('assets/upload/student/' . $student->photo))) {
+            File::delete(public_path('assets/upload/student/' . $student->photo));
+        }
+
+        // Delete the student record from the database
+        $student->delete();
+
+        // Redirect with a success message
+        return redirect('panel/student')->with('success', 'Student deleted successfully!');
+    }
 }
