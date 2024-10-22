@@ -73,8 +73,6 @@ class StudentController extends Controller
                 $saveData->photo = $name_gen;
  
             }
-
-
             $saveData->save();
     
             // Redirect with success message
@@ -111,7 +109,7 @@ class StudentController extends Controller
         ]);
 
         // Find the student by ID
-        $student = Student::findOrFail($id);
+        $student = StudentModel::findOrFail($id);
 
         // Update student details
         $student->student_name = $request->student_name;
@@ -144,7 +142,7 @@ class StudentController extends Controller
         // Save updated data
         $student->save();
 
-        // Redirect with a success message
-        return redirect()->back()->with('success', 'Student updated successfully!');
+            // Redirect with success message
+            return redirect('panel/student')->with('success', 'Student Successfully Updated');
     }
 }
