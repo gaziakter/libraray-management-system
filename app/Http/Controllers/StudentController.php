@@ -8,6 +8,7 @@ use App\Models\BloodModel;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
 
 class StudentController extends Controller
 {
@@ -29,7 +30,7 @@ class StudentController extends Controller
 
             // Validate the request data
             $request->validate([
-            'student_name' => 'required|string|max:255',
+            'student_name' => 'required|unique:students,student_name,|string|max:255',
             'father_name' => 'required|string|max:255',
             'student_photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'address' => 'required|string|max:255',
@@ -92,5 +93,58 @@ class StudentController extends Controller
 
         $GetData = StudentModel::with(['blood'])->findOrFail($id);
         return view('panel.student.edit', compact('GetData', 'getBlood'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Validate input fields
+        $request->validate([
+            'student_name' => 'required|unique:students,student_name,|string|max:255',
+            'father_name' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'email' => 'nullable|email|unique:students,email',
+            'mobile' => 'required|string|max:15',
+            'date_of_birth' => 'required|date',
+            'gender' => 'required',
+            'blood_group' => 'nullable',
+            'education_qualification' => 'nullable|string',
+        ]);
+
+        // Find the student by ID
+        $student = Student::findOrFail($id);
+
+        // Update student details
+        $student->student_name = $request->student_name;
+        $student->father_name = $request->father_name;
+        $student->email = $request->email;
+        $student->phone = $request->mobile;
+        $student->address = $request->address;
+        $student->date_of_birth = Carbon::parse($request->date_of_birth);
+        $student->gender = $request->gender;
+        $student->blood_id = $request->blood_group;
+        $student->education_qualification = $request->education_qualification;
+
+        // Generate a slug from the student's name
+        $student->slug = strtolower(str_replace(' ', '-', $request->student_name));
+
+        // Handle photo upload if provided
+        if ($request->hasFile('student_photo')) {
+            // Delete old photo if it exists
+            if ($student->photo && File::exists(public_path('assets/upload/student/' . $student->photo))) {
+                File::delete(public_path('assets/upload/student/' . $student->photo));
+            }
+
+            // Upload new photo
+            $file = $request->file('student_photo');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('assets/upload/student'), $filename);
+            $student->photo = $filename;
+        }
+
+        // Save updated data
+        $student->save();
+
+        // Redirect with a success message
+        return redirect()->back()->with('success', 'Student updated successfully!');
     }
 }
