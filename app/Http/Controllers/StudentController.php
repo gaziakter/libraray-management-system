@@ -7,6 +7,7 @@ use App\Models\StudentModel;
 use App\Models\BloodModel;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use Carbon\Carbon;
 
 class StudentController extends Controller
 {
@@ -84,5 +85,12 @@ class StudentController extends Controller
     public function details($id){
         $GetData = StudentModel::with(['blood'])->findOrFail($id);
         return view('panel.student.details', compact('GetData'));
+    }
+
+    public function edit($id){
+        $getBlood = BloodModel::getRecord();
+
+        $GetData = StudentModel::with(['blood'])->findOrFail($id);
+        return view('panel.student.edit', compact('GetData', 'getBlood'));
     }
 }
