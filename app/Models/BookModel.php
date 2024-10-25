@@ -30,4 +30,9 @@ class BookModel extends Model
     {
         return $this->belongsToMany(SubCategoryModel::class, 'book_subcategory', 'book_id', 'subcategory_id');
     }
+
+    public function bookIssues()
+{
+    return $this->hasMany(BookIssueModel::class);
+}
 }

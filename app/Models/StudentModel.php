@@ -22,4 +22,9 @@ class StudentModel extends Model
         return $this->belongsTo(BloodModel::class, 'blood_id', 'id');
     }
 
+    public function bookIssues()
+{
+    return $this->hasMany(BookIssueModel::class);
+}
+
 }
