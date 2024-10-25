@@ -8,6 +8,7 @@ use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorControlller;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\BookIssueController;
 
 Route::get('/', function () {
     return view('login');
@@ -74,4 +75,9 @@ Route::group(['middleware' => 'basicuser'], function(){
     Route::post('panel/student/edit/{id}', [StudentController::class, 'update']);
     Route::get('panel/student/delete/{id}', [StudentController::class, 'delete']);
 
+    // Bookissue Route
+    //Route::get('panel/bookissue', [BookIssueController::class, 'list']);
+   // Route::get('panel/bookissue/add', [BookIssueController::class, 'add']);
+   // Route::post('panel/bookissue/add', [BookIssueController::class, 'insert']);
+   // Route::get('panel/bookissue/details/{id}', [BookIssueController::class, 'return']);
 });
