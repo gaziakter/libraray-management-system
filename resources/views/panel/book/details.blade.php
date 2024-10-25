@@ -90,6 +90,11 @@
                             @endif
                         </div>
                     </div>
+                    <div class="row mb-3">
+                      <div class="col-lg-3 col-md-3 label"><b>Status</b></div>
+                      <div class="col-lg-1 col-md-1">:</div>
+                      <div class="col-lg-8 col-md-8">{{ ucwords($books->status)}}</div>
+                    </div>
                   </div>
                 </div>
                 </div><!-- End Bordered Tabs -->

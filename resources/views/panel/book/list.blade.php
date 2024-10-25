@@ -26,6 +26,7 @@
                                 <th scope="col">Photo</th>
                                 <th scope="col">Book Name</th>
                                 <th scope="col">Author Name</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -42,6 +43,7 @@
                                 </td>
                                 <td>{{ $item->name}}</td>
                                 <td>{{ $item['author']['name']}}</td>  
+                                <td>{{ ucwords($item->status)}}</td>  
                                 <td>
                                     <a href="{{ url('panel/book/details/'.$item->id) }}" class="btn btn-info btn-sm">Details</a>
                                 </td>

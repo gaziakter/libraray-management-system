@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('slug'); // Make slug unique for SEO-friendly URLs
             $table->unsignedBigInteger('author_id'); // Foreign key to writers table
             $table->unsignedBigInteger('publisher_id'); // Foreign key to publishers table
+            $table->enum('status', ['available', 'issued'])->default('available');
             $table->timestamps();
 
             // Adding foreign key constraints

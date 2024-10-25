@@ -70,6 +70,8 @@ class BookController extends Controller
             $bookData->price = $request->price;
             $bookData->author_id = $request->author_name;
             $bookData->publisher_id = $request->publisher_name;
+            $bookData->status = 'available';
+            
             $bookData->slug = strtolower(str_replace(' ', '-', $request->book_name));
 
 
@@ -137,6 +139,7 @@ class BookController extends Controller
         $book->price = $request->price;
         $book->author_id = $request->author_name;
         $book->publisher_id = $request->publisher_name;
+        $book->status = 'available';
         $book->slug = strtolower(str_replace(' ', '-', $request->book_name));
     
         // Handle file upload if a new image is provided
