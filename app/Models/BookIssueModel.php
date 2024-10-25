@@ -9,6 +9,8 @@ class BookIssueModel extends Model
 {
     use HasFactory;
 
+    protected $table = 'book_issues';
+
     protected $fillable = [
         'student_id', 'book_id', 'user_id', 'issue_date', 
         'return_date', 'actual_return_date', 'status'
