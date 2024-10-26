@@ -5,6 +5,8 @@
     <h1>Issue New Book</h1>
 </div><!-- End Page Title -->
 
+@include('_message')
+
 <section class="section dashboard">
     <div class="row">
         <div class="col-lg-10">

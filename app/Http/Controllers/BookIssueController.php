@@ -31,14 +31,24 @@ class BookIssueController extends Controller
         'return_date' => 'required|date|after_or_equal:issue_date',
     ]);
 
+    // Check if the selected book is available
+    $book = BookModel::find($request->book);
+    if ($book->status !== 'available') {
+        return redirect()->back()->with('error', 'This book is currently not available.');
+    }
+
+    // Issue the book
     BookIssueModel::create([
         'student_id' => $request->student,
-        'book_id' => $request->book,
-        'user_id' => auth()->id(), // Logged-in user issuing the book
-        'issue_date' => Carbon::today()->toDateString(), // Use today's date
+        'book_id' => $book->id,
+        'user_id' => auth()->id(),
+        'issue_date' => Carbon::today()->toDateString(),
         'return_date' => $request->return_date,
         'status' => 'issued',
     ]);
+
+    // Update the book's status to 'issued'
+    $book->update(['status' => 'issued']);
 
         // Redirect with success message
         return redirect('panel/bookissue')->with('success', 'Book Issued successfully.');

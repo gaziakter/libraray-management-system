@@ -11,6 +11,14 @@ class BookModel extends Model
     
     protected $table = 'books';
 
+    // Allow mass assignment for these fields
+    protected $fillable = [
+        'name',
+        'author',
+        'img',
+        'status', // Add this field here
+    ];
+
 
 
     public function publisher(){
