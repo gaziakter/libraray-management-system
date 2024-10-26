@@ -40,16 +40,16 @@
                                         <td>{{ $i++ }}</td>
                                         <td>
                                         </div>
-                                            <div class="row">
-                                                <div class="col-md-5">Book No:</div>
-                                                <div class="col-md-7">{{ $item->book->id }}</div>
+                                            <div class="mb-2">
+                                                <di><strong>Book No: </strong>{{ $item->book->id }}</di>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-5">Book Name:</div>
-                                                <div class="col-md-7">{{ $item->book->name }}</div>
-                                            <div class="row">
-                                                <div class="col-md-5">Book Photo:</div>
-                                                <div class="col-md-7">
+                                            <div class="mb-2">
+                                                <div><strong>Book Name:</strong></div>
+                                                <div>{{ $item->book->name }}</div>
+                                            </div>
+                                            <div class="mb-2">
+                                                <div><strong>Book Photo:</strong></div>
+                                                <div>
                                                     @if (!empty($item->book->img))
                                                         <img src="{{ asset('assets/upload/book/' . $item->book->img) }}" alt="Book Image" class="upload-img-size">
                                                     @else
@@ -57,27 +57,40 @@
                                                     @endif
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-5">Book Author:</div>
-                                                <div class="col-md-7">{{ $item->book->author->name }}</div>
+                                            <div class="mb-2">
+                                                <div><strong>Book Author:</strong></div>
+                                                <div>{{ $item->book->author->name }}</div>
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="row">
-                                                <div class="col-md-6">Student Name:</div>
-                                                <div class="col-md-6">{{ $item->student->student_name }}</div>
+                                            <div class="mb-2">
+                                                <div><strong>Student ID: </strong>{{ $item->student->id }}</div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-6">Father's Name:</div>
-                                                <div class="col-md-6">{{ $item->student->father_name }}</div>
+                                            <div class="mb-2">
+                                                <div><strong>Student Name:</strong></div>
+                                                <div>{{ $item->student->student_name }}</div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-6">Mobile:</div>
-                                                <div class="col-md-6">{{ $item->student->phone }}</div>
+                                            <div class="mb-2">
+                                                <div><strong>Student Photo:</strong></div>
+                                                <div>
+                                                    @if (!empty($item->student->photo))
+                                                        <img src="{{ asset('assets/upload/student/' . $item->student->photo) }}" alt="Book Image" class="upload-img-size">
+                                                    @else
+                                                        <img src="{{ asset('assets/upload/no_logo.jpg') }}" alt="No Image" class="upload-img-size">
+                                                    @endif
+                                                </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-6">Address:</div>
-                                                <div class="col-md-6">{{ $item->student->address }}</div>
+                                            <div class="mb-2">
+                                                <div><strong>Father's Name:</strong></strong></div>
+                                                <div>{{ $item->student->father_name }}</div>
+                                            </div>
+                                            <div class="mb-2">
+                                                <div><strong>Mobile:</strong></div>
+                                                <div>{{ $item->student->phone }}</div>
+                                            </div>
+                                            <div class="mb-2">
+                                                <div><strong>Address:</strong></div>
+                                                <div>{{ $item->student->address }}</div>
                                             </div>
                                         </td>
                                         <td>{{ $item->issue_date }}</td>
