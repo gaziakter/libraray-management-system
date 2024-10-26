@@ -10,7 +10,12 @@ use Carbon\Carbon; // Import Carbon
 use Auth; // Import Auth
 
 class BookIssueController extends Controller
-{
+{   
+    public function list(){
+        $issues = BookIssueModel::with(['student', 'book'])->get();
+        return view('panel.bookissue.list', compact('issues'));
+    }
+
     public function add()
     {
         $students = StudentModel::all();
@@ -23,7 +28,6 @@ class BookIssueController extends Controller
     $request->validate([
         'student' => 'required|exists:students,id',
         'book' => 'required|exists:books,id',
-        'issue_date' => 'required|date',
         'return_date' => 'required|date|after_or_equal:issue_date',
     ]);
 
