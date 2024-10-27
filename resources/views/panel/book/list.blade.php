@@ -43,7 +43,8 @@
                                 </td>
                                 <td>{{ $item->name}}</td>
                                 <td>{{ $item['author']['name']}}</td>  
-                                <td>{{ ucwords($item->status)}}</td>  
+                                <td><span class="badge bg-secondary">{{ ucwords($item->status)}}</span></td>
+                                 
                                 <td>
                                     <a href="{{ url('panel/book/details/'.$item->id) }}" class="btn btn-info btn-sm">Details</a>
                                 </td>

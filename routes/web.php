@@ -79,5 +79,6 @@ Route::group(['middleware' => 'basicuser'], function(){
     Route::get('panel/bookissue', [BookIssueController::class, 'list']);
     Route::get('panel/bookissue/add', [BookIssueController::class, 'add']);
     Route::post('panel/bookissue/add', [BookIssueController::class, 'issue']);
+    Route::get('panel/bookissue/return/{id}', [BookIssueController::class, 'return']);
    // Route::get('panel/bookissue/details/{id}', [BookIssueController::class, 'return']);
 });

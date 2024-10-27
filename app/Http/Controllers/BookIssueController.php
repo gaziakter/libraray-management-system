@@ -54,5 +54,14 @@ class BookIssueController extends Controller
         return redirect('panel/bookissue')->with('success', 'Book Issued successfully.');
 }
 
+    /**
+     * Show the form for returning the book.
+     */
+    public function return($id)
+    {
+        $issue = BookIssueModel::findOrFail($id);
+        return view('panel.bookissue.return', compact('issue'));
+    }
+
     
 }
