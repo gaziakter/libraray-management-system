@@ -97,7 +97,6 @@
                                         <td>{{ $item->return_date }}</td>
                                         <td>{{ ucfirst($item->status) }}</td>
                                         <td>
-                                            <a href="{{ url('panel/bookissue/edit/' . $item->id) }}" class="btn btn-info btn-sm">Edit</a>
                                             @if ($item->status === 'issued')
                                                 <a href="{{ url('panel/bookissue/return/' . $item->id) }}" class="btn btn-success btn-sm">Return</a>
                                             @endif

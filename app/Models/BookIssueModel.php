@@ -12,9 +12,17 @@ class BookIssueModel extends Model
     protected $table = 'book_issues';
 
     protected $fillable = [
-        'student_id', 'book_id', 'user_id', 'issue_date', 
-        'return_date', 'actual_return_date', 'status'
+        'student_id',
+        'book_id',
+        'user_id',
+        'issue_date',
+        'return_date',
+        'actual_return_date',
+        'status',
     ];
+
+    // Automatically cast date fields to Carbon instances
+    protected $dates = ['issue_date', 'return_date', 'actual_return_date'];
 
     public function student()
     {
