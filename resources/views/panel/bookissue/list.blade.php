@@ -95,10 +95,19 @@
                                         </td>
                                         <td>{{ $item->issue_date }}</td>
                                         <td>{{ $item->return_date }}</td>
-                                        <td>{{ ucfirst($item->status) }}</td>
+                                        <td>
+                                            @if ($item->status == 'returned')
+                                                <span class='badge bg-success'>Returned</span>
+                                            @else
+                                                <span class='badge bg-secondary'>Issued</span>
+                                            @endif
+                                        </td>
                                         <td>
                                             @if ($item->status === 'issued')
                                                 <a href="{{ url('panel/bookissue/return/' . $item->id) }}" class="btn btn-success btn-sm">Return</a>
+                                            @else
+                                                <p>Return Date: </p>
+                                                <span class='badge bg-success'>{{ $item->actual_return_date }}</span>
                                             @endif
                                         </td>
                                     </tr>
