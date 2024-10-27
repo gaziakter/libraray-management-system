@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Confirm Book Return</h5>
 
-                    <form action="{{ url('panel/bookissue/return/' . $issue->id) }}" method="POST">
+                    <form action="" method="POST">
                         @csrf
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label">Book Name</label>

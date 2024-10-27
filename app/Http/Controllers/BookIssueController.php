@@ -63,5 +63,25 @@ class BookIssueController extends Controller
         return view('panel.bookissue.return', compact('issue'));
     }
 
+    /**
+     * Handle the return of a book.
+     */
+    public function returnBook(Request $request, $id)
+    {
+        $issue = BookIssueModel::findOrFail($id);
+
+        // Update book issue status to returned
+        $issue->update([
+            'status' => 'returned',
+            'actual_return_date' => Carbon::today()->toDateString(),
+        ]);
+
+        // Update the book's status to 'available'
+        BookModel::where('id', $issue->book_id)->update(['status' => 'available']);
+
+        // Redirect with success message
+        return redirect('panel/bookissue')->with('success', 'Book Return successfully.');
+    }
+
     
 }
