@@ -8,6 +8,20 @@
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
+    <div class="search-bar"><!-- Start Search form --->
+      <form class="search-form d-flex align-items-center" method="POST" action="">
+          @csrf
+          <input 
+              type="text" 
+              name="query" 
+              placeholder="Search by keyword" 
+              title="Enter search keyword" 
+              required
+          >
+          <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search form --->
+  
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
 
