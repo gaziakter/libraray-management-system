@@ -9,6 +9,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorControlller;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\BookIssueController;
+use App\Http\Controllers\SearchController;
 
 Route::get('/', function () {
     return view('login');
@@ -81,5 +82,8 @@ Route::group(['middleware' => 'basicuser'], function(){
     Route::post('panel/bookissue/add', [BookIssueController::class, 'issue']);
     Route::get('panel/bookissue/return/{id}', [BookIssueController::class, 'return']);
     Route::post('panel/bookissue/return/{id}', [BookIssueController::class, 'returnBook']);
-   // Route::get('panel/bookissue/details/{id}', [BookIssueController::class, 'return']);
+
+    //Search Route
+    Route::post('/search', [SearchController::class, 'search']);
+
 });
