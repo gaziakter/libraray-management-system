@@ -7,10 +7,7 @@
   </div>
 
   <div class="search-button">
-    <a href="{{ url('panel/search/form') }}" 
-       class="btn btn-primary d-flex align-items-center">
-      Search Book <i class="bi bi-search ms-2"></i>
-    </a>
+    <a href="{{ url('panel/search/form') }}" class="btn btn-primary d-flex align-items-center"><i class="bi bi-search me-2"></i> Search Book</a>
   </div>
 
   <nav class="header-nav">
