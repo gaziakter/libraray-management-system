@@ -9,6 +9,7 @@ class PublisherModel extends Model
 {
     use HasFactory;
     protected $table = 'publishers';
+    //protected $fillable = ['name'];
 
     static function getRecord(){
         return PublisherModel::get();
@@ -17,5 +18,11 @@ class PublisherModel extends Model
     static function getSingle($id){
         
         return PublisherModel::find($id);
+    }
+
+    // Define the relationship with Books
+    public function books()
+    {
+        return $this->hasMany(BookModel::class, 'publisher_id');
     }
 }

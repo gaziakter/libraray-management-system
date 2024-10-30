@@ -19,7 +19,16 @@ class BookModel extends Model
         'status', // Add this field here
     ];
 
-
+    public function category()
+    {
+        return $this->belongsTo(CategoryModel::class, 'category_id');
+    }
+    
+    public function subCategory()
+    {
+        return $this->belongsTo(SubCategoryModel::class, 'sub_category_id');
+    }
+    
 
     public function publisher(){
         return $this->belongsTo(PublisherModel::class, 'publisher_id', 'id');
