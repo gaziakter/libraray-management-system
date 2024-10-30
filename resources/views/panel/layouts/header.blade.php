@@ -9,7 +9,7 @@
     </div><!-- End Logo -->
 
     <div class="search-button"><!-- Start Search form --->
-      <a href="" class="btn btn-success btn-sm">Search</a>
+      <a href="{{ url('panel/search/form') }}" class="btn btn-success btn-sm">Search</a>
 
     </div><!-- End Search form --->
   
