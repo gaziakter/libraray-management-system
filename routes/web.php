@@ -85,6 +85,8 @@ Route::group(['middleware' => 'basicuser'], function(){
 
     //Search Route
     Route::get('panel/search/form', [SearchController::class, 'search']);
+    Route::post('panel/search/booksearch', [SearchController::class, 'bookSearch']);
+
 
 
 });
