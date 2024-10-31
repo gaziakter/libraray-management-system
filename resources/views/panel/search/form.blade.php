@@ -44,9 +44,7 @@
                             <label for="subCategory" class="form-label">Select Sub-category</label>
                             <select class="form-select" id="subCategory" name="subCategory">
                                 <option value="">All Sub-categories</option>
-                                @foreach($subCategories as $subCategory)
-                                    <option value="{{ $subCategory->id }}">{{ $subCategory->name }}</option>
-                                @endforeach
+                                <!-- Subcategory options will be loaded dynamically -->
                             </select>
                         </div>
 
@@ -84,4 +82,37 @@
         </div>
     </div>
 </section>
+
+<!-- jQuery and AJAX script -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#category').on('change', function() {
+        var categoryId = $(this).val();
+
+        if (categoryId) {
+            $.ajax({
+                url: '{{ route('get.subcategories') }}',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    category_id: categoryId
+                },
+                success: function(data) {
+                    $('#subCategory').empty(); // Clear existing options
+                    $('#subCategory').append('<option value="">All Sub-categories</option>');
+                    
+                    $.each(data, function(index, subcategory) {
+                        $('#subCategory').append('<option value="' + subcategory.id + '">' + subcategory.name + '</option>');
+                    });
+                }
+            });
+        } else {
+            $('#subCategory').empty();
+            $('#subCategory').append('<option value="">All Sub-categories</option>');
+        }
+    });
+});
+</script>
+
 @endsection

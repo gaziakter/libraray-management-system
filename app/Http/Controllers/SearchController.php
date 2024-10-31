@@ -22,6 +22,16 @@ class SearchController extends Controller
     return view('panel.search.form', compact('categories', 'subCategories', 'authors', 'publishers'));
    }
 
+
+   public function getSubcategories(Request $request)
+   {
+       // Fetch subcategories based on the selected category ID
+       $subCategories = SubCategoryModel::where('category_id', $request->category_id)->get();
+
+       // Return JSON response to AJAX request
+       return response()->json($subCategories);
+   }
+
    public function bookSearch(Request $request)
     {
         // Get the search parameters from the request

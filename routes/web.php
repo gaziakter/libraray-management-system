@@ -86,6 +86,7 @@ Route::group(['middleware' => 'basicuser'], function(){
     //Search Route
     Route::get('panel/search/form', [SearchController::class, 'search']);
     Route::post('panel/search/booksearch', [SearchController::class, 'bookSearch']);
+    Route::post('panel/get-subcategories', [SearchController::class, 'getSubcategories'])->name('get.subcategories');
 
 
 
