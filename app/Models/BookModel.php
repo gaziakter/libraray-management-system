@@ -16,8 +16,11 @@ class BookModel extends Model
         'name',
         'author',
         'img',
-        'status', // Add this field here
+        'author_id', 
+        'publisher_id', 
+        'status' // Add this field here
     ];
+
 
     public function category()
     {
@@ -30,13 +33,33 @@ class BookModel extends Model
     }
     
 
-    public function publisher(){
-        return $this->belongsTo(PublisherModel::class, 'publisher_id', 'id');
+    // public function publisher(){
+    //     return $this->belongsTo(PublisherModel::class, 'publisher_id', 'id');
+    // }
+
+    // public function author(){
+    //     return $this->belongsTo(AuthorModel::class, 'author_id', 'id');
+    // }
+
+    public function author()
+    {
+        return $this->belongsTo(AuthorModel::class, 'author_id');
     }
 
-    public function author(){
-        return $this->belongsTo(AuthorModel::class, 'author_id', 'id');
+    public function publisher()
+    {
+        return $this->belongsTo(PublisherModel::class, 'publisher_id');
     }
+
+    // public function categories()
+    // {
+    //     return $this->belongsToMany(CategoryModel::class, 'book_category');
+    // }
+
+    // public function subCategories()
+    // {
+    //     return $this->belongsToMany(SubCategoryModel::class, 'book_sub_category');
+    // }
 
     public function categories()
     {

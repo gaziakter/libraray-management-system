@@ -1,3 +1,4 @@
+<!-- resources/views/panel/book/search-results.blade.php -->
 @extends('panel.layouts.app')
 
 @section('content')
@@ -8,60 +9,40 @@
 <section class="section dashboard">
     <div class="row">
         <div class="col-lg-12">
-            <h5>Results for "{{ $query }}"</h5>
+            <div class="card p-4">
+                <div class="card-body">
+                    <h5 class="card-title">Books Found</h5>
 
-            @if ($books->isEmpty() && $students->isEmpty() && $issues->isEmpty())
-                <div class="alert alert-warning">No results found.</div>
-            @else
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Books</h5>
-                        @if ($books->isEmpty())
-                            <p>No books found.</p>
-                        @else
-                            <ul>
+                    @if ($books->isEmpty())
+                        <p>No books found matching your criteria.</p>
+                    @else
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Book ID</th>
+                                    <th>Name</th>
+                                    <th>Author</th>
+                                    <th>Publisher</th>
+                                    <th>Category</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 @foreach ($books as $book)
-                                    <li><strong>{{ $book->name }}</strong> by {{ $book->author }}</li>
+                                    <tr>
+                                        <td>{{ $book->id }}</td>
+                                        <td>{{ $book->name }}</td>
+                                        <td>{{ $book->author->name }}</td>
+                                        <td>{{ $book->publisher->name }}</td>
+                                        <td>{{ $book->categories->pluck('name')->join(', ') }}</td>
+                                        <td>{{ $book->status }}</td>
+                                    </tr>
                                 @endforeach
-                            </ul>
-                        @endif
-                    </div>
+                            </tbody>
+                        </table>
+                    @endif
                 </div>
-
-                <div class="card mt-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Students</h5>
-                        @if ($students->isEmpty())
-                            <p>No students found.</p>
-                        @else
-                            <ul>
-                                @foreach ($students as $student)
-                                    <li>{{ $student->student_name }} ({{ $student->phone }})</li>
-                                @endforeach
-                            </ul>
-                        @endif
-                    </div>
-                </div>
-
-                <div class="card mt-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Book Issues</h5>
-                        @if ($issues->isEmpty())
-                            <p>No book issues found.</p>
-                        @else
-                            <ul>
-                                @foreach ($issues as $issue)
-                                    <li>
-                                        Book: {{ $issue->book->name }} |
-                                        Issued to: {{ $issue->student->student_name }} |
-                                        Status: {{ ucfirst($issue->status) }}
-                                    </li>
-                                @endforeach
-                            </ul>
-                        @endif
-                    </div>
-                </div>
-            @endif
+            </div>
         </div>
     </div>
 </section>
