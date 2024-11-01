@@ -1,4 +1,3 @@
-<!-- resources/views/panel/book/search-results.blade.php -->
 @extends('panel.layouts.app')
 
 @section('content')
@@ -8,42 +7,66 @@
 
 <section class="section dashboard">
     <div class="row">
-        <div class="col-lg-12">
-            <div class="card p-4">
-                <div class="card-body">
-                    <h5 class="card-title">Books Found</h5>
-
-                    @if ($books->isEmpty())
-                        <p>No books found matching your criteria.</p>
-                    @else
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Book ID</th>
-                                    <th>Name</th>
-                                    <th>Author</th>
-                                    <th>Publisher</th>
-                                    <th>Category</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($books as $book)
-                                    <tr>
-                                        <td>{{ $book->id }}</td>
-                                        <td>{{ $book->name }}</td>
-                                        <td>{{ $book->author->name }}</td>
-                                        <td>{{ $book->publisher->name }}</td>
-                                        <td>{{ $book->categories->pluck('name')->join(', ') }}</td>
-                                        <td>{{ $book->status }}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    @endif
+        @if ($books->isEmpty())
+            <p>No books found matching your criteria.</p>
+        @else
+            @foreach ($books as $book)
+                <div class="col-lg-6">
+                    <!-- Card with an image on top -->
+                    <div class="card">
+                        <img src="{{ asset('assets/img/card.jpg') }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $book->name }}</h5>
+                            <div class="book-details">
+                                <div class="row mb-3">
+                                    <div class="col-lg-4">Book No</div>
+                                    <div class="col-lg-1">:</div>
+                                    <div class="col-lg-7">{{ $book->id }}</div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-lg-4">Author</div>
+                                    <div class="col-lg-1">:</div>
+                                    <div class="col-lg-7">{{ $book->author->name }}</div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-lg-4">Categories</div>
+                                    <div class="col-lg-1">:</div>
+                                    <div class="col-lg-7">
+                                        @foreach ($book->categories as $category)
+                                            {{ $category->category_name }}@if(!$loop->last), @endif
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-lg-4">Sub Categories</div>
+                                    <div class="col-lg-1">:</div>
+                                    <div class="col-lg-7">
+                                        @foreach ($book->subcategories as $subcategory)
+                                            {{ $subcategory->name }}@if(!$loop->last), @endif
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-lg-4">Status</div>
+                                    <div class="col-lg-1">:</div>
+                                    <div class="col-lg-7">{{ ucwords($book->status) }}</div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-lg-12">
+                                        @if ($book->status == 'issued')
+                                            <a href="#" class="d-inline btn btn-primary btn-sm">Return</a>
+                                        @else
+                                            <a href="#" class="d-inline btn btn-primary btn-sm">Issue</a>
+                                        @endif
+                                        <a href="{{ url('panel/book/details/'.$book->id) }}" class="btn btn-info btn-sm">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- End Card with an image on top -->
                 </div>
-            </div>
-        </div>
+            @endforeach
+        @endif
     </div>
 </section>
 @endsection
