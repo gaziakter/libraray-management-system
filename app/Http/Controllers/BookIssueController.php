@@ -83,5 +83,14 @@ class BookIssueController extends Controller
         return redirect('panel/bookissue')->with('success', 'Book Return successfully.');
     }
 
+    public function specificBookIssue($id)
+    {
+        $students = StudentModel::all();
+        $books = BookModel::where('status', 'available')->get();
+        $selectedBookId = $id; // Pass the specific book ID to the view
+    
+        return view('panel.bookissue.specific', compact('books', 'students', 'selectedBookId'));
+    }
+
     
 }

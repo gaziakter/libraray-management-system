@@ -14,7 +14,11 @@
                 <div class="col-lg-6">
                     <!-- Card with an image on top -->
                     <div class="card">
-                        <img src="{{ asset('assets/img/card.jpg') }}" class="card-img-top" alt="...">
+                        @if (!empty($book->img))
+                        <img src="{{asset('assets/upload/book/'.$book->img)}}" class="card-img-top" alt="Profile" class="upload-img-size">
+                        @else
+                        <img src="{{asset('assets/upload/no_logo.jpg')}}" class="card-img-top" alt="Profile" class="upload-img-size">
+                        @endif
                         <div class="card-body">
                             <h5 class="card-title">{{ $book->name }}</h5>
                             <div class="book-details">
@@ -64,7 +68,7 @@
                                         @if ($book->status == 'issued')
                                             <a href="{{ url('panel/bookissue/return/' . $book->id) }}" class="d-inline btn btn-primary btn-sm">Return</a>
                                         @else
-                                            <a href="#" class="d-inline btn btn-primary btn-sm">Issue</a>
+                                            <a href="{{url('panel/bookissue/specific/'.$book->id)}}" class="d-inline btn btn-primary btn-sm">Issue</a>
                                         @endif
                                         <a href="{{ url('panel/book/details/'.$book->id) }}" class="btn btn-info btn-sm">Details</a>
                                     </div>
