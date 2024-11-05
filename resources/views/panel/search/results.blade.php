@@ -29,21 +29,29 @@
                                     <div class="col-lg-7">{{ $book->author->name }}</div>
                                 </div>
                                 <div class="row mb-3">
-                                    <div class="col-lg-4">Categories</div>
+                                    <div class="col-lg-4">Category</div>
                                     <div class="col-lg-1">:</div>
                                     <div class="col-lg-7">
-                                        @foreach ($book->categories as $category)
+                                        @if ($book->categories)
+                                            @foreach ($book->categories as $category)
                                             {{ $category->category_name }}@if(!$loop->last), @endif
-                                        @endforeach
+                                            @endforeach
+                                        @else
+                                        Category not available
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <div class="col-lg-4">Sub Categories</div>
+                                    <div class="col-lg-4">Sub Category</div>
                                     <div class="col-lg-1">:</div>
                                     <div class="col-lg-7">
-                                        @foreach ($book->subcategories as $subcategory)
-                                            {{ $subcategory->name }}@if(!$loop->last), @endif
-                                        @endforeach
+                                        @if ($book->subcategories)
+                                            @foreach ($book->subcategories as $subcategory)
+                                                {{ $subcategory->name }}@if(!$loop->last), @endif
+                                            @endforeach
+                                        @else
+                                        Sub Category not available
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -54,7 +62,7 @@
                                 <div class="row mb-3">
                                     <div class="col-lg-12">
                                         @if ($book->status == 'issued')
-                                            <a href="#" class="d-inline btn btn-primary btn-sm">Return</a>
+                                            <a href="{{ url('panel/bookissue/return/' . $book->id) }}" class="d-inline btn btn-primary btn-sm">Return</a>
                                         @else
                                             <a href="#" class="d-inline btn btn-primary btn-sm">Issue</a>
                                         @endif
