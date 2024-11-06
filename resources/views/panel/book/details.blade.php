@@ -21,14 +21,17 @@
                     @else
                     <img src="{{asset('assets/upload/no_logo.jpg')}}" alt="Profile" class="upload-img-size">
                     @endif
-
-
                     <h2>{{$books->name}}</h2>
                   </div>
             </div>
             <div class="card">
               <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                 <div>
+                  @if ($books->status == 'issued')
+                  <a href="{{ url('panel/bookissue/return/' . $books->id) }}" class="d-inline btn btn-primary btn-sm">Return</a>
+                  @else
+                      <a href="{{url('panel/bookissue/specific/'.$books->id)}}" class="d-inline btn btn-primary btn-sm">Issue</a>
+                  @endif
                   <a href="{{url('panel/book/edit/'.$books->id)}}" class="d-inline btn btn-secondary btn-sm">Edit</a>
                   <a href="{{url('panel/book/delete/'.$books->id)}}" class="d-inline btn btn-danger btn-sm">Delete</a>
                 </div>
@@ -104,6 +107,3 @@
     </div>
 </section>
 @endsection
-
-
-

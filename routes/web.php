@@ -83,12 +83,16 @@ Route::group(['middleware' => 'basicuser'], function(){
     Route::get('panel/bookissue/return/{id}', [BookIssueController::class, 'return']);
     Route::post('panel/bookissue/return/{id}', [BookIssueController::class, 'returnBook']);
     Route::get('panel/bookissue/specific/{id}', [BookIssueController::class, 'specificBookIssue']);
+    // Route to load the book return confirmation page
+    Route::get('panel/bookissue/specificreturn/{bookId}', [BookIssueController::class, 'returnSpecificBook'])->name('bookissue.returnSpecificBook');
+
+    // Route to handle the actual book return process
+    Route::post('panel/bookissue/return/{bookIssueId}', [BookIssueController::class, 'spereturnBook'])->name('bookissue.returnBook');
+
 
     //Search Route
     Route::get('panel/search/form', [SearchController::class, 'search']);
     Route::post('panel/search/booksearch', [SearchController::class, 'bookSearch']);
     Route::post('panel/get-subcategories', [SearchController::class, 'getSubcategories'])->name('get.subcategories');
-
-
 
 });

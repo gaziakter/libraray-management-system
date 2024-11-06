@@ -11,7 +11,7 @@
             <p>No books found matching your criteria.</p>
         @else
             @foreach ($books as $book)
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <!-- Card with an image on top -->
                     <div class="card">
                         @if (!empty($book->img))
@@ -66,7 +66,7 @@
                                 <div class="row mb-3">
                                     <div class="col-lg-12">
                                         @if ($book->status == 'issued')
-                                            <a href="{{ url('panel/bookissue/return/' . $book->id) }}" class="d-inline btn btn-primary btn-sm">Return</a>
+                                            <a href="{{ url('panel/bookissue/specificreturn/' . $book->id) }}" class="d-inline btn btn-primary btn-sm">Return</a>
                                         @else
                                             <a href="{{url('panel/bookissue/specific/'.$book->id)}}" class="d-inline btn btn-primary btn-sm">Issue</a>
                                         @endif

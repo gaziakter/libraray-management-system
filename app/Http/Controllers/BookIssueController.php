@@ -12,7 +12,7 @@ use Auth; // Import Auth
 class BookIssueController extends Controller
 {   
     public function list(){
-        $issues = BookIssueModel::with(['student', 'book'])->get();
+        $issues = BookIssueModel::with(['student', 'book'])->latest()->get();
         return view('panel.bookissue.list', compact('issues'));
     }
 
@@ -58,7 +58,7 @@ class BookIssueController extends Controller
      * Show the form for returning the book.
      */
     public function return($id)
-    {
+    {   
         $issue = BookIssueModel::findOrFail($id);
         return view('panel.bookissue.return', compact('issue'));
     }
@@ -83,6 +83,9 @@ class BookIssueController extends Controller
         return redirect('panel/bookissue')->with('success', 'Book Return successfully.');
     }
 
+
+    
+
     public function specificBookIssue($id)
     {
         $students = StudentModel::all();
@@ -91,6 +94,38 @@ class BookIssueController extends Controller
     
         return view('panel.bookissue.specific', compact('books', 'students', 'selectedBookId'));
     }
+
+    public function returnSpecificBook($bookId)
+    {
+        $bookIssue = BookIssueModel::where('book_id', $bookId)->where('status', 'issued')->first();
+    
+        if (!$bookIssue) {
+            return redirect()->back()->with('error', 'This book is not currently issued.');
+        }
+    
+        return view('panel.bookissue.specificreturn', compact('bookIssue'));
+    }
+
+    public function spereturnBook(Request $request, $bookIssueId)
+{
+    $bookIssue = BookIssueModel::findOrFail($bookIssueId);
+
+    // Update book issue status to returned and set actual return date
+    $bookIssue->update([
+        'status' => 'returned',
+        'actual_return_date' => Carbon::today()->toDateString(),
+    ]);
+
+    // Update the book's status to 'available'
+    BookModel::where('id', $bookIssue->book_id)->update(['status' => 'available']);
+
+    // Redirect with a success message
+    return redirect('panel/bookissue')->with('success', 'Book returned successfully.');
+}
+
+
+    
+    
 
     
 }
