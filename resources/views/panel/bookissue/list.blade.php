@@ -97,7 +97,7 @@
                                         <td>{{ $item->return_date }}</td>
                                         <td>
                                             @if ($item->status == 'returned')
-                                                <span class='badge bg-success'>Returned</span>
+                                                <span class='badge bg-secondary'>Returned</span>
                                             @else
                                                 <span class='badge bg-secondary'>Issued</span>
                                             @endif
@@ -107,7 +107,7 @@
                                                 <a href="{{ url('panel/bookissue/return/' . $item->id) }}" class="btn btn-success btn-sm">Return</a>
                                             @else
                                                 <p>Return Date: </p>
-                                                <span class='badge bg-success'>{{ $item->actual_return_date }}</span>
+                                                <span class='badge bg-secondary'>{{ $item->actual_return_date }}</span>
                                             @endif
                                         </td>
                                     </tr>
