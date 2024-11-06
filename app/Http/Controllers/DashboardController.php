@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AuthorModel;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -9,7 +10,11 @@ class DashboardController extends Controller
     //
         //
         public function dashboard(){
-            return view('panel.dashboard');
+
+            $getAuthor = AuthorModel::all();
+            $author = $getAuthor->count();
+
+            return view('panel.dashboard', compact('author'));
     
         }
 }
