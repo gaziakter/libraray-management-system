@@ -9,6 +9,12 @@
         </a>
       </li><!-- End Dashboard Nav -->
       <li class="nav-item">
+        <a class="nav-link @if(Request::segment(2) != 'book') collapsed @endif" href="{{url('panel/book')}}">
+          <i class="bi bi-book"></i>
+          <span>Book</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
         <a class="nav-link @if(Request::segment(2) != 'bookissue') collapsed @endif" href="{{url('panel/bookissue')}}">
           <i class="bi bi-grid"></i>
           <span>Book Issue</span>
@@ -20,18 +26,6 @@
           <span>Student</span>
         </a>
       </li><!-- End Dashboard Nav -->
-      <li class="nav-item">
-        <a class="nav-link @if(Request::segment(2) != 'author') collapsed @endif" href="{{url('panel/author')}}">
-          <i class="bi bi-award"></i>
-          <span>Author</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
-      <li class="nav-item">
-        <a class="nav-link @if(Request::segment(2) != 'publisher') collapsed @endif" href="{{url('panel/publisher')}}">
-          <i class="bi bi-book-half"></i>
-          <span>Publisher</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
       <li class="nav-item">
         <a class="nav-link @if(Request::segment(2) != 'categories') collapsed @endif" href="{{url('panel/categories')}}">
           <i class="bi bi-border-all"></i>
@@ -45,12 +39,18 @@
         </a>
       </li><!-- End Dashboard Nav -->
     </li><!-- End Dashboard Nav -->
-    <li class="nav-item">
-      <a class="nav-link @if(Request::segment(2) != 'book') collapsed @endif" href="{{url('panel/book')}}">
-        <i class="bi bi-book"></i>
-        <span>Book</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link @if(Request::segment(2) != 'author') collapsed @endif" href="{{url('panel/author')}}">
+          <i class="bi bi-award"></i>
+          <span>Author</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link @if(Request::segment(2) != 'publisher') collapsed @endif" href="{{url('panel/publisher')}}">
+          <i class="bi bi-book-half"></i>
+          <span>Publisher</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
     </ul>
 
   </aside><!-- End Sidebar-->
