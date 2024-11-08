@@ -9,4 +9,8 @@ class PermissionModel extends Model
 {
     use HasFactory;
     protected $table = 'permissions';
+
+    static function getRecord(){
+        return PermissionModel::latest()->get();
+    }
 }

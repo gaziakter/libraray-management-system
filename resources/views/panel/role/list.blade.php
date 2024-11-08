@@ -48,7 +48,17 @@
                         @endif
                     </table>
                     <!-- End Table with stripped rows -->
+                    <div class="permission">
+                        @foreach ($permissions as $group => $permissionsInGroup)
+                            <h2>Group {{ $group }}</h2>
+                            <ul>
+                                @foreach ($permissionsInGroup as $permission)
+                                    <li>{{ $permission->name }} ({{ $permission->slug }})</li>
+                                @endforeach
+                            </ul>
+                        @endforeach
 
+                    </div>
                 </div>
             </div>
         </div>

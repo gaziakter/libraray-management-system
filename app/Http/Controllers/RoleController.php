@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\RoleModel;
 use Illuminate\Http\Request;
+use App\Models\PermissionModel;
 
 class RoleController extends Controller
 {
@@ -11,8 +12,11 @@ class RoleController extends Controller
     //show role list
     public function list(){
 
+        $permissions = PermissionModel::orderBy('group_by')->get()
+        ->groupBy('group_by');  // Grouping the results by group_by
+
         $roles = RoleModel::getRecord();
-        return view('panel.role.list', compact('roles'));
+        return view('panel.role.list', compact('roles', 'permissions'));
     }
 
     //Add New Role
