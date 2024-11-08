@@ -11,18 +11,17 @@ class RoleController extends Controller
 
     //show role list
     public function list(){
-
-        $permissions = PermissionModel::orderBy('group_by')->get()
-        ->groupBy('group_by');  // Grouping the results by group_by
-
         $roles = RoleModel::getRecord();
-        return view('panel.role.list', compact('roles', 'permissions'));
+        return view('panel.role.list', compact('roles'));
     }
 
     //Add New Role
     public function add(){
 
-        return view('panel.role.add');
+        $permissions = PermissionModel::orderBy('group_by')->get()
+        ->groupBy('group_by');  // Grouping the results by group_by
+
+        return view('panel.role.add', compact('permissions'));
     }   
 
     public function insert(Request $request)

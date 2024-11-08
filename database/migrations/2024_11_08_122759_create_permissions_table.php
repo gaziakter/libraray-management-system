@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name'); 
             $table->string('slug')->unique(); 
-            $table->integer('group_by')->default(0); 
+            $table->string('group_by'); 
             $table->timestamps();
         });
     }
