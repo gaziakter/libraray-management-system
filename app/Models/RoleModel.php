@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class RoleModel extends Model
 {
     use HasFactory;
+    protected $table = 'roles';
+
 }

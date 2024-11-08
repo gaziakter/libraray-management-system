@@ -9,6 +9,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorControlller;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\BookIssueController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SearchController;
 
 Route::get('/', function () {
@@ -95,4 +96,11 @@ Route::group(['middleware' => 'basicuser'], function(){
     Route::post('panel/search/booksearch', [SearchController::class, 'bookSearch']);
     Route::post('panel/get-subcategories', [SearchController::class, 'getSubcategories'])->name('get.subcategories');
 
+    //Role Route
+    Route::get('panel/role', [RoleController::class, 'list']);
+    Route::get('panel/role/add', [RoleController::class, 'add']);
+    Route::post('panel/role/add', [RoleController::class, 'insert']);
+    Route::get('panel/role/edit/{id}', [RoleController::class, 'edit']);
+    Route::post('panel/role/edit/{id}', [RoleController::class, 'update']);
+    Route::get('panel/role/delete/{id}', [RoleController::class, 'delete']);
 });
