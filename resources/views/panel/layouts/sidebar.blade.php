@@ -51,6 +51,16 @@
           <span>Publisher</span>
         </a>
       </li><!-- End Profile Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link @if(Request::segment(2) != 'role') collapsed @endif" href="{{url('panel/role')}}">
+          <i class="bi bi-book-half"></i>
+          <span>Role</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+
+
+
     </ul>
 
   </aside><!-- End Sidebar-->
