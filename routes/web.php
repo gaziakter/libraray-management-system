@@ -11,6 +11,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\BookIssueController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('login');
@@ -103,4 +104,13 @@ Route::group(['middleware' => 'basicuser'], function(){
     Route::get('panel/role/edit/{id}', [RoleController::class, 'edit']);
     Route::post('panel/role/edit/{id}', [RoleController::class, 'update']);
     Route::get('panel/role/delete/{id}', [RoleController::class, 'delete']);
+
+    //User Route
+    Route::get('panel/user', [UserController::class, 'list']);
+    Route::get('panel/user/add', [UserController::class, 'add']);
+    Route::post('panel/user/add', [UserController::class, 'insert']);
+    Route::get('panel/user/edit/{id}', [UserController::class, 'edit']);
+    Route::post('panel/user/edit/{id}', [UserController::class, 'update']);
+    Route::get('panel/user/delete/{id}', [UserController::class, 'delete']);
+
 });

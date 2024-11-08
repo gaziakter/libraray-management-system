@@ -57,6 +57,12 @@
           <span>Role</span>
         </a>
       </li><!-- End Profile Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link @if(Request::segment(2) != 'user') collapsed @endif" href="{{url('panel/user')}}">
+          <i class="bi bi-book-half"></i>
+          <span>User</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
 
 
 
