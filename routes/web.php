@@ -104,8 +104,6 @@ Route::group(['middleware' => 'basicuser'], function(){
     Route::get('panel/role/edit/{id}', [RoleController::class, 'edit']);
     Route::post('panel/role/edit/{id}', [RoleController::class, 'update']);
     Route::get('panel/role/delete/{id}', [RoleController::class, 'delete']);
-    //Route::post('/roles/store', [RoleController::class, 'store'])->name('roles.store');
-
 
     //User Route
     Route::get('panel/user', [UserController::class, 'list']);

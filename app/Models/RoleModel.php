@@ -19,7 +19,7 @@ class RoleModel extends Model
 
     public function permissions()
     {
-        return $this->belongsToMany(PermissionModel::class, 'role_permission', 'role_id', 'permission_id');
+        return $this->belongsToMany(PermissionModel::class, 'role_permission', 'role_id', 'permission_id')->withTimestamps();
     }
 
 
