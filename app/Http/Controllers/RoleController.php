@@ -11,7 +11,8 @@ class RoleController extends Controller
 
     //show role list
     public function list(){
-        $roles = RoleModel::getRecord();
+        
+        $roles = RoleModel::with('permissions')->get();
         return view('panel.role.list', compact('roles'));
     }
 
