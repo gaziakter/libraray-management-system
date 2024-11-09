@@ -24,6 +24,7 @@
                             <tr>
                                 <th scope="col">Serial</th>
                                 <th scope="col">Role Name</th>
+                                <th scope="col">Permissions</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -33,6 +34,15 @@
                             <tr>
                                 <td>@php echo $i++; @endphp</td>
                                 <td>{{$value->name}}</td>
+                                <td>
+                                    @if ($value->permissions->isNotEmpty())
+                                        @foreach ($value->permissions as $permission)
+                                            <span class="badge bg-info">{{ $permission->name }}</span>
+                                        @endforeach
+                                    @else
+                                        <span class="text-muted">No Permissions</span>
+                                    @endif
+                                </td>
                                 <td>
                                     <a href="{{url('panel/role/edit/'.$value->id)}}" class="btn btn-primary btn-sm">Edit</a>
                                     <a href="{{url('panel/role/delete/'.$value->id)}}" class="btn btn-danger btn-sm">Delete</a>
