@@ -44,4 +44,27 @@ class RoleController extends Controller
             return redirect()->back()->with('error', 'Failed to add Category');
         }
     }
+
+    public function store(Request $request)
+    {
+        // Validate the input data
+        $request->validate([
+            'role_name' => 'required|string|max:255',
+            'permission_id' => 'array', // Optional array of permissions
+            'permission_id.*' => 'exists:permissions,id', // Each item must exist in permissions
+        ]);
+
+        // Create the new role
+        $role = RoleModel::create([
+            'name' => $request->input('role_name'),
+        ]);
+
+        // Attach the selected permissions to the role
+        if ($request->has('permission_id')) {
+            $role->permissions()->attach($request->input('permission_id'));
+        }
+
+        // Redirect with a success message
+        return redirect('panel/role')->with('success', 'Role Successfully Created');
+    }
 }

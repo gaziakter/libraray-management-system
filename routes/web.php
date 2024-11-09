@@ -100,10 +100,12 @@ Route::group(['middleware' => 'basicuser'], function(){
     //Role Route
     Route::get('panel/role', [RoleController::class, 'list']);
     Route::get('panel/role/add', [RoleController::class, 'add']);
-    Route::post('panel/role/add', [RoleController::class, 'insert']);
+    Route::post('panel/role/add', [RoleController::class, 'store']);
     Route::get('panel/role/edit/{id}', [RoleController::class, 'edit']);
     Route::post('panel/role/edit/{id}', [RoleController::class, 'update']);
     Route::get('panel/role/delete/{id}', [RoleController::class, 'delete']);
+    //Route::post('/roles/store', [RoleController::class, 'store'])->name('roles.store');
+
 
     //User Route
     Route::get('panel/user', [UserController::class, 'list']);
