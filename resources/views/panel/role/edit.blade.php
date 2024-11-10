@@ -2,51 +2,67 @@
 
 @section('content')
 <div class="pagetitle">
-    <h1>Edit Category</h1>
+    <h1>Edit Role</h1>
 </div><!-- End Page Title -->
 
 <section class="section dashboard">
     <div class="row">
         <div class="col-lg-12">
-
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Edit Category</h5>
+                    <h5 class="card-title">Edit Role - {{ $role->name }}</h5>
 
-                    <!-- General Form Elements -->
-                    <form action="" method="post">
-                        {{csrf_field()}}
+                    <!-- Form to edit the role -->
+                    <form action="{{ route('roles.update', $role->id) }}" method="post">
+                        @csrf
+                        @method('PUT')
+
+                        <!-- Role Name -->
                         <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">Category Name</label>
+                            <label for="inputText" class="col-sm-2 col-form-label">Role Name</label>
                             <div class="col-sm-10">
-                                <input name="category_name" type="text" class="form-control" value="{{ $getRecord->category_name }}" required>
-                                @error('category_name')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                                <input name="role_name" type="text" class="form-control" value="{{ $role->name }}" required>
                             </div>
                         </div>
 
+                        <!-- Permissions -->
                         <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">Description</label>
-                            <div class="col-sm-10">
-                                <input name="description" type="text" class="form-control" value="{{ $getRecord->description }}">
-                                @error('description')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                            <label class="col-sm-2 col-form-label"><b>Permissions</b></label>
+
+                            @foreach($permissions as $group => $permissionsInGroup)
+                            <div class="row mb-3">
+                                <div class="col-md-2">{{ ucwords($group) }}</div>
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        @foreach($permissionsInGroup as $permission)
+                                        <div class="col-md-3">
+                                            <label>
+                                                <input type="checkbox" 
+                                                       value="{{ $permission->id }}" 
+                                                       name="permission_id[]"
+                                                       {{ $role->permissions->contains($permission->id) ? 'checked' : '' }}> 
+                                                {{ $permission->name }}
+                                            </label>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
+                            <hr>
+                            @endforeach
                         </div>
+
+                        <!-- Submit Button -->
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label"></label>
-                            <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Update Category</button>
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-primary">Update Role</button>
                             </div>
                         </div>
 
-                    </form><!-- End General Form Elements -->
+                    </form><!-- End Edit Role Form -->
 
                 </div>
             </div>
-
         </div>
     </div>
 </section>

@@ -25,27 +25,7 @@ class RoleController extends Controller
         return view('panel.role.add', compact('permissions'));
     }   
 
-    public function insert(Request $request)
-    {
-        // Validate the request data
-        $request->validate([
-            'role_name' => 'required|string', // Ensure the category name is unique
-        ]);
-    
-        // Create a new instance of the CategoryModel for insertion
-        $roles = new RoleModel();
-    
-        // Set the category details
-        $roles->name = $request->role_name;
-    
-        // Save the new category record
-        if ($roles->save()) {
-            return redirect('panel/role')->with('success', 'Role Successfully Created');
-        } else {
-            return redirect()->back()->with('error', 'Failed to add Category');
-        }
-    }
-
+    //insert role functionality
     public function store(Request $request)
     {
         // Validate the input data
@@ -68,4 +48,38 @@ class RoleController extends Controller
         // Redirect with a success message
         return redirect('panel/role')->with('success', 'Role Successfully Created');
     }
+
+    //Edit role
+    public function edit($id)
+{
+    // Fetch the role by ID, including its associated permissions
+    $role = RoleModel::with('permissions')->findOrFail($id);
+
+    // Fetch all permissions and group them as needed
+    $permissions = PermissionModel::all()->groupBy('group_by');
+
+    return view('panel.role.edit', compact('role', 'permissions'));
+}
+
+//update role
+public function update(Request $request, $id)
+{
+    // Validate the request data
+    $request->validate([
+        'role_name' => 'required|string|max:255',
+        'permission_id' => 'array', // Ensure permission_id is an array
+    ]);
+
+    // Find the role and update its name
+    $role = RoleModel::findOrFail($id);
+    $role->name = $request->input('role_name');
+    $role->save();
+
+    // Update the role's permissions
+    $role->permissions()->sync($request->input('permission_id', [])); // Use sync to update permissions
+
+    return redirect()->route('panel.role')->with('success', 'Role updated successfully');
+}
+
+
 }

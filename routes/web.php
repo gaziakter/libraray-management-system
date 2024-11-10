@@ -98,9 +98,13 @@ Route::group(['middleware' => 'basicuser'], function(){
     Route::post('panel/get-subcategories', [SearchController::class, 'getSubcategories'])->name('get.subcategories');
 
     //Role Route
-    Route::get('panel/role', [RoleController::class, 'list']);
+    Route::get('panel/role', [RoleController::class, 'list'])->name('panel.role');
     Route::get('panel/role/add', [RoleController::class, 'add']);
     Route::post('panel/role/add', [RoleController::class, 'store']);
+    Route::get('panel/role/edit/{id}', [RoleController::class, 'edit'])->name('roles.edit');
+    Route::put('panel/role/update/{id}', [RoleController::class, 'update'])->name('roles.update');
+
+
     Route::get('panel/role/edit/{id}', [RoleController::class, 'edit']);
     Route::post('panel/role/edit/{id}', [RoleController::class, 'update']);
     Route::get('panel/role/delete/{id}', [RoleController::class, 'delete']);
