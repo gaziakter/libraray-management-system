@@ -81,5 +81,20 @@ public function update(Request $request, $id)
     return redirect()->route('panel.role')->with('success', 'Role updated successfully');
 }
 
+// Delete role
+public function destroy($id)
+{
+    // Find the role by ID
+    $role = RoleModel::findOrFail($id);
+
+    // Detach any associated permissions before deleting to avoid constraint issues
+    $role->permissions()->detach();
+
+    // Delete the role
+    $role->delete();
+
+    return redirect()->route('panel.role')->with('success', 'Role deleted successfully');
+}
+
 
 }
