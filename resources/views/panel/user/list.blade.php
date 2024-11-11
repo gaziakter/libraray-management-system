@@ -31,7 +31,7 @@
                                 <th scope="row">{{$value->id}}</th>
                                 <td>{{$value->name}}</td>
                                 <td>{{$value->email}}</td>
-                                <td>{{$value->role_name}}</td>
+                                <td></td>
                                 <td>
                                     <a href="{{url('panel/user/edit/'.$value->id)}}" class="btn btn-primary btn-sm">Edit</a>
                                     <a href="{{url('panel/user/delete/'.$value->id)}}" class="btn btn-danger btn-sm">Delete</a>

@@ -14,20 +14,32 @@
                     <h5 class="card-title">Add New User</h5>
 
                     <!-- General Form Elements -->
-                    <form action="" method="post">
-                        {{csrf_field()}}
+                    <form action="{{ route('users.store') }}" method="post">
+                        @csrf
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
-                                <input name="name" type="text" value="{{old('name')}}" class="form-control" required>
+                                <input name="name" type="text" value="{{ old('name') }}" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="inputText" class="col-sm-2 col-form-label">Username</label>
+                            <div class="col-sm-10">
+                                <input name="username" type="text" value="{{ old('username') }}" class="form-control" required>
+                                @if($errors->has('username'))
+                                    <div style="color:red">{{ $errors->first('username') }}</div>
+                                @endif
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Email Address</label>
                             <div class="col-sm-10">
-                                <input name="email" type="email" value="{{old('email')}}" class="form-control" required>
-                                <div style="color:red">{{$errors->first('email')}}</div>
+                                <input name="email" type="email" value="{{ old('email') }}" class="form-control" required>
+                                @if($errors->has('email'))
+                                    <div style="color:red">{{ $errors->first('email') }}</div>
+                                @endif
                             </div>
                         </div>
 
@@ -42,14 +54,16 @@
                             <label for="inputText" class="col-sm-2 col-form-label">Choose Role</label>
                             <div class="col-sm-10">
                                <select class="form-control" name="role_id" required>
-                                    <option value="">Selete Role</option>
-                                    @foreach ($getRole as $value )
-                                    <option {{old('role_id') == $value->id ? 'selected' : '' }} value="{{$value->id}}">{{$value->name}}</option>   
+                                    <option value="">Select Role</option>
+                                    @foreach ($roles as $role)
+                                    <option value="{{ $role->id }}" {{ old('role_id') == $role->id ? 'selected' : '' }}>{{ $role->name }}</option>   
                                     @endforeach
                                </select>
+                               @if($errors->has('role_id'))
+                                    <div style="color:red">{{ $errors->first('role_id') }}</div>
+                                @endif
                             </div>
                         </div>
-
 
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label"></label>
