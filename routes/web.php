@@ -112,6 +112,6 @@ Route::group(['middleware' => 'basicuser'], function(){
     Route::post('panel/user/store', [UserController::class, 'store'])->name('users.store');
     Route::get('panel/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::post('panel/user/update/{id}', [UserController::class, 'update'])->name('user.update');
-    Route::get('panel/user/delete/{id}', [UserController::class, 'delete']);
+    Route::get('/panel/user/delete/{id}', [UserController::class, 'destroy'])->name('user.delete');
 
 });

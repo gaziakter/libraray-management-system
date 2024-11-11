@@ -92,5 +92,25 @@ class UserController extends Controller
 
         return redirect()->route('user.index')->with('success', 'User updated successfully.');
     }
+
+        /**
+     * Delete the user from the database.
+     */
+    public function destroy($id)
+    {
+        // Find the user by ID
+        $user = User::find($id);
+
+        // If user doesn't exist, return an error message
+        if (!$user) {
+            return redirect()->route('user.index')->with('error', 'User not found.');
+        }
+
+        // Delete the user
+        $user->delete();
+
+        // Redirect with success message
+        return redirect()->route('user.index')->with('success', 'User deleted successfully.');
+    }
 }
 
