@@ -12,6 +12,15 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+
+    public function index()
+    {
+        // Fetch all users with their roles
+        $getRecord = User::with('role')->get();
+
+        return view('panel.user.list', compact('getRecord'));
+    }
+
     public function create()
     {
         // Retrieve all roles to populate the dropdown

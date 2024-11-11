@@ -107,7 +107,7 @@ Route::group(['middleware' => 'basicuser'], function(){
 
 
     //User Route
-    Route::get('panel/user', [UserController::class, 'list']);
+    Route::get('panel/user', [UserController::class, 'index'])->name('user.index');
     Route::get('panel/user/add', [UserController::class, 'create'])->name('users.create');
     Route::post('panel/user/store', [UserController::class, 'store'])->name('users.store');
     Route::get('panel/user/edit/{id}', [UserController::class, 'edit']);

@@ -8,59 +8,80 @@
 <section class="section dashboard">
     <div class="row">
         <div class="col-lg-12">
-
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Edit User</h5>
 
-                    <!-- General Form Elements -->
-                    <form action="" method="post">
-                        {{csrf_field()}}
+                    <!-- Edit User Form -->
+                    <form action="{{ route('user.update', $user->id) }}" method="post">
+                        @csrf
                         <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">Name</label>
+                            <label class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
-                                <input name="name" type="text" value="{{$getRecord->name}}" class="form-control" required>
+                                <input name="name" type="text" value="{{ old('name', $user->name) }}" class="form-control" required>
+                                @error('name')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">Email Address</label>
+                            <label class="col-sm-2 col-form-label">Username</label>
                             <div class="col-sm-10">
-                                <input name="email" type="email" value="{{$getRecord->email}}" class="form-control" readonly>
+                                <input name="username" type="text" value="{{ old('username', $user->username) }}" class="form-control" required>
+                                @error('username')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">Password</label>
+                            <label class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-10">
-                                <input name="password" type="text" class="form-control">
-                                (Do you want to change password please add. Otherwise leave it.)
+                                <input name="email" type="email" value="{{ old('email', $user->email) }}" class="form-control" required>
+                                @error('email')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">Choose Role</label>
+                            <label class="col-sm-2 col-form-label">Password</label>
                             <div class="col-sm-10">
-                               <select class="form-control" name="role_id" required>
-                                    <option value="">Selete Role</option>
-                                    @foreach ($getRole as $value )
-                                    <option {{$getRecord->role_id == $value->id ? 'selected' : '' }} value="{{$value->id}}">{{$value->name}}</option>   
+                                <input name="password" type="password" class="form-control">
+                                <small class="form-text text-muted">Leave blank if you don't want to change the password.</small>
+                                @error('password')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label">Role</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="role_id" required>
+                                    <option value="">Select Role</option>
+                                    @foreach($roles as $role)
+                                        <option value="{{ $role->id }}" {{ $user->role_id == $role->id ? 'selected' : '' }}>
+                                            {{ $role->name }}
+                                        </option>
                                     @endforeach
-                               </select>
+                                </select>
+                                @error('role_id')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
+
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-12">
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="submit" class="btn btn-primary">Update User</button>
                             </div>
                         </div>
-
-                    </form><!-- End General Form Elements -->
-
+                    </form>
+                    <!-- End Edit User Form -->
                 </div>
             </div>
-
         </div>
     </div>
 </section>
