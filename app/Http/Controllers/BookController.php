@@ -8,11 +8,17 @@ use App\Models\AuthorModel;
 use App\Models\PublisherModel;
 use App\Models\CategoryModel;
 use App\Models\SubCategoryModel;
+use App\Models\PermissionRoleModel;
+use Auth;
 
 class BookController extends Controller
 {
     //show book list
     public function list(){
+        $permissionrole = PermissionRoleModel::getPermission('book-list', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            abort('404');
+        }
         $books = BookModel::latest()->get();
         return view('panel.book.list', compact('books'));
     }

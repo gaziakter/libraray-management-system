@@ -22,10 +22,10 @@
                         @if (count($roles) > 0)
                         <thead>
                             <tr>
-                                <th scope="col">Serial</th>
-                                <th scope="col">Role Name</th>
-                                <th scope="col">Permissions</th>
-                                <th scope="col">Action</th>
+                                <th style="width: 5%" scope="col">Serial</th>
+                                <th style="width: 15%" scope="col">Role Name</th>
+                                <th style="width: 65%" scope="col">Permissions</th>
+                                <th style="width: 15%" scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -37,7 +37,7 @@
                                 <td>
                                     @if ($value->permissions->isNotEmpty())
                                         @foreach ($value->permissions as $permission)
-                                            <span class="badge bg-info">{{ $permission->name }}</span>
+                                            <span class="">{{ $permission->name }}, </span>
                                         @endforeach
                                     @else
                                         <span class="text-muted">No Permissions</span>
