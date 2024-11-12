@@ -26,28 +26,14 @@ class BookController extends Controller
         // add 
         public function add(){
 
-        //     $books = Book::with('subcategories')->get();
-        //     return view('books.index', compact('books'));
-
-        //    $categories = CagegoryModel::with('subcategories')->get();
             $getAuthor = AuthorModel::getRecord();
             $getPublisher = PublisherModel::getRecord();
 
         $categories = CategoryModel::with('subcategories')->get();
-        //return view('books.create', compact('categories'));
 
             return view('panel.book.add', compact( 'categories', 'getPublisher', 'getAuthor'));
         }
         
-        // public function getSubcategories($category_id) {
-            
-        //     // Fetch subcategories based on category ID
-        //     $subcategories = SubCategoryModel::where('category_id', $category_id)->get();
-        
-        //     // Return subcategories as JSON
-        //     return response()->json($subcategories);
-        // }
-
         // Insert Write
         public function insert(Request $request)
         {
