@@ -78,15 +78,7 @@ class AuthorControlller extends Controller
                 $authorData->photo = $name_gen;
  
         }
-
-        // Handle file upload if the logo is present
-        // if ($request->file('photo')) {
-        //     $file = $request->file('photo');
-        //     $filename = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();  // 3434343443.jpg
-        //     $file->move(public_path('assets/upload/author'), $filename);
-        //     $authorData->photo = $filename;
-        // }
-    
+ 
             // Save the new category record
             if ($authorData->save()) {
                 return redirect('panel/author')->with('success', 'Author Successfully Created');
@@ -119,10 +111,10 @@ class AuthorControlller extends Controller
         {
             // Validate the request data
             $request->validate([
-                'name' => 'required|string|unique:authors,name', // Ensure the category name is unique
+                'name' => 'required|string', // Ensure the category name is unique
                 'address' => 'nullable|string|max:500',
-                'email' => 'nullable|email|max:255|unique:authors,email',
-                'mobile' => 'nullable|numeric|digits_between:10,15|unique:authors,mobile',
+                'email' => 'nullable|email',
+                'mobile' => 'nullable|numeric|digits_between:10,15',
                 'website' => 'nullable|url|max:255',
                 'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Optional, must be an image file
             ]);

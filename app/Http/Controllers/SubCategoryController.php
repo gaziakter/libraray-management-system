@@ -87,7 +87,7 @@ class SubCategoryController extends Controller
     {
         // Validate the request data
         $request->validate([
-            'sub_category_name' => 'required|string|unique:subcategories,name', // Unique, except for the current category
+            'sub_category_name' => 'required|string', // Unique, except for the current category
             'category_name' => 'required|string'
         ]);
     

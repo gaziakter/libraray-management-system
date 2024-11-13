@@ -39,7 +39,7 @@
             <div class="card-body text-center pt-5 pb-5">
               @if ($issue == 0)
               <div class="dashboard-box pt-4 pb-4">
-                <h3>Book Issue Available</h3>
+                <h3>Book Issue Not Available</h3>
               </div>
               @elseif ($issue == 1)
               <div class="dashboard-box pt-4 pb-4">

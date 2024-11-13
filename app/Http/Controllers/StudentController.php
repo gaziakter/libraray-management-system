@@ -120,10 +120,10 @@ class StudentController extends Controller
     {
         // Validate input fields
         $request->validate([
-            'student_name' => 'required|unique:students,student_name,|string|max:255',
+            'student_name' => 'required|string|max:255',
             'father_name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
-            'email' => 'nullable|email|unique:students,email',
+            'email' => 'nullable|email',
             'mobile' => 'required|string|max:15',
             'date_of_birth' => 'required|date',
             'gender' => 'required',
