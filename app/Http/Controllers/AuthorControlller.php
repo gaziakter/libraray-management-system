@@ -6,17 +6,33 @@ use Illuminate\Http\Request;
 use App\Models\AuthorModel;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use App\Models\PermissionRoleModel;
+use Illuminate\Support\Facades\Auth;
 
 class AuthorControlller extends Controller
 {
     // list
     public function list(){
+
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('author-list', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to access author.');
+        }
+
         $data['getRecord'] = AuthorModel::getRecord();
         return view('panel.author.list', $data);
     }
 
     //Author add
     public function add(){
+
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('add-author', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to add author.');
+        }
+
         $data['getCategory'] = AuthorModel::getRecord();
         return view('panel.author.add', $data);
     } 
@@ -88,6 +104,12 @@ class AuthorControlller extends Controller
 
         public function edit($id){
 
+            //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('edit-author', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to edit author.');
+        }
+
             $data['getRecord'] = AuthorModel::getSingle($id);
     
             return view('panel.author.edit', $data);
@@ -136,6 +158,13 @@ class AuthorControlller extends Controller
         }
 
         public function delete($id){
+
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('delete-author', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to delete author.');
+        }
+
             $data = AuthorModel::getSingle($id);
             $data->delete();
     
