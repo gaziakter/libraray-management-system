@@ -6,7 +6,7 @@ use App\Models\RoleModel;
 use Illuminate\Http\Request;
 use App\Models\PermissionModel;
 use App\Models\PermissionRoleModel;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class RoleController extends Controller
 {
@@ -14,12 +14,23 @@ class RoleController extends Controller
     //show role list
     public function list(){
         
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('role-list', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to access role.');
+        }
         $roles = RoleModel::with('permissions')->get();
         return view('panel.role.list', compact('roles'));
     }
 
     //Add New Role
     public function add(){
+
+        //Permission 
+    $permissionrole = PermissionRoleModel::getPermission('add-role', Auth::user()->role_id);
+    if(empty($permissionrole)){
+        return redirect()->back()->with('error', 'You do not have permission to add role.');
+    }
 
         $permissions = PermissionModel::orderBy('group_by')->get()
         ->groupBy('group_by');  // Grouping the results by group_by
@@ -53,7 +64,13 @@ class RoleController extends Controller
 
     //Edit role
     public function edit($id)
-{
+{   
+    //Permission 
+    $permissionrole = PermissionRoleModel::getPermission('edit-publisher', Auth::user()->role_id);
+    if(empty($permissionrole)){
+        return redirect()->back()->with('error', 'You do not have permission to edit role.');
+    }
+
     // Fetch the role by ID, including its associated permissions
     $role = RoleModel::with('permissions')->findOrFail($id);
 
@@ -85,7 +102,13 @@ public function update(Request $request, $id)
 
 // Delete role
 public function destroy($id)
-{
+{   
+    //Permission 
+    $permissionrole = PermissionRoleModel::getPermission('delete-role', Auth::user()->role_id);
+    if(empty($permissionrole)){
+        return redirect()->back()->with('error', 'You do not have permission to delete role.');
+    }
+
     // Find the role by ID
     $role = RoleModel::findOrFail($id);
 
