@@ -7,7 +7,7 @@ use App\Models\BookModel;
 use App\Models\StudentModel;
 use Illuminate\Http\Request;
 use Carbon\Carbon; // Import Carbon
-use Auth; // Import Auth
+use Illuminate\Support\Facades\Auth;
 use App\Models\PermissionRoleModel;
 
 class BookIssueController extends Controller

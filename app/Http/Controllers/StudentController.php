@@ -9,17 +9,33 @@ use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
+use App\Models\PermissionRoleModel;
+use Illuminate\Support\Facades\Auth;
+
 
 class StudentController extends Controller
 {
     //show student list
     public function list(){
+
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('student-list', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to access student.');
+        }
+
         $getRecord = StudentModel::getRecord();
         return view('panel.student.list', compact('getRecord'));
     }
 
     // add student
     public function add(){
+
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('add-student', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to add student.');
+        }
 
         $getBlood = BloodModel::getRecord();
 
@@ -87,6 +103,13 @@ class StudentController extends Controller
     }
 
     public function edit($id){
+
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('edit-student', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to edit student.');
+        }
+
         $getBlood = BloodModel::getRecord();
 
         $GetData = StudentModel::with(['blood'])->findOrFail($id);
@@ -147,7 +170,13 @@ class StudentController extends Controller
     }
 
     public function delete($id)
-    {
+    {   
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('delete-student', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to delete student.');
+        }
+
         // Find the student by ID
         $student = StudentModel::findOrFail($id);
 

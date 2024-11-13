@@ -9,7 +9,8 @@ use App\Models\PublisherModel;
 use App\Models\CategoryModel;
 use App\Models\SubCategoryModel;
 use App\Models\PermissionRoleModel;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+
 
 class BookController extends Controller
 {
