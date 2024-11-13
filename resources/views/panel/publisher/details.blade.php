@@ -4,6 +4,7 @@
 
 <div class="pagetitle">
     <h1>Publisher Profile</h1>
+    @include('_message')
 </div><!-- End Page Title -->
 
 <section class="section dashboard">

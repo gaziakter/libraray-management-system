@@ -3,6 +3,7 @@
 @section('content')
 <div class="pagetitle">
     <h1>Roles</h1>
+    @include('_message')
 </div><!-- End Page Title -->
 
 <section class="section dashboard">
@@ -13,7 +14,6 @@
       </div>
     <div class="row">
         <div class="col-lg-12">
-            @include('_message')
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Role List</h5>

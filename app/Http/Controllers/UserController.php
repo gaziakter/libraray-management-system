@@ -54,7 +54,7 @@ class UserController extends Controller
     
         $user->save();
     
-        return redirect()->route('users.index')->with('success', 'User created successfully.');
+        return redirect()->route('user.index')->with('success', 'User created successfully.');
     }
 
         // Show the edit form

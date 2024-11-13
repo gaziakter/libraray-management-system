@@ -4,6 +4,7 @@
     @section('content')
     <div class="pagetitle">
       <h1>Dashboard</h1>
+      @include('_message')
     </div><!-- End Page Title -->
 
     <section class="section dashboard" style="height: 100vh;">

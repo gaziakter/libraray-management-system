@@ -8,16 +8,29 @@ use App\Models\StudentModel;
 use Illuminate\Http\Request;
 use Carbon\Carbon; // Import Carbon
 use Auth; // Import Auth
+use App\Models\PermissionRoleModel;
 
 class BookIssueController extends Controller
 {   
     public function list(){
+
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('book-issue-list', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to access book issue.');
+        }
         $issues = BookIssueModel::with(['student', 'book'])->latest()->get();
         return view('panel.bookissue.list', compact('issues'));
     }
 
     public function add()
     {
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('book-issue', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to issue book.');
+        }
+
         $students = StudentModel::all();
         $books = BookModel::all();
         return view('panel.bookissue.add', compact('students', 'books'));
@@ -59,6 +72,12 @@ class BookIssueController extends Controller
      */
     public function return($id)
     {   
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('return-book', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to return book.');
+        }
+
         $issue = BookIssueModel::findOrFail($id);
         return view('panel.bookissue.return', compact('issue'));
     }
@@ -87,7 +106,13 @@ class BookIssueController extends Controller
     
 
     public function specificBookIssue($id)
-    {
+    {   
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('book-issue', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to return book.');
+        }
+
         $students = StudentModel::all();
         $books = BookModel::where('status', 'available')->get();
         $selectedBookId = $id; // Pass the specific book ID to the view
@@ -97,6 +122,13 @@ class BookIssueController extends Controller
 
     public function returnSpecificBook($bookId)
     {
+
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('return-book', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to return book.');
+        }
+
         $bookIssue = BookIssueModel::where('book_id', $bookId)->where('status', 'issued')->first();
     
         if (!$bookIssue) {

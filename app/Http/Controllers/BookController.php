@@ -15,16 +15,25 @@ class BookController extends Controller
 {
     //show book list
     public function list(){
+
+        //Permission 
         $permissionrole = PermissionRoleModel::getPermission('book-list', Auth::user()->role_id);
         if(empty($permissionrole)){
-            abort('404');
+            return redirect()->back()->with('error', 'You do not have permission to access book.');
         }
+
         $books = BookModel::latest()->get();
         return view('panel.book.list', compact('books'));
     }
 
         // add 
         public function add(){
+        
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('add-book', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to add book.');
+        }
 
             $getAuthor = AuthorModel::getRecord();
             $getPublisher = PublisherModel::getRecord();
@@ -37,7 +46,7 @@ class BookController extends Controller
         // Insert Write
         public function insert(Request $request)
         {
-       
+     
             // Validate the request data
             $request->validate([
                 'book_name' => 'required|string|unique:books,name', // Ensure the category name is unique
@@ -95,6 +104,13 @@ class BookController extends Controller
     }
 
     public function edit($id){
+
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('edit-book', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to edit book.');
+        }
+
         $books = BookModel::with('categories.subcategories')->findOrFail($id);
         $categories = CategoryModel::with('subcategories')->get();
         $authors = AuthorModel::all();
@@ -161,6 +177,12 @@ class BookController extends Controller
 
     public function delete($id)
     {
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('delete-book', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to delete book.');
+        }
+
         // Find the book by ID or return 404 if not found
         $book = BookModel::findOrFail($id);
     

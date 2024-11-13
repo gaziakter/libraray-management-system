@@ -3,6 +3,8 @@
 @section('content')
 <div class="pagetitle">
     <h1>Issue Book</h1>
+    @include('_message')
+
 </div><!-- End Page Title -->
 
 <section class="section dashboard">
@@ -14,8 +16,6 @@
 
     <div class="row">
         <div class="col-lg-12">
-            @include('_message')
-
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Book Issue List</h5>
