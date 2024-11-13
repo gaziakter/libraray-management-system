@@ -37,6 +37,30 @@
         <div class="col-lg-4">
           <div class="card">
             <div class="card-body text-center pt-5 pb-5">
+              @if ($issue == 0)
+              <div class="dashboard-box pt-4 pb-4">
+                <h3>Book Issue Available</h3>
+              </div>
+              @elseif ($issue == 1)
+              <div class="dashboard-box pt-4 pb-4">
+                <h2>{{$issue}}</h2>
+                <h3>Book Issued</h3>
+                <h4><a href="{{url('panel/book')}}"class="badge bg-info mt-3">Show Details</a></h4>
+              </div>
+              @else
+              <div class="dashboard-box pt-4 pb-4">
+                <h2>{{$issue}}</h2>
+                <h3>Books Issued</h3>
+                <h4><a href="{{url('panel/book')}}"class="badge bg-info mt-3">Show Details</a></h4>
+              </div>
+              @endif
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-body text-center pt-5 pb-5">
               @if ($student == 0)
               <div class="dashboard-box pt-4 pb-4">
                 <h3>Student Not Available</h3>
