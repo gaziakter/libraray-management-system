@@ -20,7 +20,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label">Book Name</label>
                             <div class="col-sm-9">
-                                <input name="book_name" type="text" class="form-control" value="{{ old('book_name', $books->name) }}" required>
+                                <input name="book_name" type="text" class="form-control" value="{{ old('book_name', $books->name) }}">
                                 @error('book_name')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -47,7 +47,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label">Book Price</label>
                             <div class="col-sm-9">
-                                <input name="price" type="number" class="form-control" value="{{ old('price', $books->price) }}" required>
+                                <input name="price" type="number" class="form-control" value="{{ old('price', $books->price) }}">
                                 @error('price')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -76,6 +76,9 @@
                                                     <label class="form-check-label" for="category-{{ $category->id }}">
                                                         {{ $category->category_name }}
                                                     </label>
+                                                    @error('categories')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
                                                 </div>
                                             </td>
                                             <td>
@@ -88,6 +91,9 @@
                                                     <label class="form-check-label" for="subcategory-{{ $subcategory->id }}">
                                                         {{ $subcategory->name }}
                                                     </label>
+                                                    @error('subcategories')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
                                                 </div>
                                                 @endforeach
                                             </td>
@@ -101,7 +107,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label">Author Name</label>
                             <div class="col-sm-9">
-                                <select class="form-control" name="author_name" required>
+                                <select class="form-control" name="author_name">
                                     <option value="">Select Author</option>
                                     @foreach ($authors as $author)
                                     <option value="{{ $author->id }}" {{ $books->author_id == $author->id ? 'selected' : '' }}>
@@ -118,7 +124,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label">Publisher Name</label>
                             <div class="col-sm-9">
-                                <select class="form-control" name="publisher_name" required>
+                                <select class="form-control" name="publisher_name">
                                     <option value="">Select Publisher</option>
                                     @foreach ($publishers as $publisher)
                                     <option value="{{ $publisher->id }}" {{ $books->publisher_id == $publisher->id ? 'selected' : '' }}>

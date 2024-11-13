@@ -20,7 +20,7 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-3 col-form-label">Book Name</label>
                             <div class="col-sm-9">
-                                <input name="book_name" type="text" class="form-control" value="{{ old('book_name') }}" required>
+                                <input name="book_name" type="text" class="form-control" value="{{ old('book_name') }}">
                                 @error('book_name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -43,7 +43,7 @@
                            <div class="row mb-3">
                             <label for="inputText" class="col-sm-3 col-form-label">Book Price</label>
                             <div class="col-sm-9">
-                                <input name="price" type="number" class="form-control" value="{{ old('price') }}" required>
+                                <input name="price" type="number" class="form-control" value="{{ old('price') }}">
                                 @error('price')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -102,7 +102,7 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-3 col-form-label">Author Name</label>
                             <div class="col-sm-9">
-                                <select class="form-control" name="author_name" required>
+                                <select class="form-control" name="author_name">
                                     <option value="">Selete Author</option>
                                     @foreach ($getAuthor as $value )
                                     <option {{old('category_id') == $value->id ? 'selected' : '' }} value="{{$value->id}}">{{$value->name}}</option>   
@@ -116,7 +116,7 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-3 col-form-label">Publisher Name</label>
                             <div class="col-sm-9">
-                                <select class="form-control" name="publisher_name" required>
+                                <select class="form-control" name="publisher_name">
                                     <option value="">Selete Publisher</option>
                                     @foreach ($getPublisher as $value )
                                     <option {{old('category_id') == $value->id ? 'selected' : '' }} value="{{$value->id}}">{{$value->name}}</option>   
