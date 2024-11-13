@@ -9,12 +9,19 @@ use App\Models\RoleModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Models\PermissionRoleModel;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
 
     public function index()
-    {
+    {   
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('user-list', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to access user.');
+        }
         // Fetch all users with their roles
         $getRecord = User::with('role')->get();
 
@@ -22,7 +29,13 @@ class UserController extends Controller
     }
 
     public function create()
-    {
+    {   
+        //Permission 
+    $permissionrole = PermissionRoleModel::getPermission('add-user', Auth::user()->role_id);
+    if(empty($permissionrole)){
+        return redirect()->back()->with('error', 'You do not have permission to add user.');
+    }
+
         // Retrieve all roles to populate the dropdown
         $roles = RoleModel::all();
         return view('panel.user.add', compact('roles'));
@@ -59,7 +72,13 @@ class UserController extends Controller
 
         // Show the edit form
         public function edit($id)
-        {
+        {   
+            //Permission 
+            $permissionrole = PermissionRoleModel::getPermission('edit-role', Auth::user()->role_id);
+            if(empty($permissionrole)){
+                return redirect()->back()->with('error', 'You do not have permission to edit user.');
+            }
+
             $user = User::findOrFail($id); // Retrieve the user by ID
             $roles = RoleModel::all(); // Fetch all roles for the dropdown
     
@@ -97,7 +116,13 @@ class UserController extends Controller
      * Delete the user from the database.
      */
     public function destroy($id)
-    {
+    {   
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('delete-user', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to delete user.');
+        }
+
         // Find the user by ID
         $user = User::find($id);
 
