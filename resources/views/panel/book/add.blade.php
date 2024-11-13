@@ -70,6 +70,9 @@
                                                         {{ $category->category_name }}
                                                     </label>
                                                 </div>
+                                                @error('categories')
+                                                <div class="text-danger">{{ $message }}</div>
+                                                @enderror
                                             </td>
                                             <td>
                                                 @foreach ($category->subcategories as $subcategory)
@@ -79,6 +82,9 @@
                                                         {{ $subcategory->name }}
                                                     </label>
                                                 </div>
+                                                @error('subcategories')
+                                                <div class="text-danger">{{ $message }}</div>
+                                                @enderror
                                             @endforeach
                                             </td>
                                         </tr>

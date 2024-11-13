@@ -10,8 +10,6 @@ class StudentModel extends Model
     use HasFactory;
     protected $table = 'students';
 
-    protected $fillable = ['student_name'];
-
     protected $casts = [
         'date_of_birth' => 'date'
     ];
