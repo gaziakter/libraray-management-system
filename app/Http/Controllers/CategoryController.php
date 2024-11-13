@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CategoryModel;
+use App\Models\PermissionRoleModel;
+use Illuminate\Support\Facades\Auth;
 
 
 class CategoryController extends Controller
@@ -12,12 +14,24 @@ class CategoryController extends Controller
     //show publisher list
     public function list(){
 
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('category-list', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to access category.');
+        }
+
         $data['getRecord'] = CategoryModel::getRecord();
         return view('panel.categories.list', $data);
     }
 
     //Publisher add
     public function add(){
+
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('add-category', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to add category.');
+        }
 
         return view('panel.categories.add');
     }   
@@ -51,6 +65,11 @@ class CategoryController extends Controller
 
     public function edit($id){
 
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('edit-category', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to edit category.');
+        }
 
         $data['getRecord'] = CategoryModel::getSingle($id);
 
@@ -89,6 +108,12 @@ class CategoryController extends Controller
  
 
     public function delete($id){
+
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('delete-category', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to delete category.');
+        }
 
         $data = CategoryModel::getSingle($id);
         $data->delete();
