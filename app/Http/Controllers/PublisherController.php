@@ -4,11 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PublisherModel;
+use App\Models\PermissionRoleModel;
+use Illuminate\Support\Facades\Auth;
 
 class PublisherController extends Controller
 {   
     //show publisher list
     public function list(){
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('publisher-list', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to access publisher.');
+        }
 
         $data['getRecord'] = PublisherModel::getRecord();
         return view('panel.publisher.list', $data);
@@ -16,6 +23,12 @@ class PublisherController extends Controller
 
     //Publisher add
     public function add(){
+
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('add-publisher', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to add publisher.');
+        }
 
         return view('panel.publisher.add');
     }   
@@ -63,7 +76,12 @@ class PublisherController extends Controller
     }
 
     public function edit($id){
-
+     
+    //Permission 
+    $permissionrole = PermissionRoleModel::getPermission('edit-publisher', Auth::user()->role_id);
+    if(empty($permissionrole)){
+    return redirect()->back()->with('error', 'You do not have permission to edit publisher.');
+    }
 
         $data['getRecord'] = PublisherModel::getSingle($id);
 
@@ -113,6 +131,12 @@ class PublisherController extends Controller
     
 
     public function delete($id){
+
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('delete-publisher', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to delete publisher.');
+        }
 
         $data = PublisherModel::getSingle($id);
         $data->delete();
