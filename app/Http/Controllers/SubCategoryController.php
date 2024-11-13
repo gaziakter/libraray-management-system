@@ -5,12 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\SubCategoryModel;
 use App\Models\CategoryModel;
 use Illuminate\Http\Request;
+use App\Models\PermissionRoleModel;
+use Illuminate\Support\Facades\Auth;
 
 class SubCategoryController extends Controller
 {
    
     //show Sub Category list
     public function list(){
+
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('sub-category-list', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to access sub category.');
+        }
+
         $subCategories = SubCategoryModel::with('category')->get();
 
         return view('panel.subcategories.list', compact('subCategories'));
@@ -18,6 +27,13 @@ class SubCategoryController extends Controller
 
     //Sub Category add
     public function add(){
+
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('add-sub-category', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to add sub category.');
+        }
+
         $data['getCategory'] = CategoryModel::getRecord();
         return view('panel.subcategories.add', $data);
     } 
@@ -53,6 +69,12 @@ class SubCategoryController extends Controller
     }
 
     public function edit($id){
+
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('edit-sub-category', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to edit sub category.');
+        }
         
         $data['getCategory'] = CategoryModel::getRecord($id);
         $data['getRecord'] = SubCategoryModel::getSingle($id);
@@ -93,6 +115,12 @@ class SubCategoryController extends Controller
     }
 
     public function delete($id){
+
+        //Permission 
+        $permissionrole = PermissionRoleModel::getPermission('delete-sub-category', Auth::user()->role_id);
+        if(empty($permissionrole)){
+            return redirect()->back()->with('error', 'You do not have permission to delete sub category.');
+        }
 
         $data = SubCategoryModel::getSingle($id);
         $data->delete();
