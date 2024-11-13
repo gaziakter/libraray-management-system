@@ -20,7 +20,7 @@
                         <div class="row mb-3">
                             <label for="student" class="col-sm-3 col-form-label">Select Student</label>
                             <div class="col-sm-9">
-                                <select name="student" class="form-control" required>
+                                <select name="student" class="form-control">
                                     <option value="">Select Student</option>
                                     @foreach ($students as $student)
                                         <option value="{{ $student->id }}">{{ $student->student_name }}</option>
@@ -35,7 +35,7 @@
                         <div class="row mb-3">
                             <label for="book" class="col-sm-3 col-form-label">Select Book</label>
                             <div class="col-sm-9">
-                                <select name="book" class="form-control" required>
+                                <select name="book" class="form-control">
                                     <option value="">Select Book</option>
                                     @foreach ($books as $book)
                                         <option value="{{ $book->id }}">{{ $book->name }}</option>
@@ -49,7 +49,7 @@
                         <div class="row mb-3">
                             <label for="return_date" class="col-sm-3 col-form-label">Return Date</label>
                             <div class="col-sm-9">
-                                <input type="date" name="return_date" class="form-control" required>
+                                <input type="date" name="return_date" class="form-control">
                                 @error('return_date')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
