@@ -24,7 +24,6 @@
                             <tr>
                                 <th scope="col">Serial</th>
                                 <th scope="col">Author Name</th>
-                                <th scope="col">Photo</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -35,13 +34,6 @@
                             <tr>
                                 <td>@php echo $i++; @endphp</td>
                                 <td>{{$value->name}}</td>
-                                <td>
-                                    @if (!empty($value->photo))
-                                    <img src="{{asset('assets/upload/author/'.$value->photo)}}" alt="Profile" class="upload-img-size">
-                                    @else
-                                    <img src="{{asset('assets/upload/no_logo.jpg')}}" alt="Profile" class="upload-img-size">
-                                    @endif
-                                </td>
                                 <td>{{$value->email}}</td>
                                 <td>
                                     <a href="{{ url('panel/author/details/'.$value->id) }}" class="btn btn-info btn-sm">Details</a>

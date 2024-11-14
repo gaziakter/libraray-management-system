@@ -24,7 +24,6 @@
                             <tr>
                                 <th scope="col">Serial</th>
                                 <th scope="col">Student Name</th>
-                                <th scope="col">Photo</th>
                                 <th scope="col">Mobile</th>
                                 <th scope="col">Address</th>
                                 <th scope="col">Action</th>
@@ -36,13 +35,6 @@
                             <tr>
                                 <td>@php echo $i++; @endphp</td>
                                 <td>{{$value->student_name}}</td>
-                                <td>
-                                    @if (!empty($value->photo))
-                                    <img src="{{asset('assets/upload/student/'.$value->photo)}}" alt="Profile" class="upload-img-size">
-                                    @else
-                                    <img src="{{asset('assets/upload/no_logo.jpg')}}" alt="Profile" class="upload-img-size">
-                                    @endif
-                                </td>
                                 <td>{{$value->phone}}</td>
                                 <td>{{$value->address}}</td>
                                 <td>

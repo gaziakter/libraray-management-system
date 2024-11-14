@@ -23,7 +23,6 @@
                         <thead>
                             <tr>
                                 <th scope="col">Book No.</th>
-                                <th scope="col">Photo</th>
                                 <th scope="col">Book Name</th>
                                 <th scope="col">Author Name</th>
                                 <th scope="col">Status</th>
@@ -34,13 +33,6 @@
                             @foreach($books as $key => $item)
                             <tr>
                                 <td>{{ $item->id}}</td>
-                                <td>
-                                    @if (!empty($item->img))
-                                    <img src="{{asset('assets/upload/book/'.$item->img)}}" alt="Profile" class="upload-img-size">
-                                    @else
-                                    <img src="{{asset('assets/upload/no_logo.jpg')}}" alt="Profile" class="upload-img-size">
-                                    @endif
-                                </td>
                                 <td>{{ $item->name}}</td>
                                 <td>{{ $item['author']['name']}}</td>  
                                 <td><span class="badge bg-secondary">{{ ucwords($item->status)}}</span></td>
