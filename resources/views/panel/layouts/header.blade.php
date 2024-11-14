@@ -5,7 +5,7 @@
       <!-- Logo Section -->
       <div class="col-lg-4 col-md-4 text-lg-start text-center">
         <a href="{{url('panel/dashboard')}}" class="logo text-decoration-none fw-bold">
-          Library Management System
+          Library Management System [LMS]
         </a>
       </div>
       

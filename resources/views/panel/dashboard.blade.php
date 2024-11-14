@@ -7,7 +7,7 @@
       @include('_message')
     </div><!-- End Page Title -->
 
-    <section class="section dashboard" style="height: 100vh;">
+    <section class="section dashboard">
       <div class="row">
 
         <div class="col-lg-4">

@@ -25,8 +25,8 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Serial</th>
-                                    <th scope="col">Book Info</th>
-                                    <th scope="col">Student Info</th>
+                                    <th scope="col">Book Name</th>
+                                    <th scope="col">Student Name</th>
                                     <th scope="col">Issue Date</th>
                                     <th scope="col">Return Date</th>
                                     <th scope="col">Status</th>
@@ -38,61 +38,8 @@
                                 @foreach ($issues as $item)
                                     <tr>
                                         <td>{{ $i++ }}</td>
-                                        <td>
-                                        </div>
-                                            <div class="mb-2">
-                                                <di><strong>Book No: </strong>{{ $item->book->id }}</di>
-                                            </div>
-                                            <div class="mb-2">
-                                                <div><strong>Book Name:</strong></div>
-                                                <div>{{ $item->book->name }}</div>
-                                            </div>
-                                            <div class="mb-2">
-                                                <div><strong>Book Photo:</strong></div>
-                                                <div>
-                                                    @if (!empty($item->book->img))
-                                                        <img src="{{ asset('assets/upload/book/' . $item->book->img) }}" alt="Book Image" class="upload-img-size">
-                                                    @else
-                                                        <img src="{{ asset('assets/upload/no_logo.jpg') }}" alt="No Image" class="upload-img-size">
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            <div class="mb-2">
-                                                <div><strong>Book Author:</strong></div>
-                                                <div>{{ $item->book->author->name }}</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="mb-2">
-                                                <div><strong>Student ID: </strong>{{ $item->student->id }}</div>
-                                            </div>
-                                            <div class="mb-2">
-                                                <div><strong>Student Name:</strong></div>
-                                                <div>{{ $item->student->student_name }}</div>
-                                            </div>
-                                            <div class="mb-2">
-                                                <div><strong>Student Photo:</strong></div>
-                                                <div>
-                                                    @if (!empty($item->student->photo))
-                                                        <img src="{{ asset('assets/upload/student/' . $item->student->photo) }}" alt="Book Image" class="upload-img-size">
-                                                    @else
-                                                        <img src="{{ asset('assets/upload/no_logo.jpg') }}" alt="No Image" class="upload-img-size">
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            <div class="mb-2">
-                                                <div><strong>Father's Name:</strong></strong></div>
-                                                <div>{{ $item->student->father_name }}</div>
-                                            </div>
-                                            <div class="mb-2">
-                                                <div><strong>Mobile:</strong></div>
-                                                <div>{{ $item->student->phone }}</div>
-                                            </div>
-                                            <div class="mb-2">
-                                                <div><strong>Address:</strong></div>
-                                                <div>{{ $item->student->address }}</div>
-                                            </div>
-                                        </td>
+                                        <td><a href="{{ url('panel/book/details/'.$item->book->id) }}">{{ $item->book->name }}</a></td>
+                                        <td><a href="{{ url('panel/student/details/'.$item->student->id) }}">{{ $item->student->student_name }}</a></td>
                                         <td>{{ $item->issue_date }}</td>
                                         <td>{{ $item->return_date }}</td>
                                         <td>
