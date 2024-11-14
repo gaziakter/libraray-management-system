@@ -19,7 +19,7 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-3 col-form-label">Sub Category Name</label>
                             <div class="col-sm-9">
-                                <input name="sub_category_name" type="text" class="form-control" value="{{ old('sub_category_name') }}" required>
+                                <input name="sub_category_name" type="text" class="form-control" value="{{ old('sub_category_name') }}">
                                 @error('sub_category_name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -29,7 +29,7 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-3 col-form-label">Category Name</label>
                             <div class="col-sm-9">
-                                <select class="form-control" name="category_name" required>
+                                <select class="form-control" name="category_name">
                                     <option value="">Selete Category</option>
                                     @foreach ($getCategory as $value )
                                     <option {{old('category_id') == $value->id ? 'selected' : '' }} value="{{$value->id}}">{{$value->category_name}}</option>   

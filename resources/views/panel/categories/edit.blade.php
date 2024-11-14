@@ -19,7 +19,7 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Category Name</label>
                             <div class="col-sm-10">
-                                <input name="category_name" type="text" class="form-control" value="{{ $getRecord->category_name }}" required>
+                                <input name="category_name" type="text" class="form-control" value="{{ $getRecord->category_name }}">
                                 @error('category_name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror

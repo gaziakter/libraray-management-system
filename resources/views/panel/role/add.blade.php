@@ -18,7 +18,10 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Role Name</label>
                             <div class="col-sm-10">
-                                <input name="role_name" type="text" class="form-control" required>
+                                <input name="role_name" type="text" class="form-control">
+                                @error('role_name')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                             </div>
                         </div>
 
@@ -40,6 +43,9 @@
                                                 <input type="checkbox" value="{{ $permission->id }}" name="permission_id[]"> 
                                                 {{ $permission->name }}
                                             </label>
+                                            @error('permission_id')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                         </div>
                                         @endforeach
                                     </div>
