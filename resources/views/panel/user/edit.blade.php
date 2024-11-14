@@ -18,7 +18,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
-                                <input name="name" type="text" value="{{ old('name', $user->name) }}" class="form-control" required>
+                                <input name="name" type="text" value="{{ old('name', $user->name) }}" class="form-control">
                                 @error('name')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -28,7 +28,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Username</label>
                             <div class="col-sm-10">
-                                <input name="username" type="text" value="{{ old('username', $user->username) }}" class="form-control" required>
+                                <input name="username" type="text" value="{{ old('username', $user->username) }}" class="form-control">
                                 @error('username')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -38,7 +38,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-10">
-                                <input name="email" type="email" value="{{ old('email', $user->email) }}" class="form-control" required>
+                                <input name="email" type="email" value="{{ old('email', $user->email) }}" class="form-control">
                                 @error('email')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -59,7 +59,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Role</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="role_id" required>
+                                <select class="form-control" name="role_id">
                                     <option value="">Select Role</option>
                                     @foreach($roles as $role)
                                         <option value="{{ $role->id }}" {{ $user->role_id == $role->id ? 'selected' : '' }}>
