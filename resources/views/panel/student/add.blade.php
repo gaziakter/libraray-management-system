@@ -20,7 +20,7 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Student Name</label>
                             <div class="col-sm-10">
-                                <input name="student_name" type="text" class="form-control" value="{{ old('student_name') }}" required>
+                                <input name="student_name" type="text" class="form-control" value="{{ old('student_name') }}">
                                 @error('student_name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -29,7 +29,7 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Father Name</label>
                             <div class="col-sm-10">
-                                <input name="father_name" type="text" class="form-control" value="{{ old('father_name') }}" required>
+                                <input name="father_name" type="text" class="form-control" value="{{ old('father_name') }}">
                                 @error('father_name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -112,7 +112,7 @@
                           <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Blood Group</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="blood_group" required>
+                                <select class="form-control" name="blood_group">
                                     <option value="">Selete Blood Group</option>
                                     @foreach ($getBlood as $value )
                                     <option {{old('category_id') == $value->id ? 'selected' : '' }} value="{{$value->id}}">{{$value->name}}</option>   
@@ -126,7 +126,7 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Education Q.</label>
                             <div class="col-sm-10">
-                                <input name="education_qualification" type="text" class="form-control" value="{{ old('education_qualification') }}" required>
+                                <input name="education_qualification" type="text" class="form-control" value="{{ old('education_qualification') }}">
                                 @error('education_qualification')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
