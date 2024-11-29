@@ -3,21 +3,36 @@
     <div class="row align-items-center">
       
       <!-- Logo Section -->
-      <div class="col-lg-4 col-md-4 text-lg-start text-center">
-        <a href="{{url('panel/dashboard')}}" class="logo text-decoration-none fw-bold">
-          Library Management System [LMS]
-        </a>
+      <div class="col-lg-4 col-md-4 col-md-4 col-sm-4 col-4 text-lg-start text-center">
+        <div class="logo-dextop d-none d-md-block">
+          <a href="{{url('panel/dashboard')}}" class="logo text-decoration-none fw-bold">
+            Library Management System [LMS]
+          </a>
+        </div>
+        <div class="logo-mobile d-block d-md-none">
+          <a href="{{url('panel/dashboard')}}" class="logo text-decoration-none fw-bold">
+            Library
+          </a>
+        </div>
+
       </div>
       
       <!-- Search Button Section -->
-      <div class="col-lg-4 col-md-4 text-center my-2 my-lg-0">
-        <a href="{{ url('panel/search/form') }}" class="btn btn-primary">
-          <i class="bi bi-search me-2"></i> Search Book
-        </a>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-4 text-center my-2 my-lg-0">
+        <div class="search-dextop  d-none d-md-block">
+          <a href="{{ url('panel/search/form') }}" class="btn btn-primary">
+            <i class="bi bi-search me-2"></i> Search Book
+          </a>
+        </div>
+        <div class="search-mobile d-block d-md-none">
+          <a href="{{ url('panel/search/form') }}">
+            <i class="bi bi-search me-2"></i>
+          </a>
+        </div>
       </div>
       
       <!-- Profile and Sidebar Toggle Section -->
-      <div class="col-lg-4 col-md-4 d-flex justify-content-lg-end justify-content-center align-items-center">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-4 d-flex justify-content-lg-end justify-content-center align-items-center">
         
         <!-- Sidebar Toggle Icon -->
         <i class="bi bi-list toggle-sidebar-btn fs-4 me-3" style="cursor: pointer;"></i>
