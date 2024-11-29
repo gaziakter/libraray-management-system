@@ -26,7 +26,7 @@
             <div class="card mt-3">
                 <div class="card-body text-center">
                     @if ($books->status == 'issued')
-                        <a href="{{ url('panel/bookissue/return/' . $books->id) }}" class="btn btn-primary btn-sm">Return</a>
+                        <a href="{{ url('panel/bookissue/specificreturn/' . $books->id) }}" class="btn btn-primary btn-sm">Return</a>
                     @else
                         <a href="{{ url('panel/bookissue/specific/' . $books->id) }}" class="btn btn-primary btn-sm">Issue</a>
                     @endif
