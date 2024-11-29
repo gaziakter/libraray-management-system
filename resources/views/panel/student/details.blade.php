@@ -8,99 +8,91 @@
 </div><!-- End Page Title -->
 
 <section class="section dashboard">
-    <div class="row">
-      <div class="col lg-12">
-        <a href="{{url('panel/student/add')}}" class="btn btn-primary bx-pull-right mb-3">Add New Student</a>
-      </div>
+    <!-- Add New Student Button -->
+    <div class="row mb-3">
+        <div class="col-lg-12 text-end">
+            <a href="{{url('panel/student/add')}}" class="btn btn-primary">Add New Student</a>
+        </div>
     </div>
+
     <div class="row">
+        <!-- Profile Image and Actions -->
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                    @if (!empty($GetData->photo))
-                        <img src="{{asset('assets/upload/student/'.$GetData->photo)}}" alt="Profile" class="upload-img-size">
-                    @else
-                    <img src="{{asset('assets/upload/no_logo.jpg')}}" alt="Profile" class="upload-img-size">
-                    @endif
-
-
-                    <h2>{{$GetData->student_name}}</h2>
-                  </div>
+                    <img src="{{ !empty($GetData->photo) ? asset('assets/upload/student/'.$GetData->photo) : asset('assets/upload/no_logo.jpg') }}" 
+                         alt="Profile" class="upload-img-size img-fluid rounded-circle">
+                    <h2 class="mt-3">{{$GetData->student_name}}</h2>
+                </div>
             </div>
-            <div class="card">
-              <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                <div>
-                  <a href="{{url('panel/student/edit/'.$GetData->id)}}" class="d-inline btn badge bg-success btn-sm">Edit</a>
-                  <a href="{{url('panel/student/delete/'.$GetData->id)}}" class="d-inline btn btn-danger btn-sm">Delete</a>
+            <div class="card mt-3">
+                <div class="card-body text-center">
+                    <a href="{{url('panel/student/edit/'.$GetData->id)}}" class="btn btn-success btn-sm">Edit</a>
+                    <a href="{{url('panel/student/delete/'.$GetData->id)}}" class="btn btn-danger btn-sm">Delete</a>
                 </div>
-                </div>
-          </div>
-
+            </div>
         </div>
+
+        <!-- Student Details -->
         <div class="col-lg-8">
             <div class="card">
-            <div class="card-body">
-                <div class="tab-content">
-  
-                  <div class="tab-pane fade profile-overview active show" id="profile-overview" role="tabpanel">
+                <div class="card-body">
                     <h5 class="card-title">Student Details</h5>
-  
-                    <div class="row mb-3">
-                      <div class="col-lg-3 col-md-3 label"><b>Student Name</b></div>
-                      <div class="col-lg-1 col-md-1">:</div>
-                      <div class="col-lg-8 col-md-8">{{$GetData->student_name}}</div>
+                    <div class="table-responsive">
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td class="fw-bold" style="width: 25%;">Student Name</td>
+                                    <td style="width: 5%;">:</td>
+                                    <td>{{$GetData->student_name}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Father Name</td>
+                                    <td>:</td>
+                                    <td>{{$GetData->father_name}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Address</td>
+                                    <td>:</td>
+                                    <td>{{$GetData->address}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Email Address</td>
+                                    <td>:</td>
+                                    <td>{{$GetData->email}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Mobile Number</td>
+                                    <td>:</td>
+                                    <td>{{$GetData->phone}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Date of Birth</td>
+                                    <td>:</td>
+                                    <td>{{$GetData->date_of_birth->format('F j, Y')}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Blood Group</td>
+                                    <td>:</td>
+                                    <td>{{$GetData->blood->name}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Education Qualification</td>
+                                    <td>:</td>
+                                    <td>{{$GetData->education_qualification}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Gender</td>
+                                    <td>:</td>
+                                    <td>{{ucwords($GetData->gender)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="row mb-3">
-                        <div class="col-lg-3 col-md-3 label"><b>Father Name</b></div>
-                        <div class="col-lg-1 col-md-1">:</div>
-                        <div class="col-lg-8 col-md-8">{{$GetData->father_name}}</div>
-                      </div>
-                      <div class="row mb-3">
-                        <div class="col-lg-3 col-md-3 label"><b>Address</b></div>
-                        <div class="col-lg-1 col-md-1">:</div>
-                        <div class="col-lg-8 col-md-8">{{$GetData->address}}</div>
-                      </div>
-                      <div class="row mb-3">
-                        <div class="col-lg-3 col-md-3 label"><b>Email Address</b></div>
-                        <div class="col-lg-1 col-md-1">:</div>
-                        <div class="col-lg-8 col-md-8">{{$GetData->email}}</div>
-                      </div>
-                      <div class="row mb-3">
-                        <div class="col-lg-3 col-md-3 label"><b>Mobile Number</b></div>
-                        <div class="col-lg-1 col-md-1">:</div>
-                        <div class="col-lg-8 col-md-8">{{$GetData->phone}}</div>
-                      </div>
-                      <div class="row mb-3">
-                        <div class="col-lg-3 col-md-3 label"><b>Date of Birth</b></div>
-                        <div class="col-lg-1 col-md-1">:</div>
-                        <div class="col-lg-8 col-md-8">{{$GetData->date_of_birth->format('F j, Y')}}</div>
-                      </div>
-                      <div class="row mb-3">
-                        <div class="col-lg-3 col-md-3 label"><b>Blood Group</b></div>
-                        <div class="col-lg-1 col-md-1">:</div>
-                        <div class="col-lg-8 col-md-8">{{$GetData->blood->name}}</div>
-                      </div>
-                      <div class="row mb-3">
-                        <div class="col-lg-3 col-md-3 label"><b>Education Qualification</b></div>
-                        <div class="col-lg-1 col-md-1">:</div>
-                        <div class="col-lg-8 col-md-8">{{$GetData->education_qualification}}</div>
-                      </div>
-                      <div class="row mb-3">
-                        <div class="col-lg-3 col-md-3 label"><b>Gender</b></div>
-                        <div class="col-lg-1 col-md-1">:</div>
-                        <div class="col-lg-8 col-md-8">{{ucwords($GetData->gender)}}</div>
-                      </div>
-
-
-                  </div>
                 </div>
-                </div><!-- End Bordered Tabs -->
-  
-              </div>
+            </div>
         </div>
     </div>
 </section>
+
 @endsection
-
-
-

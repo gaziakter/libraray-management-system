@@ -8,79 +8,71 @@
 </div><!-- End Page Title -->
 
 <section class="section dashboard">
-    <div class="row">
-      <div class="col lg-12">
-        <a href="{{url('panel/publisher/add')}}" class="btn btn-primary bx-pull-right mb-3">Add New Publisher</a>
-      </div>
+    <!-- Add New Publisher Button -->
+    <div class="row mb-3">
+        <div class="col-lg-12 text-end">
+            <a href="{{url('panel/publisher/add')}}" class="btn btn-primary">Add New Publisher</a>
+        </div>
     </div>
+
     <div class="row">
+        <!-- Publisher Image and Actions -->
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                    @if (!empty($getRecord->logo))
-                        <img src="{{asset('assets/upload/publisher/'.$getRecord->logo)}}" alt="Profile" class="upload-img-size">
-                    @else
-                    <img src="{{asset('assets/upload/no_logo.jpg')}}" alt="Profile" class="rounded-circle upload-img-size">
-                    @endif
-
-
-                    <h2>{{$getRecord->name}}</h2>
-                  </div>
+                    <img src="{{ !empty($getRecord->logo) ? asset('assets/upload/publisher/'.$getRecord->logo) : asset('assets/upload/no_logo.jpg') }}" 
+                         alt="Profile" class="upload-img-size img-fluid rounded-circle">
+                    <h2 class="mt-3">{{$getRecord->name}}</h2>
+                </div>
             </div>
-            <div class="card">
-              <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                <div>
-                  <a href="{{url('panel/publisher/edit/'.$getRecord->id)}}" class="d-inline btn badge bg-success btn-sm">Edit</a>
-                  <a href="{{url('panel/publisher/delete/'.$getRecord->id)}}" class="d-inline btn btn-danger btn-sm">Delete</a>
+            <div class="card mt-3">
+                <div class="card-body text-center">
+                    <a href="{{url('panel/publisher/edit/'.$getRecord->id)}}" class="btn btn-success btn-sm">Edit</a>
+                    <a href="{{url('panel/publisher/delete/'.$getRecord->id)}}" class="btn btn-danger btn-sm">Delete</a>
                 </div>
-                </div>
-          </div>
-
+            </div>
         </div>
+
+        <!-- Publisher Details -->
         <div class="col-lg-8">
             <div class="card">
-            <div class="card-body">
-                <div class="tab-content">
-  
-                  <div class="tab-pane fade profile-overview active show" id="profile-overview" role="tabpanel">
+                <div class="card-body">
                     <h5 class="card-title">Publisher Details</h5>
-  
-                    <div class="row mb-3">
-                      <div class="col-lg-3 col-md-3 label"><b>Publisher Name</b></div>
-                      <div class="col-lg-1 col-md-1">:</div>
-                      <div class="col-lg-8 col-md-8">{{$getRecord->name}}</div>
+                    <div class="table-responsive">
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td class="fw-bold" style="width: 25%;">Publisher Name</td>
+                                    <td style="width: 5%;">:</td>
+                                    <td>{{$getRecord->name}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Address</td>
+                                    <td>:</td>
+                                    <td>{{$getRecord->address}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Email Address</td>
+                                    <td>:</td>
+                                    <td>{{$getRecord->email}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Mobile Number</td>
+                                    <td>:</td>
+                                    <td>{{$getRecord->mobile}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Website</td>
+                                    <td>:</td>
+                                    <td>{{$getRecord->website}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="row mb-3">
-                        <div class="col-lg-3 col-md-3 label"><b>Address</b></div>
-                        <div class="col-lg-1 col-md-1">:</div>
-                        <div class="col-lg-8 col-md-8">{{$getRecord->address}}</div>
-                      </div>
-                      <div class="row mb-3">
-                        <div class="col-lg-3 col-md-3 label"><b>Email Address</b></div>
-                        <div class="col-lg-1 col-md-1">:</div>
-                        <div class="col-lg-8 col-md-8">{{$getRecord->email}}</div>
-                      </div>
-                      <div class="row mb-3">
-                        <div class="col-lg-3 col-md-3 label"><b>Mobile Number</b></div>
-                        <div class="col-lg-1 col-md-1">:</div>
-                        <div class="col-lg-8 col-md-8">{{$getRecord->mobile}}</div>
-                      </div>
-                      <div class="row mb-3">
-                        <div class="col-lg-3 col-md-3 label"><b>Website</b></div>
-                        <div class="col-lg-1 col-md-1">:</div>
-                        <div class="col-lg-8 col-md-8">{{$getRecord->website}}</div>
-                      </div>
-
-
-                  </div>
                 </div>
-                </div><!-- End Bordered Tabs -->
-  
-              </div>
+            </div>
         </div>
     </div>
 </section>
+
 @endsection
-
-
-
