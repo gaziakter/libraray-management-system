@@ -6,12 +6,12 @@
       <div class="col-lg-4 col-md-4 col-md-4 col-sm-4 col-4 text-lg-start text-center">
         <div class="logo-dextop d-none d-md-block">
           <a href="{{url('panel/dashboard')}}" class="logo text-decoration-none fw-bold">
-            Library Management System [LMS]
+            Personal Library - Gazi Akter
           </a>
         </div>
         <div class="logo-mobile d-block d-md-none">
           <a href="{{url('panel/dashboard')}}" class="logo text-decoration-none fw-bold">
-            Library
+            PLibrary
           </a>
         </div>
 

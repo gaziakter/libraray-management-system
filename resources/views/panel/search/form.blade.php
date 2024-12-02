@@ -24,7 +24,6 @@
                                 name="query" 
                                 class="form-control" 
                                 placeholder="Type book number or name" 
-                                required 
                             >
                         </div>
 

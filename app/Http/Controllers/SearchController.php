@@ -33,41 +33,40 @@ class SearchController extends Controller
    }
 
    public function bookSearch(Request $request)
-    {
-        // Get the search parameters from the request
-        $query = $request->input('query');
-        $category = $request->input('category');
-        $subCategory = $request->input('subCategory');
-        $author = $request->input('author');
-        $publisher = $request->input('publisher');
-
-        // Query the books table with filters
-        $books = BookModel::query()
-            ->when($query, function ($q) use ($query) {
-                $q->where('id', $query)
-                  ->orWhere('name', 'like', "%{$query}%");
-            })
-            ->when($category, function ($q) use ($category) {
-                $q->whereHas('categories', function ($query) use ($category) {
-                    $query->where('name', $category);
-                });
-            })
-            ->when($subCategory, function ($q) use ($subCategory) {
-                $q->whereHas('subCategories', function ($query) use ($subCategory) {
-                    $query->where('name', $subCategory);
-                });
-            })
-            ->when($author, function ($q) use ($author) {
-                $q->where('author_id', $author);
-            })
-            ->when($publisher, function ($q) use ($publisher) {
-                $q->whereHas('publisher', function ($query) use ($publisher) {
-                    $query->where('name', $publisher);
-                });
-            })
-            ->get();
-
-        // Pass the results to a view
-        return view('panel.search.results', compact('books'));
-         }
+   {
+       $query = $request->input('query');
+       $category = $request->input('category');
+       $subCategory = $request->input('subCategory');
+       $author = $request->input('author');
+       $publisher = $request->input('publisher');
+   
+       // Query the books table
+       $books = BookModel::query()
+           ->when($query, function ($q) use ($query) {
+               $q->where('id', $query)
+                 ->orWhere('name', 'like', "%{$query}%");
+           })
+           ->when($category, function ($q) use ($category) {
+            $q->whereHas('categories', function ($query) use ($category) {
+                $query->where('categories.id', $category); // Explicit table reference
+            });
+        })                 
+           ->when($subCategory, function ($q) use ($subCategory) {
+            $q->whereHas('subcategories', function ($query) use ($subCategory) {
+                $query->where('subcategories.id', $subCategory); // Explicit table reference
+            });
+        })
+        
+        ->when($author, function ($q) use ($author) {
+            $q->where('author_id', $author); // Direct relationship
+        })
+        ->when($publisher, function ($q) use ($publisher) {
+            $q->where('publisher_id', $publisher); // Direct relationship
+        })
+           ->get();
+   
+       // Pass the results to a view
+       return view('panel.search.results', compact('books'));
+   }
+   
 }
